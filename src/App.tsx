@@ -1,5 +1,7 @@
 const App = () => {
-  return <div>App</div>;
+  return <div>
+    <RouterProvider router={}>
+  </div>;
 };
 
 export default App;
