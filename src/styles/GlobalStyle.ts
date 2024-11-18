@@ -9,9 +9,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-    --min-width: 375px;
-    --max-width: 430px;
-    --vh: 100%;
+    --max-width: 375px;
+    --max-height: 812px;
   }
 
   html,
@@ -33,14 +32,12 @@ const GlobalStyle = createGlobalStyle`
 
   #root {
     width: 100%;
-    min-width: var(--min-width);
     max-width: var(--max-width);
-    min-height: calc(var(--vh, 1vh) * 100);
-    background-color: ${({ theme }) => theme.colors.babyblue};
+    min-height: var(--max-height);
     margin: 0 auto;
   }
 
-  @media (min-width: 430px) {
+  @media (min-width: 375px) {
     #root {
       max-width: var(--max-width);
     }
