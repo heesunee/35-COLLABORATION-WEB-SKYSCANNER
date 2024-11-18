@@ -6,7 +6,6 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <div>hello, world</div>
     </ThemeProvider>
   );
 };
