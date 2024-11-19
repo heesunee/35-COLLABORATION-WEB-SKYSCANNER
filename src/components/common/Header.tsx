@@ -1,5 +1,6 @@
-import { IcFlagKorea, IcLikePage, IcMainLogo, IcMy } from '@/assets/svg';
+import { IcCarWhite, IcFlagKorea, IcFlightWhite, IcHotelWhite, IcLikePage, IcMainLogo, IcMy } from '@/assets/svg';
 import FilterButton from '@/components/common/FilterButton.tsx';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -9,6 +10,10 @@ const Header = () => {
 
 	const pathsWithFilter = ['/', '/wish'];
 	const isFilter = pathsWithFilter.includes(location.pathname);
+	const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+	const handleFilterClick = (filter: string) => {
+		setSelectedFilter(filter === selectedFilter ? null : filter);
+	};
 
 	return (
 		<HeaderContainer>
@@ -26,7 +31,24 @@ const Header = () => {
 			</HeaderTop>
 			{isFilter && (
 				<HeaderFilter>
-					<FilterButton content={'항공권'} />
+					<FilterButton
+						content={'항공권'}
+						Icon={IcFlightWhite}
+						isClicked={selectedFilter === '항공권'}
+						onClick={() => handleFilterClick('항공권')}
+					/>
+					<FilterButton
+						content={'호텔'}
+						Icon={IcHotelWhite}
+						isClicked={selectedFilter === '호텔'}
+						onClick={() => handleFilterClick('호텔')}
+					/>
+					<FilterButton
+						content={'렌터카'}
+						Icon={IcCarWhite}
+						isClicked={selectedFilter === '렌터카'}
+						onClick={() => handleFilterClick('렌터카')}
+					/>
 				</HeaderFilter>
 			)}
 		</HeaderContainer>
@@ -40,7 +62,6 @@ const HeaderContainer = styled.div`
 const HeaderFilter = styled.div`
 	display: flex;
 	width: 100%;
-	height: 4.2rem;
 	padding: 0.7rem 0.6rem;
 	align-items: center;
 	gap: 0.3rem;
