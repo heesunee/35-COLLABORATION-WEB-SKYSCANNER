@@ -118,7 +118,7 @@ const Copyright = styled.p`
 `;
 
 const FooterBottom = styled.div`
-	height: 125px;
+	height: 12.5rem;
 	background-color: ${({ theme }) => theme.colors.white};
 	padding: 3rem 0.5rem;
 
