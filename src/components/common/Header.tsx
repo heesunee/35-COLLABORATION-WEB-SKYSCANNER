@@ -1,5 +1,6 @@
 import { IcCarWhite, IcFlagKorea, IcFlightWhite, IcHotelWhite, IcLikePage, IcMainLogo, IcMy } from '@/assets/svg';
 import FilterButton from '@/components/common/FilterButton.tsx';
+import { PATH } from '@/router/path.ts';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -18,14 +19,14 @@ const Header = () => {
 	return (
 		<HeaderContainer>
 			<HeaderTop>
-				<MainLogo onClick={() => navigate('/')} />
+				<MainLogo onClick={() => navigate(PATH.HOME)} />
 				<Menu>
 					<NationWrap>
 						<NationItem>KO</NationItem>
 						<IcFlagKorea />
 						<NationItem>KRW(₩)</NationItem>
 					</NationWrap>
-					<IcLikePage onClick={() => navigate('/wish')} />
+					<IcLikePage onClick={() => navigate(PATH.WISH)} />
 					<IcMy />
 				</Menu>
 			</HeaderTop>
