@@ -131,6 +131,7 @@ const FooterBottom = styled.div`
 		${({ theme }) => theme.fonts.body5_r_14};
 		width: 100%;
 		padding: 0.2rem 0.3rem;
+		border-color: ${({ theme }) => theme.colors.grey20};
 	}
 `;
 export default Footer;
