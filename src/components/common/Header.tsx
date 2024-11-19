@@ -1,34 +1,58 @@
 import { IcFlagKorea, IcLikePage, IcMainLogo, IcMy } from '@/assets/svg';
-import { useNavigate } from 'react-router-dom';
+import FilterButton from '@/components/common/FilterButton.tsx';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Header = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	const pathsWithFilter = ['/', '/wish'];
+	const isFilter = pathsWithFilter.includes(location.pathname);
+
 	return (
 		<HeaderContainer>
-			<MainLogo onClick={() => navigate('/')} />
-			<Menu>
-				<NationWrap>
-					<NationItem>KO</NationItem>
-					<IcFlagKorea />
-					<NationItem>KRW(₩)</NationItem>
-				</NationWrap>
-				<IcLikePage onClick={() => navigate('/wish')} />
-				<IcMy />
-			</Menu>
+			<HeaderTop>
+				<MainLogo onClick={() => navigate('/')} />
+				<Menu>
+					<NationWrap>
+						<NationItem>KO</NationItem>
+						<IcFlagKorea />
+						<NationItem>KRW(₩)</NationItem>
+					</NationWrap>
+					<IcLikePage onClick={() => navigate('/wish')} />
+					<IcMy />
+				</Menu>
+			</HeaderTop>
+			{isFilter && (
+				<HeaderFilter>
+					<FilterButton content={'항공권'} />
+				</HeaderFilter>
+			)}
 		</HeaderContainer>
 	);
 };
 
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.div`
 	background-color: ${({ theme }) => theme.colors.darksky};
+`;
+
+const HeaderFilter = styled.div`
+	display: flex;
+	width: 100%;
+	height: 4.2rem;
+	padding: 0.7rem 0.6rem;
+	align-items: center;
+	gap: 0.3rem;
+`;
+
+const HeaderTop = styled.header`
 	width: 100%;
 	display: flex;
 	height: 4.1rem;
 	padding: 0.8rem 0.7rem;
 	justify-content: space-between;
 	align-items: center;
-	align-self: stretch;
 `;
 
 const MainLogo = styled(IcMainLogo)`
