@@ -6,7 +6,7 @@ const Header = () => {
 	const navigate = useNavigate();
 	return (
 		<HeaderContainer>
-			<MainLogo />
+			<MainLogo onClick={() => navigate('/')} />
 			<Menu>
 				<NationWrap>
 					<NationItem>KO</NationItem>
@@ -34,6 +34,7 @@ const HeaderContainer = styled.header`
 const MainLogo = styled(IcMainLogo)`
 	width: 9.5rem;
 	height: 1.6rem;
+	cursor: pointer;
 `;
 
 const Menu = styled.div`
