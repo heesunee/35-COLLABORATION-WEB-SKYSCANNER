@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css, DefaultTheme } from "styled-components";
 
 const colors = {
   green: "#00A998",
@@ -271,10 +271,14 @@ const shadows = {
   `,
 };
 
-const theme = {
+export type ColorTypes = typeof colors;
+export type FontTypes = typeof fonts;
+export type ShadowTypes = typeof shadows;
+
+export const theme: DefaultTheme = {
   colors,
   fonts,
   shadows,
-};
+}
 
 export default theme;
