@@ -9,7 +9,7 @@ const Header = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const pathsWithFilter = ['/', '/wish'];
+	const pathsWithFilter = [PATH.HOME, PATH.WISH];
 	const isFilter = pathsWithFilter.includes(location.pathname);
 	const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 	const handleFilterClick = (filter: string) => {
