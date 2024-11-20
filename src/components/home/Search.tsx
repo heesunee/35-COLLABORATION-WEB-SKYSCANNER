@@ -1,4 +1,6 @@
 import SearchRadioButton from './SearchRadioButton';
+import SearchTextContainer from './SearchTextContainer';
+import { OriginIcon, PinIcon, ProfileIcon } from '@/assets/svg';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -6,6 +8,17 @@ const Search = () => {
 	const [selectedRadio, setSelectedRadio] = useState<string>('왕복');
 	const handleRadioClick = (value: string) => {
 		setSelectedRadio(value);
+	};
+
+	const [selectedNearbyDeparture, setSelectedNearbyDeparture] = useState(false);
+	const [selectedNearbyArrival, setSelectedNearbyArrival] = useState(false);
+
+	const handleDepartureToggle = () => {
+		setSelectedNearbyDeparture((prev) => !prev); // 이전 상태를 반대로 토글
+	};
+
+	const handleArrivalToggle = () => {
+		setSelectedNearbyArrival((prev) => !prev); // 이전 상태를 반대로 토글
 	};
 
 	return (
@@ -29,7 +42,27 @@ const Search = () => {
 						onClick={() => handleRadioClick('다구간')}
 					/>
 				</SearchRadioWrapper>
-				<SearchTextField></SearchTextField>
+				<SearchTextContainer
+					Icon={OriginIcon}
+					placeholder={'출발지는 어디인가요?'}
+					caption={'주변 공항 추가'}
+					isClicked={selectedNearbyDeparture}
+					onClick={handleDepartureToggle}
+				/>
+				<SearchTextContainer
+					Icon={PinIcon}
+					placeholder={'목적지는 어디인가요?'}
+					caption={'주변 공항 추가'}
+					isClicked={selectedNearbyArrival}
+					onClick={handleArrivalToggle}
+				/>
+				<SearchTextContainer
+					Icon={ProfileIcon}
+					placeholder={'인원을 선택해주세요.'}
+					caption={'직항만'}
+					isClicked={selectedNearbyArrival}
+					onClick={handleArrivalToggle}
+				/>
 			</SearchContainer>
 		</>
 	);
@@ -53,6 +86,5 @@ const SearchRadioWrapper = styled.div`
 	display: flex;
 	gap: 1.1rem;
 	flex-direction: row;
+	padding-bottom: 0.6rem;
 `;
-
-const SearchTextField = styled.input``;
