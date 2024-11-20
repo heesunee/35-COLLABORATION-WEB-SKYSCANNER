@@ -48,9 +48,9 @@ const TabItem = ({ index, children }: TabProps) => {
 	const isActive = activeTab === index;
 
 	return (
-		<TabButton isActive={isActive} onClick={() => setActiveTab(index)}>
+		<TabText isActive={isActive} onClick={() => setActiveTab(index)}>
 			{children}
-		</TabButton>
+		</TabText>
 	);
 };
 
@@ -79,7 +79,6 @@ export default Tabs;
 const TabsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 2.5rem;
 `;
 
 const TabListContainer = styled.div`
@@ -87,7 +86,7 @@ const TabListContainer = styled.div`
 	gap: 3.5rem;
 `;
 
-const TabButton = styled.button<{ isActive: boolean }>`
+const TabText = styled.p<{ isActive: boolean }>`
 	background: none;
 	border: none;
 	color: ${({ theme }) => theme.colors.grey30};
