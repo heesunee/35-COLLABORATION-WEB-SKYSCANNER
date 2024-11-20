@@ -10,7 +10,7 @@ const Header = () => {
 	const location = useLocation();
 
 	const pathsWithFilter = [PATH.HOME, PATH.WISH];
-	const isFilter = pathsWithFilter.includes(location.pathname);
+	const visible = pathsWithFilter.includes(location.pathname);
 	const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 	const handleFilterClick = (filter: string) => {
 		setSelectedFilter(filter === selectedFilter ? null : filter);
@@ -30,28 +30,26 @@ const Header = () => {
 					<MyIcon />
 				</Menu>
 			</HeaderTop>
-			{isFilter && (
-				<HeaderFilter>
-					<FilterButton
-						content={'항공권'}
-						Icon={FlagKoreaIcon}
-						isClicked={selectedFilter === '항공권'}
-						onClick={() => handleFilterClick('항공권')}
-					/>
-					<FilterButton
-						content={'호텔'}
-						Icon={HotelWhiteIcon}
-						isClicked={selectedFilter === '호텔'}
-						onClick={() => handleFilterClick('호텔')}
-					/>
-					<FilterButton
-						content={'렌터카'}
-						Icon={CarWhiteIcon}
-						isClicked={selectedFilter === '렌터카'}
-						onClick={() => handleFilterClick('렌터카')}
-					/>
-				</HeaderFilter>
-			)}
+			<HeaderFilter visible={visible}>
+				<FilterButton
+					content={'항공권'}
+					Icon={FlagKoreaIcon}
+					isClicked={selectedFilter === '항공권'}
+					onClick={() => handleFilterClick('항공권')}
+				/>
+				<FilterButton
+					content={'호텔'}
+					Icon={HotelWhiteIcon}
+					isClicked={selectedFilter === '호텔'}
+					onClick={() => handleFilterClick('호텔')}
+				/>
+				<FilterButton
+					content={'렌터카'}
+					Icon={CarWhiteIcon}
+					isClicked={selectedFilter === '렌터카'}
+					onClick={() => handleFilterClick('렌터카')}
+				/>
+			</HeaderFilter>
 		</HeaderContainer>
 	);
 };
@@ -60,8 +58,8 @@ const HeaderContainer = styled.div`
 	background-color: ${({ theme }) => theme.colors.darksky};
 `;
 
-const HeaderFilter = styled.div`
-	display: flex;
+const HeaderFilter = styled.div<{ visible: boolean }>`
+	display: ${({ visible }) => (visible ? 'flex' : 'none')};
 	width: 100%;
 	padding: 0.7rem 0.6rem;
 	align-items: center;
