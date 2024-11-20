@@ -1,6 +1,5 @@
-
 const Reservation = () => {
-  return <>Reservation</>;
-}
+	return <>Reservation</>;
+};
 
 export default Reservation;

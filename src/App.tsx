@@ -1,4 +1,4 @@
-import { router } from '@/Router';
+import { router } from '@/router/Router.tsx';
 import GlobalStyle from '@/styles/GlobalStyle';
 import theme from '@/styles/theme';
 import { RouterProvider } from 'react-router-dom';
