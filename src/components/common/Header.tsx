@@ -1,4 +1,4 @@
-import { IcCarWhite, IcFlagKorea, IcFlightWhite, IcHotelWhite, IcLikePage, IcMainLogo, IcMy } from '@/assets/svg';
+import { CarWhiteIcon, FlagKoreaIcon, HotelWhiteIcon, LikePageIcon, MainLogoIcon, MyIcon } from '@/assets/svg';
 import FilterButton from '@/components/common/FilterButton.tsx';
 import { PATH } from '@/router/path.ts';
 import { useState } from 'react';
@@ -23,30 +23,30 @@ const Header = () => {
 				<Menu>
 					<NationWrap>
 						<NationItem>KO</NationItem>
-						<IcFlagKorea />
+						<FlagKoreaIcon />
 						<NationItem>KRW(₩)</NationItem>
 					</NationWrap>
-					<IcLikePage onClick={() => navigate(PATH.WISH)} />
-					<IcMy />
+					<LikePageIcon onClick={() => navigate(PATH.WISH)} />
+					<MyIcon />
 				</Menu>
 			</HeaderTop>
 			{isFilter && (
 				<HeaderFilter>
 					<FilterButton
 						content={'항공권'}
-						Icon={IcFlightWhite}
+						Icon={FlagKoreaIcon}
 						isClicked={selectedFilter === '항공권'}
 						onClick={() => handleFilterClick('항공권')}
 					/>
 					<FilterButton
 						content={'호텔'}
-						Icon={IcHotelWhite}
+						Icon={HotelWhiteIcon}
 						isClicked={selectedFilter === '호텔'}
 						onClick={() => handleFilterClick('호텔')}
 					/>
 					<FilterButton
 						content={'렌터카'}
-						Icon={IcCarWhite}
+						Icon={CarWhiteIcon}
 						isClicked={selectedFilter === '렌터카'}
 						onClick={() => handleFilterClick('렌터카')}
 					/>
@@ -77,7 +77,7 @@ const HeaderTop = styled.header`
 	align-items: center;
 `;
 
-const MainLogo = styled(IcMainLogo)`
+const MainLogo = styled(MainLogoIcon)`
 	width: 9.5rem;
 	height: 1.6rem;
 	cursor: pointer;
