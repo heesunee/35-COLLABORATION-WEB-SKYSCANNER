@@ -34,13 +34,10 @@ const Button = ({ children, variant = 'default', size = 'default', onClick }: pr
 const ButtonStyles = {
 	default: css`
 		width: 100%;
-		height: 3.9rem;
 		${flexCssGenerator('flex', 'center', 'center', 'column')}
 		border-radius: 1.1rem;
 		background: ${({ theme }) => theme.colors.skyblue};
 		color: ${({ theme }) => theme.colors.white};
-		font-size: 1.2rem;
-		font-weight: 800;
 		cursor: pointer;
 	`,
 	confirm: css`
@@ -60,9 +57,13 @@ const ButtonStyles = {
 
 const ButtonSizes = {
 	default: css`
+		height: 3.9rem;
+		width: 100%;
 		${({ theme }) => theme.fonts.body2_sb_14};
 	`,
 	pricemodal: css`
+		height: 3.9rem;
+		width: 100%;
 		${({ theme }) => theme.fonts.body1_sb_16};
 	`,
 };
