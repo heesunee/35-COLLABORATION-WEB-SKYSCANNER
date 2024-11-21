@@ -1,23 +1,48 @@
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import styled from 'styled-components';
 
-interface props {
+interface groupProps {
 	title: string;
 	cities: string[];
 }
+interface buttonProps {
+	name: string;
+	onClick: () => void;
+}
 
-const CityGroup = ({ title, cities }: props) => {
+const CityButton = ({ name, onClick }: buttonProps) => {
+	return <StyledButton onClick={onClick}>{name}</StyledButton>;
+};
+
+const CityGroup = ({ title, cities }: groupProps) => {
+	const onButtonClick = () => {
+		console.log('button clicked');
+	};
+
 	return (
 		<GroupContainer>
 			<GroupTitle>{title}</GroupTitle>
 			<CitiesGrid>
-				{/*{cities.map((city, index) => (*/}
-				{/*	// <CityButton key={`${title}-${index}`} name={city} />*/}
-				{/*))}*/}
+				{cities.map((city, index) => (
+					<CityButton key={index} name={city} onClick={onButtonClick} />
+				))}
 			</CitiesGrid>
 		</GroupContainer>
 	);
 };
+
+const StyledButton = styled.button`
+	align-self: stretch;
+	border-radius: 5px;
+	background-color: ${({ theme }) => theme.colors.skygrey};
+	min-height: 3.2rem;
+	width: 11.1rem;
+	padding: 0.6rem;
+	border: none;
+	color: ${({ theme }) => theme.colors.nightblue};
+	${({ theme }) => theme.fonts.body2_sb_14};
+	cursor: pointer;
+`;
 
 const GroupContainer = styled.section`
 	${flexCssGenerator('flex', 'flex-start', '', 'column')}
@@ -31,8 +56,9 @@ const GroupTitle = styled.h2`
 
 const CitiesGrid = styled.div`
 	${flexCssGenerator('flex', 'flex-start', '', 'row')}
+	flex-wrap: wrap;
 	width: 100%;
-	gap: 8px 9px;
+	gap: 0.8rem 0.8rem;
 `;
 
 export default CityGroup;
