@@ -1,3 +1,4 @@
+import Button from '@/components/common/Button.tsx';
 import PriceImage from '@/components/home/price-image.tsx';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import styled from 'styled-components';
@@ -29,7 +30,7 @@ const PriceModal = ({ isVisible = false }: props) => {
 					</PriceItem>
 				</ModalBody>
 				<ModalFooter>
-					<Button>알겠습니다</Button>
+					<Button size={'pricemodal'}>알겠습니다</Button>
 				</ModalFooter>
 			</PriceModalContent>
 		</PriceModalContainer>
@@ -87,8 +88,8 @@ const PriceValue = styled.div`
 	${({ theme }) => theme.fonts.body3_sb_12}
 `;
 
-const ModalFooter = styled.div``;
-
-const Button = styled.button``;
+const ModalFooter = styled.div`
+	padding: 0.3rem 4.5rem 2.2rem 4.5rem;
+`;
 
 export default PriceModal;
