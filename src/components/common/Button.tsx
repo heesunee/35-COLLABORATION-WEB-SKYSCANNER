@@ -42,7 +42,7 @@ const ButtonStyles = {
 	`,
 	confirm: css`
 		// 확인 버튼
-		gap: 10px;
+		gap: 1rem;
 		flex-shrink: 0;
 	`,
 	search: css`

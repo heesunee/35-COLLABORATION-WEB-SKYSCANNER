@@ -24,7 +24,6 @@ const PriceContent = styled.div<{ color: 'green' | 'orange' | 'red' }>`
 	height: 2.3rem;
 	width: fit-content;
 	padding: 0.1rem 0.4rem;
-	text-align: center;
 	align-content: center;
 	border-radius: 0.4rem;
 `;

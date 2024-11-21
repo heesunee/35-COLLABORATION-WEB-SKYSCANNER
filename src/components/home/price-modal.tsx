@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 interface props {
 	isVisible: boolean;
-	onModalClose: () => void;
+	onModalClose?: () => void;
 }
 
 const PriceModal = ({ isVisible = false, onModalClose }: props) => {
@@ -40,7 +40,9 @@ const PriceModal = ({ isVisible = false, onModalClose }: props) => {
 	);
 };
 
-const PriceModalContainer = styled.div<{ isVisible: boolean }>`
+const PriceModalContainer = styled.div.withConfig({
+	shouldForwardProp: (prop) => prop !== 'isVisible',
+})<{ isVisible: boolean }>`
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -59,20 +61,17 @@ const PriceModalContent = styled.div`
 	background: ${({ theme }) => theme.colors.white};
 `;
 
-const ModalHeader = styled.div`
+const ModalHeader = styled.section`
 	height: 5.5rem;
 	width: 100%;
 	${flexCssGenerator('flex', 'center', 'center', 'column')}
 	border-bottom: 1px solid ${({ theme }) => theme.colors.grey20};
 	color: ${({ theme }) => theme.colors.black};
+	${({ theme }) => theme.fonts.head3_eb_24}
 	text-align: center;
-	font-size: 2.4rem;
-	font-style: normal;
-	font-weight: 800;
-	line-height: 2rem;
 `;
 
-const ModalBody = styled.div`
+const ModalBody = styled.section`
 	${flexCssGenerator('flex', 'flex-start', '', 'column')}
 	padding: 1.6rem 2.3rem;
 	gap: 1rem;
