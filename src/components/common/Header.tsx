@@ -1,4 +1,12 @@
-import { CarWhiteIcon, FlagKoreaIcon, HotelWhiteIcon, LikePageIcon, MainLogoIcon, MyIcon } from '@/assets/svg';
+import {
+	CarWhiteIcon,
+	FlagKoreaIcon,
+	FlightWhiteIcon,
+	HotelWhiteIcon,
+	LikePageIcon,
+	MainLogoIcon,
+	MyIcon,
+} from '@/assets/svg';
 import FilterButton from '@/components/common/FilterButton.tsx';
 import { PATH } from '@/router/path.ts';
 import { useState } from 'react';
@@ -33,7 +41,7 @@ const Header = () => {
 			<HeaderFilter visible={visible}>
 				<FilterButton
 					content={'항공권'}
-					Icon={FlagKoreaIcon}
+					Icon={FlightWhiteIcon}
 					isClicked={selectedFilter === '항공권'}
 					onClick={() => handleFilterClick('항공권')}
 				/>
