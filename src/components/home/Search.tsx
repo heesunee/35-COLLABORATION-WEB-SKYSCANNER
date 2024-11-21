@@ -1,6 +1,6 @@
 import SearchRadioButton from './SearchRadioButton';
 import SearchTextContainer from './SearchTextContainer';
-import { OriginIcon, PinIcon, ProfileIcon } from '@/assets/svg';
+import { CalendarGreyIcon, OriginIcon, PinIcon, ProfileIcon } from '@/assets/svg';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -12,6 +12,7 @@ const Search = () => {
 
 	const [selectedNearbyDeparture, setSelectedNearbyDeparture] = useState(false);
 	const [selectedNearbyArrival, setSelectedNearbyArrival] = useState(false);
+	const [selectedDirect, setSelectedDirect] = useState(false);
 
 	const handleDepartureToggle = () => {
 		setSelectedNearbyDeparture((prev) => !prev); // 이전 상태를 반대로 토글
@@ -21,6 +22,9 @@ const Search = () => {
 		setSelectedNearbyArrival((prev) => !prev); // 이전 상태를 반대로 토글
 	};
 
+	const handleDirectToggle = () => {
+		setSelectedDirect((prev) => !prev); // 이전 상태를 반대로 토글
+	};
 	return (
 		<>
 			<SearchTitle>전 세계 항공권 특가 상품</SearchTitle>
@@ -56,13 +60,24 @@ const Search = () => {
 					isClicked={selectedNearbyArrival}
 					onClick={handleArrivalToggle}
 				/>
+				<SearchCalendarWrapper>
+					<CalendarLeft>
+						<CalendarGreyIcon />
+						출발하는 날짜
+					</CalendarLeft>
+					<CalendarRight>
+						<CalendarGreyIcon />
+						들어오는 날짜
+					</CalendarRight>
+				</SearchCalendarWrapper>
 				<SearchTextContainer
 					Icon={ProfileIcon}
 					placeholder={'인원을 선택해주세요.'}
 					caption={'직항만'}
-					isClicked={selectedNearbyArrival}
-					onClick={handleArrivalToggle}
+					isClicked={selectedDirect}
+					onClick={handleDirectToggle}
 				/>
+				<SearchButton>검색하기</SearchButton>
 			</SearchContainer>
 		</>
 	);
@@ -87,4 +102,52 @@ const SearchRadioWrapper = styled.div`
 	gap: 1.1rem;
 	flex-direction: row;
 	padding-bottom: 0.6rem;
+`;
+
+const SearchCalendarWrapper = styled.div`
+	display: flex;
+	margin-bottom: 1.1rem;
+	gap: 0.298rem;
+`;
+
+const CalendarLeft = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: ${({ theme }) => theme.colors.white};
+	border-radius: 1.1rem 0 0 1.1rem;
+	width: 100%;
+
+	padding: 0.8rem 1rem;
+
+	color: ${({ theme }) => theme.colors.grey40};
+	${({ theme }) => theme.fonts.e_body_m_12}
+`;
+
+const CalendarRight = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: ${({ theme }) => theme.colors.white};
+	border-radius: 0 1.1rem 1.1rem 0;
+	width: 100%;
+
+	padding: 0.8rem 1rem;
+
+	color: ${({ theme }) => theme.colors.grey40};
+	${({ theme }) => theme.fonts.e_body_m_12}
+`;
+
+const SearchButton = styled.div`
+	color: ${({ theme }) => theme.colors.white};
+	padding: 1.2rem 14rem;
+	margin-top: 2rem;
+	border-radius: 11px;
+	background-color: ${({ theme }) => theme.colors.skyblue};
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	${({ theme }) => theme.fonts.body2_sb_14};
 `;
