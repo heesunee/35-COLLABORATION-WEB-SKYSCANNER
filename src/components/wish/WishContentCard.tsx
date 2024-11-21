@@ -1,6 +1,7 @@
 import FlightDetails from './FlightDetails';
 import FlightInfo from './FlightInfo';
 import ToggleSwitch from './ToggleSwitch';
+import LikeBlueIcon from '@/assets/svg/ic_like_blue.svg?react';
 import { WishContentCardProps } from '@/types/wishContentCard';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -29,6 +30,7 @@ const WishContentCard = ({
 	return (
 		<WishContentWrapper>
 			<WishContentsImg src={backgroundImageUrl || 'https://ifh.cc/g/MZCwNq.jpg'} alt={`${departure} - ${arrival}`} />
+			<LikeBlueIconStyled />
 			<WishContentsContainer>
 				<WishContentsMid>
 					<WishContentsTitle>
@@ -64,6 +66,7 @@ const WishContentCard = ({
 export default WishContentCard;
 
 const WishContentWrapper = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	${({ theme }) => theme.shadows.card_shadow};
@@ -74,6 +77,12 @@ const WishContentsImg = styled.img`
 	width: 100%;
 	height: auto;
 	object-fit: cover;
+`;
+
+const LikeBlueIconStyled = styled(LikeBlueIcon)`
+	position: absolute;
+	top: 1.8rem;
+	right: 1.3rem;
 `;
 
 const WishContentsContainer = styled.div`
