@@ -1,7 +1,7 @@
-import FlightDetails from './FlightDetails';
-import FlightInfo from './FlightInfo';
-import ToggleSwitch from './ToggleSwitch';
 import LikeBlueIcon from '@/assets/svg/ic_like_blue.svg?react';
+import FlightDetails from '@/components/wish/FlightDetails';
+import FlightInfo from '@/components/wish/FlightInfo';
+import ToggleSwitch from '@/components/wish/ToggleSwitch';
 import { WishContentCardProps } from '@/types/wishContentCard';
 import { useState } from 'react';
 import styled from 'styled-components';

@@ -1,4 +1,4 @@
-import WishContentCard from './WishContentCard';
+import WishContentCard from '@/components/wish/WishContentCard';
 import { mockWishList } from '@/mocks/mockWishList';
 import styled from 'styled-components';
 
