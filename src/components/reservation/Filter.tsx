@@ -1,12 +1,12 @@
 import AngledownIcon from '@/assets/svg/ic_angle_down_white.svg?react';
 import styled from 'styled-components';
 
-interface FilterButtonProps {
+interface FilterProps {
 	people?: number;
 	content: string;
 }
 
-const FilterButton = ({ people, content }: FilterButtonProps) => {
+const Filter = ({ people, content }: FilterProps) => {
 	return (
 		<ButtonContainer>
 			{people && <PeopleSpan>{people}</PeopleSpan>}
@@ -16,7 +16,7 @@ const FilterButton = ({ people, content }: FilterButtonProps) => {
 	);
 };
 
-export default FilterButton;
+export default Filter;
 
 const ButtonContainer = styled.div`
 	background-color: inherit;
