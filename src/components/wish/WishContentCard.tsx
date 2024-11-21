@@ -1,9 +1,12 @@
 import FlightDetails from './FlightDetails';
 import FlightInfo from './FlightInfo';
+import ToggleSwitch from './ToggleSwitch';
 import { WishContentCardProps } from '@/types/wishContentCard';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const WishContentCard = ({
+	id,
 	backgroundImageUrl,
 	departure,
 	arrival,
@@ -18,6 +21,11 @@ const WishContentCard = ({
 	person,
 	price,
 }: WishContentCardProps) => {
+	const [isChecked, setIsChecked] = useState(true);
+
+	const handleToggle = () => {
+		setIsChecked((prev) => !prev);
+	};
 	return (
 		<WishContentWrapper>
 			<WishContentsImg src={backgroundImageUrl || 'https://ifh.cc/g/MZCwNq.jpg'} alt={`${departure} - ${arrival}`} />
@@ -45,10 +53,7 @@ const WishContentCard = ({
 					<PriceChangeWrapper>
 						<PriceChangeText>가격 변동 알림</PriceChangeText>
 					</PriceChangeWrapper>
-					<ToggleWrapper>
-						<input type="checkbox" id={`toggle-${departure}-${arrival}`} defaultChecked />
-						<label htmlFor={`toggle-${departure}-${arrival}`} />
-					</ToggleWrapper>
+					<ToggleSwitch id={`toggle-${id}`} isChecked={isChecked} onChange={handleToggle} />
 				</WishContentsMidBottom>
 			</WishContentsContainer>
 			<FlightDetails travelDays={travelDays} personInfo={`성인 ${person}명, 일반석`} price={price} />
@@ -104,48 +109,4 @@ const PriceChangeWrapper = styled.div`
 
 const PriceChangeText = styled.p`
 	${({ theme }) => theme.fonts.body2_sb_14};
-`;
-
-const ToggleWrapper = styled.div`
-	display: flex;
-	align-items: center;
-
-	input[type='checkbox'] {
-		appearance: none;
-		width: 3.9rem;
-		height: 2rem;
-		background: ${({ theme }) => theme.colors.grey40};
-		border-radius: 1rem;
-		position: relative;
-		cursor: pointer;
-		transition: background 0.3s ease;
-
-		&:checked {
-			background: ${({ theme }) => theme.colors.skyblue};
-		}
-
-		&:checked + label::before {
-			transform: translateX(2.2rem);
-		}
-	}
-
-	label {
-		display: block;
-		width: 3.9rem;
-		height: 2rem;
-		position: absolute;
-		cursor: pointer;
-	}
-
-	label::before {
-		content: '';
-		width: 1.5rem;
-		height: 1.5rem;
-		background: white;
-		border-radius: 50%;
-		position: absolute;
-		top: 0.2rem;
-		left: 0.5rem;
-		transition: transform 0.3s ease;
-	}
 `;

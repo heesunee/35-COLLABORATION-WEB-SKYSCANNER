@@ -12,4 +12,5 @@ export interface WishContentCardProps {
 	travelDays: string;
 	person: number;
 	price: string;
+	id: number;
 }
