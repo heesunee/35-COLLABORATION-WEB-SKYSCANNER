@@ -1,5 +1,6 @@
 import CarWhiteIcon from '@/assets/svg/ic_car_white.svg?react';
 import FlagKoreaIcon from '@/assets/svg/ic_flag_korea.svg?react';
+import FlightGrayIcon from '@/assets/svg/ic_flight_grey.svg?react';
 import FlightWhiteIcon from '@/assets/svg/ic_flight_white.svg?react';
 import HotelWhiteIcon from '@/assets/svg/ic_hotel_white.svg?react';
 import LikePageIcon from '@/assets/svg/ic_likepage.svg?react';
@@ -11,6 +12,7 @@ export {
 	CarWhiteIcon,
 	FlagKoreaIcon,
 	FlightWhiteIcon,
+	FlightGrayIcon,
 	HotelWhiteIcon,
 	LikePageIcon,
 	MainLogoIcon,
