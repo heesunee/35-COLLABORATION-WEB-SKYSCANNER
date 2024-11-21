@@ -1,3 +1,4 @@
+import ArrowLeftBlackIcon from '@/assets/svg//ic_arrow_left_black_new.svg?react';
 import CarWhiteIcon from '@/assets/svg/ic_car_white.svg?react';
 import FlagKoreaIcon from '@/assets/svg/ic_flag_korea.svg?react';
 import FlightGrayIcon from '@/assets/svg/ic_flight_grey.svg?react';
@@ -18,4 +19,5 @@ export {
 	MainLogoIcon,
 	MyIcon,
 	SkyscannerLogoIcon,
+	ArrowLeftBlackIcon,
 };

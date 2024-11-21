@@ -14,12 +14,16 @@ const Home = () => {
 	});
 
 	const onModalToggle = (modal: 'search' | 'calender') => {
-		setModalOpen((prev) => ({ ...prev, [modal]: !prev[modal] }));
+		console.log(isModalOpen);
+		setModalOpen({
+			...isModalOpen,
+			[modal]: !isModalOpen[modal],
+		});
 	};
 
 	return (
 		<>
-			<SearchModal isOpen={isModalOpen.search} onModalToggle={onModalToggle} />
+			<SearchModal isOpen={isModalOpen.search} onModalToggle={() => onModalToggle('search')} />
 			<CalenderModal />
 		</>
 	);

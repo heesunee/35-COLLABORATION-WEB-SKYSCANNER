@@ -15,8 +15,10 @@ const CityButton = ({ name, onClick }: buttonProps) => {
 };
 
 const CityGroup = ({ title, cities }: groupProps) => {
-	const onButtonClick = () => {
-		console.log('button clicked');
+	const onButtonClick = (city: string) => {
+		if (city === '오키나와') {
+			alert('오키나와는 현재 서비스 준비 중입니다.');
+		}
 	};
 
 	return (

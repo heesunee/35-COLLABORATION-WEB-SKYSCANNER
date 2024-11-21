@@ -5,13 +5,13 @@ import styled, { css } from 'styled-components';
 interface props {
 	onClick: () => void;
 	variant?: 'default' | 'confirm' | 'search' | 'disable';
-	size?: 'default' | 'pricemodal';
+	size?: 'default' | 'pricemodal' | 'search' | 'disable';
 	children: React.ReactNode;
 }
 
 interface StyledProps {
 	variant?: 'default' | 'clicked' | 'search' | 'disable';
-	size?: 'default' | 'pricemodal';
+	size?: 'default' | 'pricemodal' | 'search' | 'disable';
 }
 
 /**
@@ -46,12 +46,21 @@ const ButtonStyles = {
 		flex-shrink: 0;
 	`,
 	search: css`
-		// 검색 버튼
+		bottom: 1.6rem;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: ${({ theme }) => theme.colors.skyblue};
+		color: ${({ theme }) => theme.colors.white};
+		z-index: 2;
 	`,
 	disable: css`
 		// 비활성화 버튼
+		bottom: 1.6rem;
+		left: 50%;
+		transform: translate(-50%, -50%);
 		background: ${({ theme }) => theme.colors.grey30};
 		color: ${({ theme }) => theme.colors.black};
+		z-index: 2;
 	`,
 };
 
@@ -65,6 +74,18 @@ const ButtonSizes = {
 		height: 3.9rem;
 		width: 100%;
 		${({ theme }) => theme.fonts.body1_sb_16};
+	`,
+	search: css`
+		height: 3.9rem;
+		width: 33.7rem;
+		position: fixed;
+		${({ theme }) => theme.fonts.body2_sb_14};
+	`,
+	disable: css`
+		height: 3.9rem;
+		width: 33.7rem;
+		position: fixed;
+		${({ theme }) => theme.fonts.body2_sb_14};
 	`,
 };
 
