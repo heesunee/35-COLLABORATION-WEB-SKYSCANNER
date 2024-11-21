@@ -7,6 +7,7 @@ interface props {
 	variant?: 'default' | 'confirm' | 'search' | 'disable';
 	size?: 'default' | 'pricemodal' | 'search' | 'disable';
 	children: React.ReactNode;
+	disabled?: boolean;
 }
 
 interface StyledProps {
@@ -23,9 +24,9 @@ interface StyledProps {
  * @constructor
  */
 
-const Button = ({ children, variant = 'default', size = 'default', onClick }: props) => {
+const Button = ({ children, variant = 'default', size = 'default', onClick, disabled }: props) => {
 	return (
-		<ButtonContainer onClick={onClick} variant={variant} size={size}>
+		<ButtonContainer onClick={onClick} variant={variant} size={size} disabled={disabled}>
 			{children}
 		</ButtonContainer>
 	);
@@ -36,6 +37,7 @@ const ButtonStyles = {
 		width: 100%;
 		${flexCssGenerator('flex', 'center', 'center', 'column')}
 		border-radius: 1.1rem;
+		border: none;
 		background: ${({ theme }) => theme.colors.skyblue};
 		color: ${({ theme }) => theme.colors.white};
 		cursor: pointer;
@@ -89,7 +91,7 @@ const ButtonSizes = {
 	`,
 };
 
-const ButtonContainer = styled.div<StyledProps>`
+const ButtonContainer = styled.button<StyledProps>`
 	${ButtonStyles.default}
 	${(props) => props.variant && ButtonStyles[props.variant]}
   ${(props) => props.size && ButtonSizes[props.size]}

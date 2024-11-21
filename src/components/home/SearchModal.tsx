@@ -21,6 +21,10 @@ const SearchModal = ({ isOpen = false, onModalToggle }: props) => {
 		onModalToggle();
 	};
 
+	const onOkinawaClicked = (state: boolean) => {
+		setIsButtonClicked(state);
+	};
+
 	return (
 		<SearchModalWrap isOpen={isOpen}>
 			<ScrollWrap ref={scrollRef}>
@@ -37,7 +41,7 @@ const SearchModal = ({ isOpen = false, onModalToggle }: props) => {
 				<CityGroupWrap>
 					<InputForm Icon={FlightGrayIcon} placeholder="도시명 또는 공항명" />
 					<CityGroup title="인기 도시" cities={cityGroups.popular} />
-					<CityGroup title="아시아" cities={cityGroups.asia} />
+					<CityGroup title="아시아" cities={cityGroups.asia} onOkinawaClicked={onOkinawaClicked} />
 					<CityGroup title="유럽" cities={cityGroups.europe} />
 					<CityGroup title="북미" cities={cityGroups.northAmerica} />
 					<CityGroup title="남아메리카" cities={cityGroups.southAmerica} />
@@ -48,6 +52,7 @@ const SearchModal = ({ isOpen = false, onModalToggle }: props) => {
 				variant={isButtonClicked ? 'search' : 'disable'}
 				size={isButtonClicked ? 'search' : 'disable'}
 				onClick={onSearchClick}
+				disabled={!isButtonClicked}
 			>
 				검색하기
 			</Button>

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 interface groupProps {
 	title: string;
 	cities: string[];
+	onOkinawaClicked?: (b: boolean) => void;
 }
 interface buttonProps {
 	name: string;
@@ -14,19 +15,21 @@ const CityButton = ({ name, onClick }: buttonProps) => {
 	return <StyledButton onClick={onClick}>{name}</StyledButton>;
 };
 
-const CityGroup = ({ title, cities }: groupProps) => {
+const CityGroup = ({ title, cities, onOkinawaClicked }: groupProps) => {
 	const onButtonClick = (city: string) => {
-		if (city === '오키나와') {
-			alert('오키나와는 현재 서비스 준비 중입니다.');
+		if (onOkinawaClicked) {
+			if (city === '오키나와') onOkinawaClicked(true);
+			else {
+				onOkinawaClicked(false);
+			}
 		}
 	};
-
 	return (
 		<GroupContainer>
 			<GroupTitle>{title}</GroupTitle>
 			<CitiesGrid>
 				{cities.map((city, index) => (
-					<CityButton key={index} name={city} onClick={onButtonClick} />
+					<CityButton key={index} name={city} onClick={() => onButtonClick(city)} />
 				))}
 			</CitiesGrid>
 		</GroupContainer>
