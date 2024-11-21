@@ -33,7 +33,7 @@ const WishPageContainer = styled.main`
 `;
 
 const WishPageTitle = styled.h1`
-	${({ theme }) => theme.fonts.head1_eb_30};
+	${({ theme }) => theme.fonts.head1_eb_30_new};
 	margin-bottom: 2.8rem;
 `;
 
