@@ -1,4 +1,4 @@
-import PriceModal from '@/components/home/price-modal.tsx';
+import PriceModal from '@/components/home/PriceModal.tsx';
 import { useState } from 'react';
 
 const CalenderModal = () => {
