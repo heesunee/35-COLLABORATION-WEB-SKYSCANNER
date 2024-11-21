@@ -92,6 +92,8 @@ const ToggleLabel = styled.span`
 `;
 
 const ToggleWrapper = styled.div`
+	width: 3.9rem;
+
 	border-radius: 10px;
 	background: ${({ theme }) => theme.colors.grey20};
 	padding: 0.2rem;
