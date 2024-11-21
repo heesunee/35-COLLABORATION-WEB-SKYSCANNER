@@ -1,7 +1,7 @@
 import Tab from '@/components/wish/Tab';
 import styled from 'styled-components';
 
-const App = () => {
+const Wish = () => {
 	return (
 		<WishPageContainer>
 			<WishPageTitle>위시리스트</WishPageTitle>
@@ -24,7 +24,7 @@ const App = () => {
 	);
 };
 
-export default App;
+export default Wish;
 
 const WishPageContainer = styled.main`
 	display: flex;
