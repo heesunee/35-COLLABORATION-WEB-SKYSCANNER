@@ -17,7 +17,7 @@ const InputForm = ({ Icon, placeholder }: InputFormProps) => {
 };
 
 const InputFormContainer = styled.div`
-	${flexCssGenerator('flex', 'center', 'flex-start')};
+	${flexCssGenerator('flex', '', 'center')};
 	gap: 0.1rem;
 	border-radius: 1.1rem;
 	border: 0.1rem solid ${({ theme }) => theme.colors.grey30};
