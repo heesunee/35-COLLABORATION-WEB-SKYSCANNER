@@ -1,3 +1,4 @@
+import AdCard from '@/components/reservation/Adcard';
 import DateFilter from '@/components/reservation/DateFilter';
 import Filter from '@/components/reservation/Filter';
 import LocationInput from '@/components/reservation/LocationInput';
@@ -20,6 +21,7 @@ const Reservation = () => {
 			</TopBar>
 			<ReservationMain>
 				<TabFlight />
+				<AdCard />
 			</ReservationMain>
 		</ReservationContainer>
 	);
