@@ -5,12 +5,13 @@ import styled from 'styled-components';
 
 interface props {
 	isVisible: boolean;
+	onModalClose: () => void;
 }
 
-const PriceModal = ({ isVisible = false }: props) => {
+const PriceModal = ({ isVisible = false, onModalClose }: props) => {
 	return (
-		<PriceModalContainer isVisible={isVisible}>
-			<PriceModalContent>
+		<PriceModalContainer isVisible={isVisible} onClick={onModalClose}>
+			<PriceModalContent onClick={(e) => e.stopPropagation()}>
 				<ModalHeader>가격 기준</ModalHeader>
 				<ModalBody>
 					<PriceItem>
@@ -30,7 +31,9 @@ const PriceModal = ({ isVisible = false }: props) => {
 					</PriceItem>
 				</ModalBody>
 				<ModalFooter>
-					<Button size={'pricemodal'}>알겠습니다</Button>
+					<Button size={'pricemodal'} onClick={onModalClose}>
+						알겠습니다
+					</Button>
 				</ModalFooter>
 			</PriceModalContent>
 		</PriceModalContainer>
