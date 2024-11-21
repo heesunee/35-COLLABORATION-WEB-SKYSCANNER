@@ -143,7 +143,7 @@ const fonts = {
 		line-height: 2rem;
 	`,
 
-	head1_e_30_new: css`
+	head1_eb_30_new: css`
 		font-size: 3rem;
 		font-family: Apple SD Gothic Neo;
 		font-weight: 800;
