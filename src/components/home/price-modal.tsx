@@ -59,10 +59,10 @@ const PriceModalContent = styled.div`
 `;
 
 const ModalHeader = styled.div`
-	height: 5.4rem;
+	height: 5.5rem;
 	width: 100%;
 	${flexCssGenerator('flex', 'center', 'center', 'column')}
-	border-bottom: 1px solid ${({ theme }) => theme.colors.gray20};
+	border-bottom: 1px solid ${({ theme }) => theme.colors.grey20};
 	color: ${({ theme }) => theme.colors.black};
 	text-align: center;
 	font-size: 2.4rem;
@@ -87,7 +87,7 @@ const PriceTitle = styled.div`
 `;
 
 const PriceValue = styled.div`
-	color: ${({ theme }) => theme.colors.gray40};
+	color: ${({ theme }) => theme.colors.grey40};
 	${({ theme }) => theme.fonts.body3_sb_12}
 `;
 
