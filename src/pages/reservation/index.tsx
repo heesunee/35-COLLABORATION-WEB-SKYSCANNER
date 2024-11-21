@@ -20,8 +20,10 @@ const Reservation = () => {
 				</FilterContainer>
 			</TopBar>
 			<ReservationMain>
-				<TabFlight />
-				<AdCard />
+				<Wrapper>
+					<TabFlight />
+					<AdCard />
+				</Wrapper>
 			</ReservationMain>
 		</ReservationContainer>
 	);
@@ -49,4 +51,10 @@ const ReservationMain = styled.main`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+`;
+
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 `;
