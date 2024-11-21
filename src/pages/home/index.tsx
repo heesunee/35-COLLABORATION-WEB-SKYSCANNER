@@ -1,11 +1,5 @@
-import PriceModal from '@/components/home/price-modal.tsx';
-
 const Home = () => {
-	return (
-		<>
-			<PriceModal isVisible={true} />
-		</>
-	);
+	return <>Home</>;
 };
 
 export default Home;

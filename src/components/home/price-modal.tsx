@@ -48,6 +48,7 @@ const PriceModalContainer = styled.div<{ isVisible: boolean }>`
 	height: 100%;
 	background-color: ${({ theme }) => theme.colors.darkscreen};
 	${flexCssGenerator('flex', 'center', 'center', 'column')}
+	display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
 `;
 
 const PriceModalContent = styled.div`
