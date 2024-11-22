@@ -1,12 +1,14 @@
 import Info from './Info';
 import ArrowrightIcon from '@/assets/svg/ic_arrow_right_white.svg?react';
 import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_navy.svg?react';
+import HeartBlackIcon from '@/assets/svg/ic_heart_black.svg?react';
 import HeartIcon from '@/assets/svg/ic_heat_outline.svg?react';
 import EastarIcon from '@/assets/svg/img_eastar.svg?react';
 import JejuAirIcon from '@/assets/svg/img_jejuair.svg?react';
 import JinAirIcon from '@/assets/svg/img_jinair.svg?react';
 import KalIcon from '@/assets/svg/img_koreaair.svg?react';
 import { Flight } from '@/types/FlightTypes';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 interface FlightCardProps {
@@ -28,6 +30,14 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 	// 금액 포맷 함수
 	const formatPrice = (price: number) => new Intl.NumberFormat('ko-KR', { style: 'decimal' }).format(price);
 
+	const [isLike, setIsLike] = useState(is_like);
+
+	const handleHeartClick = () => {
+		setIsLike((prev) => !prev);
+		// 위시리스트 API 연결작업
+		// ...
+	};
+
 	return (
 		<FlightCardContainer>
 			<TopBar>
@@ -37,7 +47,7 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 				</AirLine>
 				<IconContainer>
 					<ExclamationIcon />
-					<HeartIcon />
+					{isLike ? <HeartBlackIcon onClick={handleHeartClick} /> : <HeartIcon onClick={handleHeartClick} />}
 				</IconContainer>
 			</TopBar>
 			<InfoContainer>
@@ -49,7 +59,7 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 
 			<BottomContainer>
 				<PriceContainer>
-					{/** 최저가 일때 해시태그, 후작업 예정ㄴ */}
+					{/** 최저가 일때 해시태그, 후작업 예정 */}
 					<Price>₩{formatPrice(arr_price + dep_price)}</Price>
 				</PriceContainer>
 				<SelectButton>
