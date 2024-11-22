@@ -40,7 +40,7 @@ export const flightData = [
 		average_time: '2시간 20분',
 		dep_price: 315000,
 		arr_price: 187400,
-		airline: '진에어 (KAL)',
+		airline: '진에어',
 		is_like: false,
 		count: 1,
 	},

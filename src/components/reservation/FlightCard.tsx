@@ -100,7 +100,6 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 export default FlightCard;
 
 const FlightCardContainer = styled.div`
-	margin-top: 3rem;
 	background-color: ${({ theme }) => theme.colors.white};
 	position: relative;
 	display: flex;
@@ -180,6 +179,7 @@ const ToolTipContainer = styled.div`
 	position: absolute;
 	top: -7%;
 	left: -1.3%;
+	z-index: 1;
 `;
 
 const ToolTip = styled.div`
