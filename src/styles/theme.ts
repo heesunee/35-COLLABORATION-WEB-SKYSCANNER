@@ -23,7 +23,7 @@ const colors = {
 	grey20: '#E0E3E5',
 	grey10: '#EFF1F2',
 	white: '#FFFFFF',
-
+	skygrey: '#EEF3F9',
 	nightgrey: '#131D28',
 	darkscreen: 'rgba(22,22,22,0.77)',
 };
