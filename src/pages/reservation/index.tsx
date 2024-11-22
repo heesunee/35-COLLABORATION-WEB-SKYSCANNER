@@ -12,8 +12,7 @@ const Reservation = () => {
 export default Reservation;
 
 const Container = styled.div`
-	height: 100rem;
-	background-color: ${({ theme }) => theme.colors.babyblue40};
+	// 임시 값, 항공권 상단 PR이 머지되면 수정될 것
 	display: flex;
 	flex-direction: column;
 	align-items: center;
