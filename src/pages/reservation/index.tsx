@@ -15,6 +15,10 @@ const Reservation = () => {
 export default Reservation;
 
 const Container = styled.div`
-	background-color: aquamarine;
-	height: 100rem;
+	background-color: ${({ theme }) => theme.colors.babyblue40};
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 5rem;
 `;

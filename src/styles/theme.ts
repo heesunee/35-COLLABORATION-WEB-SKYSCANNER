@@ -208,7 +208,7 @@ const fonts = {
 		font-family: Inter;
 		font-weight: 800;
 		line-height: 2rem;
-		letter-spacing: -0.36rem;
+		letter-spacing: -0.036rem;
 	`,
 	e_body_b_16: css`
 		font-size: 1.6rem;

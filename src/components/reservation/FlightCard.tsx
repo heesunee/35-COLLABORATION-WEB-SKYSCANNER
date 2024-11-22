@@ -1,6 +1,8 @@
 import Info from './Info';
+import PolygonIcon from '@/assets/svg/ic_ arrow_drop_down.svg?react';
 import ArrowrightIcon from '@/assets/svg/ic_arrow_right_white.svg?react';
 import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_navy.svg?react';
+import FlightIcon from '@/assets/svg/ic_flight_white.svg?react';
 import HeartBlackIcon from '@/assets/svg/ic_heart_black.svg?react';
 import HeartIcon from '@/assets/svg/ic_heat_outline.svg?react';
 import EastarIcon from '@/assets/svg/img_eastar.svg?react';
@@ -27,15 +29,20 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 	const { from, to, dep_time1, arr_time1, dep_time2, arr_time2, average_time, dep_price, arr_price, airline, is_like } =
 		flight;
 
+	const [isLike, setIsLike] = useState(is_like);
+	const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+
 	// 금액 포맷 함수
 	const formatPrice = (price: number) => new Intl.NumberFormat('ko-KR', { style: 'decimal' }).format(price);
-
-	const [isLike, setIsLike] = useState(is_like);
 
 	const handleHeartClick = () => {
 		setIsLike((prev) => !prev);
 		// 위시리스트 API 연결작업
 		// ...
+	};
+	const handleExclamationClick = () => {
+		setIsTooltipVisible((prev) => !prev);
+		console.log(isTooltipVisible);
 	};
 
 	return (
@@ -46,8 +53,27 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 					{airline}
 				</AirLine>
 				<IconContainer>
-					<ExclamationIcon />
-					{isLike ? <HeartBlackIcon onClick={handleHeartClick} /> : <HeartIcon onClick={handleHeartClick} />}
+					{isTooltipVisible && (
+						<ToolTipContainer onClick={handleExclamationClick} style={{ cursor: 'pointer' }}>
+							<ToolTip>
+								<FlightIcon />
+								<StyledSpan>같은 노선의 항공편보다 이산화탄소 환산량이 </StyledSpan>
+								<StyledSpan isNumber>36%</StyledSpan>
+								<StyledSpan>더 적은 친환경 항공편이에요!</StyledSpan>
+							</ToolTip>
+							<PolyGonContainer>
+								<PolygonIcon />
+							</PolyGonContainer>
+						</ToolTipContainer>
+					)}
+
+					<ExclamationIcon onClick={handleExclamationClick} style={{ cursor: 'pointer' }} />
+
+					{isLike ? (
+						<HeartBlackIcon onClick={handleHeartClick} style={{ cursor: 'pointer' }} />
+					) : (
+						<HeartIcon onClick={handleHeartClick} style={{ cursor: 'pointer' }} />
+					)}
 				</IconContainer>
 			</TopBar>
 			<InfoContainer>
@@ -74,7 +100,9 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 export default FlightCard;
 
 const FlightCardContainer = styled.div`
+	margin-top: 3rem;
 	background-color: ${({ theme }) => theme.colors.white};
+	position: relative;
 	display: flex;
 	width: 36.2rem;
 	height: 25.3rem;
@@ -145,4 +173,35 @@ const SelectButton = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	cursor: pointer;
+`;
+
+const ToolTipContainer = styled.div`
+	position: absolute;
+	top: -7%;
+	left: -1.3%;
+`;
+
+const ToolTip = styled.div`
+	background-color: ${({ theme }) => theme.colors.darksky};
+	height: 3.1rem;
+	display: flex;
+	gap: 0.2rem;
+	align-items: center;
+	color: ${({ theme }) => theme.colors.white};
+	padding: 0.8rem 1rem;
+	border-radius: 0.4rem;
+	font-size: 1.2rem;
+	white-space: nowrap;
+`;
+
+const StyledSpan = styled.span<{ isNumber?: boolean }>`
+	${({ theme, isNumber }) => (isNumber ? theme.fonts.e_title_eb_12 : theme.fonts.btn3_sb_10)};
+`;
+
+const PolyGonContainer = styled.div`
+	position: absolute;
+	left: 73.4%;
+	top: 73%;
+	transform: scale(3, 4);
 `;
