@@ -1,5 +1,6 @@
 import Button from '@/components/common/Button.tsx';
 import PriceImage from '@/components/home/PriceImage.tsx';
+import PriceInfoItem from '@/components/home/PriceInfoItem.tsx';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import styled from 'styled-components';
 
@@ -14,21 +15,19 @@ const PriceModal = ({ isVisible = false, onModalClose }: props) => {
 			<PriceModalContent onClick={(e) => e.stopPropagation()}>
 				<ModalHeader>가격 기준</ModalHeader>
 				<ModalBody>
-					<PriceItem>
-						<PriceImage contents={'₩'} color={'green'} />
-						<PriceTitle>저렴</PriceTitle>
-						<PriceValue>평균보다 현저히 낮은 가격</PriceValue>
-					</PriceItem>
-					<PriceItem>
-						<PriceImage contents={'₩₩'} color={'orange'} />
-						<PriceTitle>중간</PriceTitle>
-						<PriceValue>평균 ± 특정 범위의 가격 (일반적인 가격대)</PriceValue>
-					</PriceItem>
-					<PriceItem>
-						<PriceImage contents={'₩₩₩'} color={'red'} />
-						<PriceTitle>비쌈</PriceTitle>
-						<PriceValue>평균보다 높거나, 성수기 등으로 인해 비싼 가격</PriceValue>
-					</PriceItem>
+					<PriceInfoItem contents={'₩'} price={'저렴'} detail={'평균보다 현저히 낮은 가격'} color={'green'} />
+					<PriceInfoItem
+						contents={'₩₩'}
+						price={'중간'}
+						detail={'평균 ± 특정 범위의 가격 (일반적인 가격대)'}
+						color={'orange'}
+					/>
+					<PriceInfoItem
+						contents={'₩₩₩'}
+						price={'비쌈'}
+						detail={'평균보다 높거나, 성수기 등으로 인해 비싼 가격'}
+						color={'red'}
+					/>
 				</ModalBody>
 				<ModalFooter>
 					<Button size={'pricemodal'} onClick={onModalClose}>
@@ -75,20 +74,6 @@ const ModalBody = styled.section`
 	${flexCssGenerator('flex', 'flex-start', '', 'column')}
 	padding: 1.6rem 2.3rem;
 	gap: 1rem;
-`;
-
-const PriceItem = styled.div`
-	${flexCssGenerator('flex', 'flex-start', 'center', 'row')}
-	gap: 0.7rem;
-`;
-
-const PriceTitle = styled.div`
-	${({ theme }) => theme.fonts.body1_sb_16}
-`;
-
-const PriceValue = styled.div`
-	color: ${({ theme }) => theme.colors.grey40};
-	${({ theme }) => theme.fonts.body3_sb_12}
 `;
 
 const ModalFooter = styled.div`
