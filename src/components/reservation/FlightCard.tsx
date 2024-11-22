@@ -1,14 +1,7 @@
+import Icons from './Icons';
 import Info from './Info';
-import PolygonIcon from '@/assets/svg/ic_ arrow_drop_down.svg?react';
-import ArrowrightIcon from '@/assets/svg/ic_arrow_right_white.svg?react';
-import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_navy.svg?react';
-import FlightIcon from '@/assets/svg/ic_flight_white.svg?react';
-import HeartBlackIcon from '@/assets/svg/ic_heart_black.svg?react';
-import HeartIcon from '@/assets/svg/ic_heat_outline.svg?react';
-import EastarIcon from '@/assets/svg/img_eastar.svg?react';
-import JejuAirIcon from '@/assets/svg/img_jejuair.svg?react';
-import JinAirIcon from '@/assets/svg/img_jinair.svg?react';
-import KalIcon from '@/assets/svg/img_koreaair.svg?react';
+import PriceSelect from './PriceSelect';
+import { ArrowrightIcon, EastarIcon, JejuAirIcon, JinAirIcon, KalIcon } from '@/assets/svg';
 import { Flight } from '@/types/FlightTypes';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -52,29 +45,12 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 					{airlineIcons[airline] || null}
 					{airline}
 				</AirLine>
-				<IconContainer>
-					{isTooltipVisible && (
-						<ToolTipContainer onClick={handleExclamationClick} style={{ cursor: 'pointer' }}>
-							<ToolTip>
-								<FlightIcon />
-								<StyledSpan>같은 노선의 항공편보다 이산화탄소 환산량이 </StyledSpan>
-								<StyledSpan isNumber>36%</StyledSpan>
-								<StyledSpan>더 적은 친환경 항공편이에요!</StyledSpan>
-							</ToolTip>
-							<PolyGonContainer>
-								<PolygonIcon />
-							</PolyGonContainer>
-						</ToolTipContainer>
-					)}
-
-					<ExclamationIcon onClick={handleExclamationClick} style={{ cursor: 'pointer' }} />
-
-					{isLike ? (
-						<HeartBlackIcon onClick={handleHeartClick} style={{ cursor: 'pointer' }} />
-					) : (
-						<HeartIcon onClick={handleHeartClick} style={{ cursor: 'pointer' }} />
-					)}
-				</IconContainer>
+				<Icons
+					isTooltipVisible={isTooltipVisible}
+					isLike={isLike}
+					handleExclamationClick={handleExclamationClick}
+					handleHeartClick={handleHeartClick}
+				/>
 			</TopBar>
 			<InfoContainer>
 				<Info depTime={arr_time1} arrTime={arr_time2} from={from} to={to} averageTime={average_time} />
@@ -83,16 +59,7 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 
 			<Rectangle />
 
-			<BottomContainer>
-				<PriceContainer>
-					{/** 최저가 일때 해시태그, 후작업 예정 */}
-					<Price>₩{formatPrice(arr_price + dep_price)}</Price>
-				</PriceContainer>
-				<SelectButton>
-					선택하기
-					<ArrowrightIcon />
-				</SelectButton>
-			</BottomContainer>
+			<PriceSelect depPrice={dep_price} arrPrice={arr_price} formatPrice={formatPrice} />
 		</FlightCardContainer>
 	);
 };
@@ -124,11 +91,6 @@ const AirLine = styled.span`
 	gap: 0.3rem;
 `;
 
-const IconContainer = styled.div`
-	display: flex;
-	align-items: center;
-`;
-
 const InfoContainer = styled.div`
 	display: flex;
 	gap: 1.4rem;
@@ -145,63 +107,4 @@ const Rectangle = styled.div`
 	transform: translateX(-3rem);
 	background-color: ${({ theme }) => theme.colors.grey30};
 	margin-top: 2rem;
-`;
-
-const BottomContainer = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 1.2rem;
-	justify-content: right;
-	padding: 1.15rem 0;
-`;
-
-const PriceContainer = styled.div``;
-
-const Price = styled.p`
-	${({ theme }) => theme.fonts.e_title_eb_20}
-	letter-spacing: 0.07rem;
-`;
-const SelectButton = styled.button`
-	${({ theme }) => theme.fonts.title2_eb_16}
-	border: none;
-	border-radius: 0.7rem;
-	width: 10.4rem;
-	height: 3.5rem;
-	background-color: ${({ theme }) => theme.colors.darksky};
-	color: ${({ theme }) => theme.colors.white};
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-`;
-
-const ToolTipContainer = styled.div`
-	position: absolute;
-	top: -7%;
-	left: -1.3%;
-	z-index: 1;
-`;
-
-const ToolTip = styled.div`
-	background-color: ${({ theme }) => theme.colors.darksky};
-	height: 3.1rem;
-	display: flex;
-	gap: 0.2rem;
-	align-items: center;
-	color: ${({ theme }) => theme.colors.white};
-	padding: 0.8rem 1rem;
-	border-radius: 0.4rem;
-	font-size: 1.2rem;
-	white-space: nowrap;
-`;
-
-const StyledSpan = styled.span<{ isNumber?: boolean }>`
-	${({ theme, isNumber }) => (isNumber ? theme.fonts.e_title_eb_12 : theme.fonts.btn3_sb_10)};
-`;
-
-const PolyGonContainer = styled.div`
-	position: absolute;
-	left: 73.4%;
-	top: 73%;
-	transform: scale(3, 4);
 `;
