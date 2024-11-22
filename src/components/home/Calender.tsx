@@ -1,4 +1,5 @@
-import './Calender.css';
+import './Calender.ts';
+import { CustomCalender, custom_calender } from '@/components/home/Calender.ts';
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -59,6 +60,7 @@ const App = () => {
 				if (data) {
 					return (
 						<TileContainer>
+							<Ghost></Ghost>
 							<StyledCircle backgroundColor={colorMap[data.color]}>{dayNumber}</StyledCircle>
 							<StyledPrice>{data.price}만</StyledPrice>
 						</TileContainer>
@@ -86,7 +88,7 @@ const App = () => {
 	};
 
 	return (
-		<div>
+		<CustomCalender>
 			<Weekdays>
 				<WeekName>일</WeekName>
 				<WeekName>월</WeekName>
@@ -99,6 +101,7 @@ const App = () => {
 			<Month>11월</Month>
 			<Calendar
 				tileContent={tileContent('11월')} // 11월 데이터
+				selectRange={true}
 				defaultActiveStartDate={new Date(2024, 10, 1)}
 				showNeighboringMonth={false}
 				showNavigation={false}
@@ -113,7 +116,7 @@ const App = () => {
 				showWeekNumbers={false}
 				onClickDay={handleDateClick}
 			/>
-		</div>
+		</CustomCalender>
 	);
 };
 
@@ -137,7 +140,18 @@ const WeekName = styled.div`
 `;
 
 const TileContainer = styled.div`
+	position: relative;
 	text-align: center;
+`;
+
+const Ghost = styled.div`
+	display: none;
+	position: absolute;
+	width: 50px;
+	height: 35px;
+	top: 0;
+	border-radius: 50% 0 0 50%;
+	background-color: ${({ theme }) => theme.colors.babyblue};
 `;
 
 const StyledCircle = styled.div<{ backgroundColor: string }>`
@@ -148,11 +162,11 @@ const StyledCircle = styled.div<{ backgroundColor: string }>`
 	padding: 5px;
 	color: ${({ backgroundColor }) => (backgroundColor === 'transparent' ? 'inherit' : 'white')};
 	font-size: 14px;
-	display: inline-block;
 	width: 35px;
 	height: 35px;
 	align-content: center;
 	text-align: center;
+	position: relative;
 `;
 
 const StyledPrice = styled.div`
