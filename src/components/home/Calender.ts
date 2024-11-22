@@ -43,14 +43,13 @@ export const CustomCalender = styled.main`
 			}
 		}
 	}
-
-	.react-calendar__tile--rangeStart {
+	.react-calendar__tile--rangeEnd {
 		color: white;
 
 		& > div {
 			& > div:first-child {
 				display: block;
-				border-radius: 50% 0 0 50%;
+				border-radius: 0 50% 50% 0;
 			}
 			& > div:nth-child(2) {
 				${({ theme }) => theme.fonts.e_title_eb_12}
@@ -69,14 +68,13 @@ export const CustomCalender = styled.main`
 			}
 		}
 	}
-
-	.react-calendar__tile--rangeEnd {
+	.react-calendar__tile--rangeStart {
 		color: white;
 
 		& > div {
 			& > div:first-child {
 				display: block;
-				border-radius: 0 50% 50% 0;
+				border-radius: 50% 0 0 50%;
 			}
 			& > div:nth-child(2) {
 				${({ theme }) => theme.fonts.e_title_eb_12}
