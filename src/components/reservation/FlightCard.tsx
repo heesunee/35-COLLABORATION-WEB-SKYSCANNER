@@ -2,12 +2,24 @@ import Info from './Info';
 import ArrowrightIcon from '@/assets/svg/ic_arrow_right_white.svg?react';
 import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_navy.svg?react';
 import HeartIcon from '@/assets/svg/ic_heat_outline.svg?react';
+import EastarIcon from '@/assets/svg/img_eastar.svg?react';
+import JejuAirIcon from '@/assets/svg/img_jejuair.svg?react';
+import JinAirIcon from '@/assets/svg/img_jinair.svg?react';
+import KalIcon from '@/assets/svg/img_koreaair.svg?react';
 import { Flight } from '@/types/FlightTypes';
 import styled from 'styled-components';
 
 interface FlightCardProps {
 	flight: Flight;
 }
+
+// 항공사 아이콘 매핑
+const airlineIcons: Record<string, JSX.Element | undefined> = {
+	'이스타 항공': <EastarIcon />,
+	'대한항공 (KAL)': <KalIcon />,
+	진에어: <JinAirIcon />,
+	제주항공: <JejuAirIcon />,
+};
 
 const FlightCard = ({ flight }: FlightCardProps) => {
 	const { from, to, dep_time1, arr_time1, dep_time2, arr_time2, average_time, dep_price, arr_price, airline, is_like } =
@@ -19,7 +31,10 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 	return (
 		<FlightCardContainer>
 			<TopBar>
-				<AirLine>{airline}</AirLine>
+				<AirLine>
+					{airlineIcons[airline] || null}
+					{airline}
+				</AirLine>
 				<IconContainer>
 					<ExclamationIcon />
 					<HeartIcon />
@@ -67,6 +82,9 @@ const TopBar = styled.div`
 const AirLine = styled.span`
 	${({ theme }) => theme.fonts.body6_r_12};
 	color: ${({ theme }) => theme.colors.grey40};
+	display: flex;
+	align-items: center;
+	gap: 0.3rem;
 `;
 
 const IconContainer = styled.div`
