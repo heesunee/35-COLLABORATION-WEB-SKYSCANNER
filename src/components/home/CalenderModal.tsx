@@ -1,5 +1,6 @@
-import { ArrowLeftBlackIcon } from '@/assets/svg';
+import { ArrowLeftBlackIcon, InfoIcon, OneWayIcon, TwoWayIcon } from '@/assets/svg';
 import Calender from '@/components/home/Calender.tsx';
+import PriceImage from '@/components/home/PriceImage.tsx';
 import PriceModal from '@/components/home/PriceModal.tsx';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import { useState } from 'react';
@@ -25,8 +26,14 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 				<Information>
 					<InforTitle>서울 - 오키나와</InforTitle>
 					<InfoFilter>
-						<InfoFilterLeft>왕복</InfoFilterLeft>
-						<InfoFilterRight>편도</InfoFilterRight>
+						<InfoFilterLeft>
+							<TwoWayIcon />
+							왕복
+						</InfoFilterLeft>
+						<InfoFilterRight>
+							<OneWayIcon />
+							편도
+						</InfoFilterRight>
 					</InfoFilter>
 					<InfoFilter>
 						<InfoGoLeft>
@@ -39,9 +46,12 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 						</InfoGoRight>
 					</InfoFilter>
 				</Information>
-				{/*<CalenderInfo>*/}
-				{/*	*/}
-				{/*</CalenderInfo>*/}
+				<CalenderInfo>
+					<PriceImage contents={'₩'} color={'green'} />
+					<PriceImage contents={'₩₩'} color={'orange'} />
+					<PriceImage contents={'₩₩₩'} color={'red'} />
+					<InfoIcon onClick={onPriceModalToggle} />
+				</CalenderInfo>
 				<Calender />
 			</ContentsWrap>
 			<PriceModal isVisible={isPriceModalOpen} onModalClose={onPriceModalToggle} />
@@ -85,13 +95,13 @@ const InfoFilter = styled.div`
 	gap: 0.3rem;
 `;
 
-const InfoBase = styled.div`
+const InfoBase = styled.button`
+	${flexCssGenerator('flex', 'center', 'center')}
+	gap: 0.3rem;
 	${({ theme }) => theme.fonts.body6_r_12}
 	width: 16.7rem;
 	height: 2.6rem;
 	flex-shrink: 0;
-	text-align: center;
-	align-content: center;
 `;
 
 const InfoFilterLeft = styled(InfoBase)`
@@ -112,7 +122,7 @@ const InfoGoBase = styled.div`
 	width: 167px;
 	flex-shrink: 0;
 	background: ${({ theme }) => theme.colors.skygrey};
-	padding: 1.1rem 1.7rem;
+	padding: 1.2rem 1.7rem;
 	gap: 0.6rem;
 `;
 
@@ -132,6 +142,14 @@ const InfoGoTitle = styled.h3`
 const InfoGoContent = styled.div`
 	${({ theme }) => theme.fonts.e_body_m_12}
 	color: ${({ theme }) => theme.colors.black};
+`;
+
+const CalenderInfo = styled.section`
+	${flexCssGenerator('flex', 'flex-start', 'center')} //margin: 1.4rem 0;
+	gap:0.3rem;
+	& > div {
+		width: fit-content;
+	}
 `;
 
 export default CalenderModal;

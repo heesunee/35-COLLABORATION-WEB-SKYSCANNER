@@ -1,5 +1,4 @@
 import Button from '@/components/common/Button.tsx';
-import PriceImage from '@/components/home/PriceImage.tsx';
 import PriceInfoItem from '@/components/home/PriceInfoItem.tsx';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import styled from 'styled-components';
