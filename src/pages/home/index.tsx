@@ -9,12 +9,11 @@ interface IsModalOpenProps {
 
 const Home = () => {
 	const [isModalOpen, setModalOpen] = useState<IsModalOpenProps>({
-		search: true,
-		calender: false,
+		search: false,
+		calender: true,
 	});
 
 	const onModalToggle = (modal: 'search' | 'calender') => {
-		console.log(isModalOpen);
 		setModalOpen({
 			...isModalOpen,
 			[modal]: !isModalOpen[modal],
@@ -24,7 +23,7 @@ const Home = () => {
 	return (
 		<>
 			<SearchModal isOpen={isModalOpen.search} onModalToggle={() => onModalToggle('search')} />
-			<CalenderModal />
+			<CalenderModal isOpen={isModalOpen.calender} onModalToggle={() => onModalToggle('calender')} />
 		</>
 	);
 };
