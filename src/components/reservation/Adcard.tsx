@@ -1,13 +1,18 @@
 import AdIcon from '@/assets/svg/ic_ad.svg?react';
 import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_gray.svg?react';
-import HanacardIcon from '@/assets/svg/img_hanacard.svg?react';
 import styled from 'styled-components';
 
-const AdCard = () => {
+interface AdCardProps {
+	Img: React.ComponentType;
+	titles: string[];
+	subTitles: string[];
+}
+
+const AdCard = ({ Img, titles, subTitles }: AdCardProps) => {
 	return (
 		<AdCardContainer>
 			<TopSection>
-				<HanacardIcon />
+				<Img />
 				<div>
 					<AdIcon />
 					<ExclamationIcon />
@@ -15,14 +20,18 @@ const AdCard = () => {
 			</TopSection>
 			<BottomSection>
 				<div>
-					<KoreanTitle>해외여행은 트래블</KoreanTitle>
-					<EngTitle>GO</EngTitle>
-					<KoreanTitle>체크카드!</KoreanTitle>
+					{titles.map((title, index) =>
+						index === 1 ? <EngTitle key={index}>{title}</EngTitle> : <KoreanTitle key={index}>{title}</KoreanTitle>,
+					)}
 				</div>
 				<div>
-					<KoreanSubTitle>트래블로그와</KoreanSubTitle>
-					<EngSubTitle> Visa</EngSubTitle>
-					<KoreanSubTitle>의 만남으로 이뤄진 트래블카드</KoreanSubTitle>
+					{subTitles.map((subTitle, index) =>
+						index === 1 ? (
+							<EngSubTitle key={index}>{subTitle}</EngSubTitle>
+						) : (
+							<KoreanSubTitle key={index}>{subTitle}</KoreanSubTitle>
+						),
+					)}
 				</div>
 			</BottomSection>
 		</AdCardContainer>
@@ -62,6 +71,7 @@ const BottomSection = styled.div`
 	gap: 1.05rem;
 	flex-direction: column;
 `;
+
 const KoreanTitle = styled.span`
 	${({ theme }) => theme.fonts.title1_eb_20}
 `;
@@ -73,5 +83,5 @@ const KoreanSubTitle = styled.span`
 	${({ theme }) => theme.fonts.body2_r_14_new}
 `;
 const EngSubTitle = styled.span`
-	${({ theme }) => theme.fonts.e_body_m_14}
+	${({ theme }) => theme.fonts.e_body_m_12}
 `;
