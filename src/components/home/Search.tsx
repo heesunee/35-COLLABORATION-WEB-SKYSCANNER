@@ -1,7 +1,12 @@
+import Button from '../common/Button';
+import SearchBottom from './SearchBottom';
+import SearchCheckedBox from './SearchCheckedBox';
+import SearchClickedFieldWrapper from './SearchClickedFieldWrapper';
 import SearchRadioButton from './SearchRadioButton';
-import SearchTextContainer from './SearchTextContainer';
+import SearchTextField from './SearchTextField';
 import { CalendarGreyIcon, OriginIcon, PinIcon, ProfileIcon } from '@/assets/svg';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Search = () => {
@@ -14,17 +19,38 @@ const Search = () => {
 	const [selectedNearbyArrival, setSelectedNearbyArrival] = useState(false);
 	const [selectedDirect, setSelectedDirect] = useState(false);
 
+	const [departure, setDeparture] = useState('');
+	const [arrival, setArrival] = useState('');
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [numAdults, setNumAdults] = useState(0);
+
 	const handleDepartureToggle = () => {
-		setSelectedNearbyDeparture((prev) => !prev); // 이전 상태를 반대로 토글
+		setSelectedNearbyDeparture((prev) => !prev);
 	};
 
 	const handleArrivalToggle = () => {
-		setSelectedNearbyArrival((prev) => !prev); // 이전 상태를 반대로 토글
+		setSelectedNearbyArrival((prev) => !prev);
 	};
 
 	const handleDirectToggle = () => {
-		setSelectedDirect((prev) => !prev); // 이전 상태를 반대로 토글
+		setSelectedDirect((prev) => !prev);
 	};
+
+	const handleModalOpen = () => {
+		setIsModalOpen(true);
+	};
+
+	const handleModalClose = () => {
+		setIsModalOpen(false);
+	};
+
+	const navigate = useNavigate(); // useNavigate 훅 호출
+
+	const handleSearchClick = () => {
+		navigate('/reservation');
+	};
+
 	return (
 		<>
 			<SearchTitle>전 세계 항공권 특가 상품</SearchTitle>
@@ -46,21 +72,32 @@ const Search = () => {
 						onClick={() => handleRadioClick('다구간')}
 					/>
 				</SearchRadioWrapper>
-				<SearchTextContainer
-					Icon={OriginIcon}
-					placeholder={'출발지는 어디인가요?'}
-					caption={'주변 공항 추가'}
-					isClicked={selectedNearbyDeparture}
-					onClick={handleDepartureToggle}
-				/>
-				<SearchTextContainer
-					Icon={PinIcon}
-					placeholder={'목적지는 어디인가요?'}
-					caption={'주변 공항 추가'}
-					isClicked={selectedNearbyArrival}
-					onClick={handleArrivalToggle}
-				/>
-				<SearchCalendarWrapper>
+				<SearchTextContainer>
+					<SearchTextField
+						Icon={OriginIcon}
+						placeholder={'출발지는 어디인가요?'}
+						onChange={(e) => setDeparture(e.target.value)}
+					/>
+					<SearchCheckedBox
+						caption={'주변 공항 추가'}
+						isClicked={selectedNearbyDeparture}
+						onClick={handleDepartureToggle}
+					/>
+				</SearchTextContainer>
+				<SearchTextContainer>
+					<SearchTextField
+						Icon={PinIcon}
+						placeholder={'목적지는 어디인가요?'}
+						onChange={(e) => setArrival(e.target.value)}
+					/>
+					<SearchCheckedBox
+						caption={'주변 공항 추가'}
+						isClicked={selectedNearbyArrival}
+						onClick={handleArrivalToggle}
+					/>
+				</SearchTextContainer>
+				<SearchCalendarWrapper onClick={() => console.log('Calander Clicked!')}>
+					{/* 부모에 props 정의되면 출발하는 날짜, 들어오는 날짜에 교체할 예정 */}
 					<CalendarLeft>
 						<CalendarGreyIcon />
 						출발하는 날짜
@@ -70,14 +107,27 @@ const Search = () => {
 						들어오는 날짜
 					</CalendarRight>
 				</SearchCalendarWrapper>
-				<SearchTextContainer
-					Icon={ProfileIcon}
-					placeholder={'인원을 선택해주세요.'}
-					caption={'직항만'}
-					isClicked={selectedDirect}
-					onClick={handleDirectToggle}
-				/>
-				<SearchButton>검색하기</SearchButton>
+				<SearchTextContainer>
+					<SearchClickedFieldWrapper
+						Icon={ProfileIcon}
+						placeholder={numAdults ? `성인 ${numAdults}명` : '인원을 선택해주세요.'}
+						isClicked={selectedDirect}
+						onClick={handleModalOpen}
+					/>
+					<SearchCheckedBox caption={'직항만'} isClicked={selectedDirect} onClick={handleDirectToggle} />
+				</SearchTextContainer>
+
+				{isModalOpen && (
+					<SearchBottom numParentsAdults={numAdults} setParentsNumAdults={setNumAdults} onClose={handleModalClose} />
+				)}
+
+				{departure && arrival && numAdults ? (
+					<Button onClick={handleSearchClick} variant="search">
+						검색하기
+					</Button>
+				) : (
+					<Button variant="disable">검색하기</Button>
+				)}
 			</SearchContainer>
 		</>
 	);
@@ -103,6 +153,8 @@ const SearchRadioWrapper = styled.div`
 	flex-direction: row;
 	padding-bottom: 0.6rem;
 `;
+
+const SearchTextContainer = styled.div``;
 
 const SearchCalendarWrapper = styled.div`
 	display: flex;
@@ -136,18 +188,4 @@ const CalendarRight = styled.div`
 
 	color: ${({ theme }) => theme.colors.grey40};
 	${({ theme }) => theme.fonts.e_body_m_12}
-`;
-
-const SearchButton = styled.div`
-	color: ${({ theme }) => theme.colors.white};
-	padding: 1.2rem 14rem;
-	margin-top: 2rem;
-	border-radius: 11px;
-	background-color: ${({ theme }) => theme.colors.skyblue};
-
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-
-	${({ theme }) => theme.fonts.body2_sb_14};
 `;
