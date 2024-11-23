@@ -103,4 +103,6 @@ const TabText = styled.p<{ isActive: boolean }>`
 
 const TabPanelsContainer = styled.div``;
 
-const TabPanelContainer = styled.div``;
+const TabPanelContainer = styled.div`
+	padding-top: 2.1rem;
+`;
