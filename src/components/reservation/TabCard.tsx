@@ -21,17 +21,14 @@ export default TabCard;
 
 const Title = styled.h2`
 	${({ theme }) => theme.fonts.body3_sb_12};
-	color: ${({ theme }) => theme.colors.black};
 `;
 
 const Price = styled.p`
 	${({ theme }) => theme.fonts.e_body_b_16};
-	color: ${({ theme }) => theme.colors.skyblue};
 `;
 
 const Time = styled.p`
 	${({ theme }) => theme.fonts.btn2_eb_10};
-	color: ${({ theme }) => theme.colors.grey40};
 `;
 
 const TabCardContainer = styled.div<{ variant: 'cheapest' | 'shortest' }>`
@@ -47,7 +44,7 @@ const TabCardContainer = styled.div<{ variant: 'cheapest' | 'shortest' }>`
 	background-color: ${({ theme, variant }) => (variant === 'cheapest' ? theme.colors.darksky : theme.colors.white)};
 
 	${Title}, ${Time} {
-		color: ${({ theme, variant }) => (variant === 'cheapest' ? theme.colors.white : theme.colors.black)};
+		color: ${({ theme, variant }) => (variant === 'cheapest' ? theme.colors.white : theme.colors.grey40)};
 	}
 
 	${Price} {
