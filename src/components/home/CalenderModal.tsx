@@ -12,22 +12,7 @@ interface props {
 	onModalToggle: () => void;
 }
 const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
-	const [firstSelectedDate, setFirstSelectedDate] = useState<string>(' ');
-	const [lastSelectedDate, setLastSelectedDate] = useState<string>(' ');
-
-	console.log(firstSelectedDate, lastSelectedDate);
-
-	// 날짜 클릭 핸들러
-	const handleDateClick = (date: Date) => {
-		if (!firstSelectedDate) {
-			setFirstSelectedDate(dateHandler(date));
-		} else if (!lastSelectedDate) {
-			setLastSelectedDate(dateHandler(date));
-		} else {
-			setFirstSelectedDate(dateHandler(date));
-			setLastSelectedDate(null);
-		}
-	};
+	const { handleDateClick, firstSelectedDate, lastSelectedDate } = dateHandler();
 
 	const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
 	const onPriceModalToggle = () => {
