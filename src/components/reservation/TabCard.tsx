@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 interface TabCardProps {
 	title: string;
@@ -19,6 +19,21 @@ const TabCard = ({ title, totalPrice, averageTime, variant }: TabCardProps) => {
 
 export default TabCard;
 
+const Title = styled.h2`
+	${({ theme }) => theme.fonts.body3_sb_12};
+	color: ${({ theme }) => theme.colors.black};
+`;
+
+const Price = styled.p`
+	${({ theme }) => theme.fonts.e_body_b_16};
+	color: ${({ theme }) => theme.colors.skyblue};
+`;
+
+const Time = styled.p`
+	${({ theme }) => theme.fonts.btn2_eb_10};
+	color: ${({ theme }) => theme.colors.grey40};
+`;
+
 const TabCardContainer = styled.div<{ variant: 'cheapest' | 'shortest' }>`
 	display: flex;
 	align-items: center;
@@ -28,41 +43,14 @@ const TabCardContainer = styled.div<{ variant: 'cheapest' | 'shortest' }>`
 	padding: 1.1rem 5rem;
 	flex-direction: column;
 
-	// 추천순일 때 적용될 css
-	${({ variant }) =>
-		variant === 'cheapest' &&
-		css`
-			background-color: ${({ theme }) => theme.colors.darksky};
-			border-radius: 1rem 0rem 0rem 1rem;
-			${Title}, ${Price}, ${Time} {
-				color: ${({ theme }) => theme.colors.white}; /* cheapest일 때 텍스트 색상 */
-			}
-		`}
+	border-radius: ${({ variant }) => (variant === 'cheapest' ? '1rem 0rem 0rem 1rem' : '0rem 1rem 1rem 0rem')};
+	background-color: ${({ theme, variant }) => (variant === 'cheapest' ? theme.colors.darksky : theme.colors.white)};
 
-	// 최단시간일 때 적용될 css
-	${({ variant }) =>
-		variant === 'shortest' &&
-		css`
-			background-color: ${({ theme }) => theme.colors.white};
-			border-radius: 0rem 1rem 1rem 0rem;
-		`}
-`;
+	${Title}, ${Time} {
+		color: ${({ theme, variant }) => (variant === 'cheapest' ? theme.colors.white : theme.colors.black)};
+	}
 
-const Title = styled.h2`
-	font-size: 1.2rem;
-	font-weight: bold;
-	margin-bottom: 0.7rem;
-	color: ${({ theme }) => theme.colors.black};
-`;
-
-const Price = styled.p`
-	font-size: 1.4rem;
-	font-weight: bold;
-	color: ${({ theme }) => theme.colors.skyblue}; /* 가격 색상 */
-`;
-
-const Time = styled.p`
-	font-size: 1rem;
-	color: ${({ theme }) => theme.colors.grey40};
-	margin-top: 0.5rem;
+	${Price} {
+		color: ${({ theme, variant }) => (variant === 'cheapest' ? theme.colors.white : theme.colors.skyblue)};
+	}
 `;

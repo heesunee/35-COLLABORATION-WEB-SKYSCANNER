@@ -45,6 +45,8 @@ const GlobalStyle = createGlobalStyle`
          url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-ExtraBold.ttf') format('truetype');
   }
 
+  
+
   :root {
     --max-width: 375px;
     --max-height: 812px;
