@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CustomCalender = styled.main`
 	.react-calendar {
 		width: 33.7rem;
-		margin: 20px auto;
+		margin: 2rem auto;
 		background: white;
 		border: none !important;
 	}
@@ -36,7 +36,7 @@ export const CustomCalender = styled.main`
 		& > div {
 			color: black;
 			& > div:nth-child(2) {
-				width: 52px;
+				width: 5.2rem;
 				color: black;
 				border-radius: 0 !important;
 				background: #e3f0ff !important;
@@ -50,21 +50,21 @@ export const CustomCalender = styled.main`
 			& > div:first-child {
 				display: block;
 				border-radius: 0 50% 50% 0;
+				right: 0.2rem;
 			}
 			& > div:nth-child(2) {
 				${({ theme }) => theme.fonts.e_title_eb_12}
 				letter-spacing: 0px;
 				background-color: ${({ theme }) => theme.colors.skyblue} !important;
 				border-radius: 50% !important;
-				padding: 5px;
+				padding: 0.5rem;
 				color: white;
-				font-size: 14px;
+				font-size: 1.4rem;
 				display: inline-block;
-				width: 35px;
-				height: 35px;
+				width: 3.5rem;
+				height: 3.5rem;
 				align-content: center;
 				text-align: center;
-				z-index: 100;
 			}
 		}
 	}
@@ -74,22 +74,22 @@ export const CustomCalender = styled.main`
 		& > div {
 			& > div:first-child {
 				display: block;
-				border-radius: 50% 0 0 50%;
+				border-radius: 30% 0 0 30% !important;
+				right: -2rem;
 			}
 			& > div:nth-child(2) {
 				${({ theme }) => theme.fonts.e_title_eb_12}
 				letter-spacing: 0px;
 				background-color: ${({ theme }) => theme.colors.skyblue} !important;
 				border-radius: 50% !important;
-				padding: 5px;
+				padding: 0.5rem;
 				color: white;
-				font-size: 14px;
+				font-size: 1.4rem;
 				display: inline-block;
-				width: 35px;
-				height: 35px;
+				width: 3.5rem;
+				height: 3.5rem;
 				align-content: center;
 				text-align: center;
-				z-index: 100;
 			}
 		}
 	}

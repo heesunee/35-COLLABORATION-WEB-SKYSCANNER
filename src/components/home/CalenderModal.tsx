@@ -3,6 +3,7 @@ import Calender from '@/components/home/Calender.tsx';
 import PriceImage from '@/components/home/PriceImage.tsx';
 import PriceModal from '@/components/home/PriceModal.tsx';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
+import { dateHandler } from '@/utils/dateHandler.ts';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -11,6 +12,23 @@ interface props {
 	onModalToggle: () => void;
 }
 const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
+	const [firstSelectedDate, setFirstSelectedDate] = useState<string>(' ');
+	const [lastSelectedDate, setLastSelectedDate] = useState<string>(' ');
+
+	console.log(firstSelectedDate, lastSelectedDate);
+
+	// 날짜 클릭 핸들러
+	const handleDateClick = (date: Date) => {
+		if (!firstSelectedDate) {
+			setFirstSelectedDate(dateHandler(date));
+		} else if (!lastSelectedDate) {
+			setLastSelectedDate(dateHandler(date));
+		} else {
+			setFirstSelectedDate(dateHandler(date));
+			setLastSelectedDate(null);
+		}
+	};
+
 	const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
 	const onPriceModalToggle = () => {
 		setIsPriceModalOpen((prev) => !prev);
@@ -38,11 +56,11 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 					<InfoFilter>
 						<InfoGoLeft>
 							<InfoGoTitle>가는 편</InfoGoTitle>
-							<InfoGoContent>2024. 11. 6 수요일</InfoGoContent>
+							<InfoGoContent>{firstSelectedDate}</InfoGoContent>
 						</InfoGoLeft>
 						<InfoGoRight>
 							<InfoGoTitle>가는 편</InfoGoTitle>
-							<InfoGoContent>2024. 11. 6 수요일</InfoGoContent>
+							<InfoGoContent>{lastSelectedDate}</InfoGoContent>
 						</InfoGoRight>
 					</InfoFilter>
 				</Information>
@@ -52,7 +70,7 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 					<PriceImage contents={'₩₩₩'} color={'red'} />
 					<InfoIcon onClick={onPriceModalToggle} />
 				</CalenderInfo>
-				<Calender />
+				<Calender handleDateClick={handleDateClick} />
 			</ContentsWrap>
 			<PriceModal isVisible={isPriceModalOpen} onModalClose={onPriceModalToggle} />
 		</CalenderContainer>
@@ -142,6 +160,7 @@ const InfoGoTitle = styled.h3`
 const InfoGoContent = styled.div`
 	${({ theme }) => theme.fonts.e_body_m_12}
 	color: ${({ theme }) => theme.colors.black};
+	height: 1.7rem;
 `;
 
 const CalenderInfo = styled.section`

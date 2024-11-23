@@ -1,51 +1,26 @@
 import './Calender.ts';
 import { CustomCalender, custom_calender } from '@/components/home/Calender.ts';
+import { DateTileData, calendarData } from '@/mock/mockCalenderData.ts';
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styled from 'styled-components';
 
-const App = () => {
-	const [firstSelectedDate, setFirstSelectedDate] = useState(null); // 첫 번째 선택 날짜
-	const [lastSelectedDate, setLastSelectedDate] = useState(null); // 마지막 선택 날짜
+interface props {
+	handleDateClick: (date: Date) => void;
+}
 
-	const calendarData = {
-		'11월': [
-			{ date: '2024-11-05', price: '26.02', color: 'r' },
-			{ date: '2024-11-06', price: '20.95', color: 'b' },
-			{ date: '2024-11-14', price: '38.18', color: 'o' },
-			{ date: '2024-11-15', price: '38.18', color: 'o' },
-			{ date: '2024-11-16', price: '38.18', color: 'r' },
-			{ date: '2024-11-17', price: '38.18', color: 'r' },
-			{ date: '2024-11-18', price: '38.18', color: 'o' },
-			{ date: '2024-11-19', price: '38.18', color: 'o' },
-			{ date: '2024-11-20', price: '38.18', color: 'g' },
-			{ date: '2024-11-21', price: '38.18', color: 'g' },
-			{ date: '2024-11-22', price: '38.18', color: 'o' },
-			{ date: '2024-11-23', price: '38.18', color: 'o' },
-			{ date: '2024-11-24', price: '38.18', color: 'o' },
-			{ date: '2024-11-25', price: '38.18', color: 'g' },
-			{ date: '2024-11-26', price: '38.18', color: 'g' },
-			{ date: '2024-11-27', price: '38.18', color: 'o' },
-			{ date: '2024-11-28', price: '38.18', color: 'o' },
-			{ date: '2024-11-29', price: '38.18', color: 'o' },
-		],
-		'12월': [
-			{ date: '2024-12-01', price: '26.02', color: 'g' },
-			{ date: '2024-12-15', price: '15.20', color: 'b' },
-		],
-	};
-
+const Calender = ({ handleDateClick }: props) => {
 	// 날짜 데이터를 가져오는 함수
-	const getDateData = (monthKey, date) => {
+	const getDateData = (monthKey: string, date: string): DateTileData | null => {
 		const data = calendarData[monthKey]?.find((item) => item.date === date);
 		return data || null;
 	};
 
 	// 날짜 셀을 커스터마이징하는 함수
 	const tileContent =
-		(monthKey) =>
-		({ date, view }) => {
+		(monthKey: string) =>
+		({ date, view }: { date: Date; view: string }) => {
 			if (view === 'month') {
 				const dateKey = date.toISOString().split('T')[0];
 				const data = getDateData(monthKey, dateKey);
@@ -72,21 +47,6 @@ const App = () => {
 			return null;
 		};
 
-	// 날짜 클릭 핸들러
-	const handleDateClick = (date) => {
-		if (!firstSelectedDate) {
-			// 첫 번째 날짜 설정
-			setFirstSelectedDate(date);
-		} else if (!lastSelectedDate) {
-			// 두 번째 날짜 설정
-			setLastSelectedDate(date);
-		} else {
-			// 기존 선택 초기화
-			setFirstSelectedDate(date);
-			setLastSelectedDate(null);
-		}
-	};
-
 	return (
 		<CustomCalender>
 			<Weekdays>
@@ -100,7 +60,7 @@ const App = () => {
 			</Weekdays>
 			<Month>11월</Month>
 			<Calendar
-				tileContent={tileContent('11월')} // 11월 데이터
+				tileContent={tileContent('11월')}
 				selectRange={true}
 				defaultActiveStartDate={new Date(2024, 10, 1)}
 				showNeighboringMonth={false}
@@ -170,10 +130,11 @@ const StyledCircle = styled.div<{ backgroundColor: string }>`
 `;
 
 const StyledPrice = styled.div`
+	height: 12px;
 	${({ theme }) => theme.fonts.btn4_sb_8}
 	color: ${({ theme }) => theme.colors.grey30};
 	line-height: 1.2rem;
 	margin-top: 0.3rem;
 `;
 
-export default App;
+export default Calender;
