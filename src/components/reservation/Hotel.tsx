@@ -1,5 +1,4 @@
 import TabButton from './TabButton';
-import theme from '@/styles/theme';
 import { useState } from 'react';
 import styled from 'styled-components';
 

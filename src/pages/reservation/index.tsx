@@ -1,5 +1,11 @@
+import Hotel from '@/components/reservation/Hotel';
+
 const Reservation = () => {
-	return <>Reservation</>;
+	return (
+		<>
+			<Hotel />
+		</>
+	);
 };
 
 export default Reservation;
