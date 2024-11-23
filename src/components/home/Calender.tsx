@@ -1,7 +1,6 @@
 import './Calender.ts';
-import { CustomCalender, custom_calender } from '@/components/home/Calender.ts';
-import { DateTileData, calendarData } from '@/mock/mockCalenderData.ts';
-import React, { useState } from 'react';
+import { CustomCalender } from '@/components/home/Calender.ts';
+import { dateHandler } from '@/utils/dateHandler.ts';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styled from 'styled-components';
@@ -11,11 +10,7 @@ interface props {
 }
 
 const Calender = ({ handleDateClick }: props) => {
-	// 날짜 데이터를 가져오는 함수
-	const getDateData = (monthKey: string, date: string): DateTileData | null => {
-		const data = calendarData[monthKey]?.find((item) => item.date === date);
-		return data || null;
-	};
+	const { getDateData, weekDay } = dateHandler();
 
 	// 날짜 셀을 커스터마이징하는 함수
 	const tileContent =
@@ -50,13 +45,9 @@ const Calender = ({ handleDateClick }: props) => {
 	return (
 		<CustomCalender>
 			<Weekdays>
-				<WeekName>일</WeekName>
-				<WeekName>월</WeekName>
-				<WeekName>화</WeekName>
-				<WeekName>수</WeekName>
-				<WeekName>목</WeekName>
-				<WeekName>금</WeekName>
-				<WeekName>토</WeekName>
+				{weekDay.map((day) => (
+					<WeekName key={day}>{day}</WeekName>
+				))}
 			</Weekdays>
 			<Month>11월</Month>
 			<Calendar
