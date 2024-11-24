@@ -2,21 +2,8 @@ import AdvisorIcon from '@/assets/svg/ic_advisor.svg?react';
 import LikeBlueIcon from '@/assets/svg/ic_like_blue.svg?react';
 import ScoreIcon from '@/assets/svg/ic_score.svg?react';
 import StarIcon from '@/assets/svg/ic_star.svg?react';
+import { WishHotelContentCardProps } from '@/types/WishHotelContentCardProps';
 import styled from 'styled-components';
-
-interface WishHotelContentCardProps {
-	id: number;
-	image: string;
-	name: string;
-	place: string;
-	firstScore: number;
-	secondScore: string;
-	reviewCount: number;
-	travelDays: string;
-	person: string;
-	hashTag: string;
-	price: string;
-}
 
 const WishHotelContentCard = ({
 	image,
