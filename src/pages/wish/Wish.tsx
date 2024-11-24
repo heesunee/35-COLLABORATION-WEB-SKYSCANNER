@@ -1,4 +1,5 @@
 import Tab from '@/components/wish/Tab';
+import WishAirplaneContents from '@/components/wish/WishAirplaneContents';
 import WishContents from '@/components/wish/WishContents';
 import WishHotelContents from '@/components/wish/WishHotelContents';
 import styled from 'styled-components';
@@ -19,7 +20,9 @@ const Wish = () => {
 					<Tab.Panel>
 						<WishContents />
 					</Tab.Panel>
-					<Tab.Panel>항공권 내용</Tab.Panel>
+					<Tab.Panel>
+						<WishAirplaneContents />
+					</Tab.Panel>
 					<Tab.Panel>
 						<WishHotelContents />
 					</Tab.Panel>
