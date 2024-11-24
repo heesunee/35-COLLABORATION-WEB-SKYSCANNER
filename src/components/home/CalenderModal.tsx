@@ -11,12 +11,16 @@ interface props {
 	isOpen: boolean;
 	onModalToggle: () => void;
 }
+
 const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 	const { handleDateClick, firstSelectedDate, lastSelectedDate } = dateHandler();
-
+	const [filter, setFilter] = useState<'round' | 'oneway'>('round');
 	const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
 	const onPriceModalToggle = () => {
 		setIsPriceModalOpen((prev) => !prev);
+	};
+	const onFilterClick = (filter: 'round' | 'oneway') => {
+		setFilter(filter);
 	};
 
 	return (
@@ -29,11 +33,11 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 				<Information>
 					<InforTitle>서울 - 오키나와</InforTitle>
 					<InfoFilter>
-						<InfoFilterLeft>
+						<InfoFilterLeft onClick={() => onFilterClick('round')} filter={filter}>
 							<TwoWayIcon />
 							왕복
 						</InfoFilterLeft>
-						<InfoFilterRight>
+						<InfoFilterRight onClick={() => onFilterClick('oneway')} filter={filter}>
 							<OneWayIcon />
 							편도
 						</InfoFilterRight>
@@ -76,10 +80,15 @@ const ContentsWrap = styled.div`
 `;
 
 const Header = styled.header`
-	${flexCssGenerator('flex', 'space-between', 'center')}
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	grid-template-columns: 0.1fr 1fr 0.1fr;
 	width: 100%;
 `;
+
 const ModalTitle = styled.h2`
+	justify-self: center;
 	${({ theme }) => theme.fonts.btn1_eb_12}
 `;
 
@@ -98,26 +107,36 @@ const InfoFilter = styled.div`
 	gap: 0.3rem;
 `;
 
-const InfoBase = styled.button`
+const InfoFilterButton = styled.button<{ filter: 'round' | 'oneway' }>`
 	${flexCssGenerator('flex', 'center', 'center')}
 	gap: 0.3rem;
 	${({ theme }) => theme.fonts.body6_r_12}
 	width: 16.7rem;
 	height: 2.6rem;
 	flex-shrink: 0;
-`;
-
-const InfoFilterLeft = styled(InfoBase)`
-	color: ${({ theme }) => theme.colors.white};
-	border-radius: 6px 0px 0px 6px;
-	background: ${({ theme }) => theme.colors.darksky};
-`;
-
-const InfoFilterRight = styled(InfoBase)`
-	color: ${({ theme }) => theme.colors.black};
-	border-radius: 0px 6px 6px 0px;
 	border: 1px solid ${({ theme }) => theme.colors.grey30};
-	background: ${({ theme }) => theme.colors.white};
+`;
+
+const InfoFilterLeft = styled(InfoFilterButton)`
+	border-radius: 6px 0px 0px 6px;
+	color: ${({ filter, theme }) => (filter === 'round' ? theme.colors.white : theme.colors.black)};
+	background: ${({ filter, theme }) => (filter === 'round' ? theme.colors.darksky : theme.colors.white)};
+	& > svg {
+		& > path {
+			stroke: ${({ filter, theme }) => (filter === 'round' ? theme.colors.white : theme.colors.black)};
+		}
+	}
+`;
+
+const InfoFilterRight = styled(InfoFilterButton)`
+	border-radius: 0px 6px 6px 0px;
+	color: ${({ filter, theme }) => (filter === 'round' ? theme.colors.black : theme.colors.white)};
+	background: ${({ filter, theme }) => (filter === 'round' ? theme.colors.white : theme.colors.darksky)};
+	& > svg {
+		& > path {
+			stroke: ${({ filter, theme }) => (filter === 'round' ? theme.colors.black : theme.colors.white)};
+		}
+	}
 `;
 
 const InfoGoBase = styled.div`
