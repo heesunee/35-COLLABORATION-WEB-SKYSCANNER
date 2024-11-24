@@ -1,37 +1,61 @@
-import hotelImage from '@/assets/img/hotel.png';
 import AdvisorIcon from '@/assets/svg/ic_advisor.svg?react';
 import LikeBlueIcon from '@/assets/svg/ic_like_blue.svg?react';
 import ScoreIcon from '@/assets/svg/ic_score.svg?react';
 import StarIcon from '@/assets/svg/ic_star.svg?react';
 import styled from 'styled-components';
 
-const WishHotelContentCard = () => {
+interface WishHotelContentCardProps {
+	id: number;
+	image: string;
+	name: string;
+	place: string;
+	firstScore: number;
+	secondScore: string;
+	reviewCount: number;
+	travelDays: string;
+	person: string;
+	hashTag: string;
+	price: string;
+}
+
+const WishHotelContentCard = ({
+	image,
+	name,
+	place,
+	firstScore,
+	secondScore,
+	reviewCount,
+	travelDays,
+	person,
+	hashTag,
+	price,
+}: WishHotelContentCardProps) => {
 	return (
 		<WishHotelContentWrapper>
-			<WishHotelImg src={hotelImage} alt="Hotel" />
+			<WishHotelImg src={image} alt={name} />
 			<LikeBlueIconStyled />
 			<WishContentsContainer>
 				<WishContentsTop>
-					<HotelName>넥서스 리조트 & 스타 가람부 나이</HotelName>
+					<HotelName>{name}</HotelName>
 					<StarIcon />
 				</WishContentsTop>
-				<HotelPlace>말레이시아 코타키나바루</HotelPlace>
+				<HotelPlace>{place}</HotelPlace>
 				<WishContentsBottom>
-					<FirstScore>4</FirstScore>
-					<SecondScore>/5</SecondScore>
+					<FirstScore>{firstScore}</FirstScore>
+					<SecondScore>{secondScore}</SecondScore>
 					<AdvisorIcon />
 					<ScoreIcon />
-					<Review>후기1764개</Review>
+					<Review>후기 {reviewCount}개</Review>
 				</WishContentsBottom>
 			</WishContentsContainer>
 			<HotelDetailsContainer>
 				<PeriodDetailsContainer>
-					<TravelDays>15일-2025.2.17</TravelDays>
-					<Person>성인3명,1개</Person>
+					<TravelDays>{travelDays}</TravelDays>
+					<Person>{person}</Person>
 				</PeriodDetailsContainer>
 				<HashTagPriceContainer>
-					<HashTag>#추천숙소</HashTag>
-					<Price>₩157,700</Price>
+					<HashTag>{hashTag}</HashTag>
+					<Price>{price}</Price>
 				</HashTagPriceContainer>
 			</HotelDetailsContainer>
 		</WishHotelContentWrapper>
