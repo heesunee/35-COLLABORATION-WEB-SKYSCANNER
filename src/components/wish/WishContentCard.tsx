@@ -3,7 +3,6 @@ import FlightDetails from '@/components/wish/FlightDetails';
 import FlightInfo from '@/components/wish/FlightInfo';
 import ToggleSwitch from '@/components/wish/ToggleSwitch';
 import { WishContentCardProps } from '@/types/wishContentCard';
-import { useState } from 'react';
 import styled from 'styled-components';
 
 const WishContentCard = ({
@@ -22,11 +21,6 @@ const WishContentCard = ({
 	person,
 	price,
 }: WishContentCardProps) => {
-	const [isChecked, setIsChecked] = useState(true);
-
-	const handleToggle = () => {
-		setIsChecked((prev) => !prev);
-	};
 	return (
 		<WishContentWrapper>
 			<WishContentsImg src={backgroundImageUrl || 'https://ifh.cc/g/MZCwNq.jpg'} alt={`${departure} - ${arrival}`} />
@@ -55,7 +49,7 @@ const WishContentCard = ({
 					<PriceChangeWrapper>
 						<PriceChangeText>가격 변동 알림</PriceChangeText>
 					</PriceChangeWrapper>
-					<ToggleSwitch id={`toggle-${id}`} isChecked={isChecked} onChange={handleToggle} />
+					<ToggleSwitch id={`toggle-${id}`} />
 				</WishContentsMidBottom>
 			</WishContentsContainer>
 			<FlightDetails travelDays={travelDays} personInfo={`성인 ${person}명, 일반석`} price={price} />
