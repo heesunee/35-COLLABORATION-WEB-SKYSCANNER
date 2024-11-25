@@ -7,7 +7,6 @@ interface HotelCardProps {
 }
 const HotelCard = ({ hotel }: HotelCardProps) => {
 	const { name, image, price, star, description, rating, review } = hotel;
-	console.log(image);
 
 	return (
 		<HotelCardContainer>
