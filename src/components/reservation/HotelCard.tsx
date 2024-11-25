@@ -1,5 +1,4 @@
-import { OwlImg } from '@/assets/img';
-import { HeartIcon, ReviewFillFIcon, ReviewIcon, StarIcon } from '@/assets/svg';
+import { HeartIcon, OwlIcon, ReviewFillFIcon, ReviewIcon, StarIcon } from '@/assets/svg';
 import { Hotel } from '@/types/hotel';
 import styled from 'styled-components';
 
@@ -33,7 +32,7 @@ const HotelCard = ({ hotel }: HotelCardProps) => {
 						<Bottom>
 							<Rating>{rating}</Rating>
 							<Review>{review}</Review>
-							<OwlImage src={OwlImg} alt="부엉이 이미지" />
+							<OwlIcon />
 							<IconsWrapper>
 								<ReviewFillFIcon />
 								<ReviewFillFIcon />
@@ -91,11 +90,6 @@ const LeftWrapper = styled.div`
 
 const HotelImage = styled.img``;
 
-const OwlImage = styled.img`
-	width: 2.4rem;
-	height: 2.4rem;
-`;
-
 const Left = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -106,6 +100,7 @@ const Right = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.55rem;
+	text-align: end;
 `;
 
 const Bottom = styled.div`

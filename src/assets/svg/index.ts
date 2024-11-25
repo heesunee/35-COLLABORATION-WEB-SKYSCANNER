@@ -7,6 +7,7 @@ import HotelWhiteIcon from '@/assets/svg/ic_hotel_white.svg?react';
 import LikePageIcon from '@/assets/svg/ic_likepage.svg?react';
 import MainLogoIcon from '@/assets/svg/ic_mainolgo_white.svg?react';
 import MyIcon from '@/assets/svg/ic_my.svg?react';
+import OwlIcon from '@/assets/svg/ic_owl.svg?react';
 import ReviewIcon from '@/assets/svg/ic_review.svg?react';
 import ReviewFillFIcon from '@/assets/svg/ic_review_fill.svg?react';
 import SkyscannerLogoIcon from '@/assets/svg/ic_skyscanner_logo.svg?react';
@@ -26,4 +27,5 @@ export {
 	ReviewIcon,
 	StarIcon,
 	HeartIcon,
+	OwlIcon,
 };
