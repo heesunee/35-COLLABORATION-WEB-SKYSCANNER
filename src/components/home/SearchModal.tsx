@@ -78,7 +78,7 @@ const SearchModalWrap = styled.div<{ isOpen: boolean }>`
 
 const ScrollWrap = styled.div`
 	overflow-y: auto;
-	height: 800px;
+	height: 80rem;
 	margin-bottom: 5rem;
 `;
 
