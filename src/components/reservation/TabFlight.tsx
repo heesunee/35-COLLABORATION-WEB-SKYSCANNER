@@ -5,10 +5,8 @@ import styled from 'styled-components';
 
 const TabFlight = () => {
 	const cheapestFilght = findCheapestFlight(flightData);
-	console.log(cheapestFilght);
 
 	const shortestFlight = findShortestFlight(flightData);
-	console.log(shortestFlight);
 
 	return (
 		<TabFlightContainer>

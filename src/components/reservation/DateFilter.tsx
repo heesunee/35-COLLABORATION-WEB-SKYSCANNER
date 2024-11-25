@@ -13,26 +13,26 @@ const DateFilter = ({ startDate, finishDate }: DateFilterProps) => {
 	return (
 		<DateFilterContainer>
 			<DateButton>
-				<>
+				<TextDiv>
 					<StyledSpan isNumber>{startMonth}</StyledSpan>
 					<StyledSpan>월</StyledSpan>
-				</>
-				<>
+				</TextDiv>
+				<TextDiv>
 					<StyledSpan isNumber>{startDay}</StyledSpan>
 					<StyledSpan>일</StyledSpan>
-				</>
+				</TextDiv>
 				<StyledSpan>({startWeekday})</StyledSpan>
 			</DateButton>
 			<span>-</span>
 			<DateButton>
-				<>
+				<TextDiv>
 					<StyledSpan isNumber>{finishMonth}</StyledSpan>
 					<StyledSpan>월</StyledSpan>
-				</>
-				<>
+				</TextDiv>
+				<TextDiv>
 					<StyledSpan isNumber>{finishDay}</StyledSpan>
 					<StyledSpan>일</StyledSpan>
-				</>
+				</TextDiv>
 				<StyledSpan>({finishWeekday})</StyledSpan>
 			</DateButton>
 		</DateFilterContainer>
@@ -71,3 +71,5 @@ const DateButton = styled.button`
 const StyledSpan = styled.span<{ isNumber?: boolean }>`
 	${({ theme, isNumber }) => (isNumber ? theme.fonts.e_body_m_14 : theme.fonts.body5_r_14)};
 `;
+
+const TextDiv = styled.div``;
