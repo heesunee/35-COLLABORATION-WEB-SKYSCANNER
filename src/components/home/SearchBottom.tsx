@@ -1,7 +1,6 @@
 import Button from '../common/Button';
 import { CloseIcon, MinusFilledIcon, MinusUnfilledIcon, PlusFilledIcon } from '@/assets/svg';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
-import theme from '@/styles/theme';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -143,7 +142,7 @@ const SheetTop = styled.div`
 const SheetTitle = styled.h1`
 	position: absolute;
 	top: 1.7rem;
-    left: 16.7rem;
+	left: 16.7rem;
 	${({ theme }) => theme.fonts.title2_eb_16}
 `;
 
