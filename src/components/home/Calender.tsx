@@ -18,14 +18,18 @@ const Calender = ({ handleDateClick }: props) => {
 		(monthKey: string) =>
 			({ date, view }: { date: Date; view: string }) => {
 				if (view === 'month') {
-					const dateKey = date.toISOString().split('T')[0];
+					const year = date.getFullYear();
+					const month = (date.getMonth() + 1).toString().padStart(2, '0');
+					const day = date.getDate().toString().padStart(2, '0');
+					const dateKey = `${year}-${month}-${day}`;
+
 					const data = getDateData(monthKey, dateKey);
 					const dayNumber = date.getDate();
 					const colorMap = {
 						r: '#FF5252', // 빨강
 						g: '#4CAF50', // 초록
 						b: '#007BFF', // 파랑
-						o: '#FF8D00', // 파랑
+						o: '#FF8D00', //
 					};
 					const isSelected = formatDate(date) === firstSelectedDate || formatDate(date) === lastSelectedDate;
 
