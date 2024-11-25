@@ -1,5 +1,8 @@
 import { flexCssGenerator } from '@/styles/customStyle.ts';
+import { Simulate } from 'react-dom/test-utils';
 import styled from 'styled-components';
+
+import click = Simulate.click;
 
 interface groupProps {
 	title: string;

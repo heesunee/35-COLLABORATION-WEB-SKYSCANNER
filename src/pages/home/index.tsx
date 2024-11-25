@@ -1,28 +1,25 @@
 import CalenderModal from '@/components/home/CalenderModal.tsx';
 import SearchModal from '@/components/home/SearchModal.tsx';
+import { useModal } from '@/hooks/useModal.ts';
 import { useState } from 'react';
 
-interface IsModalOpenProps {
-	search: boolean;
-	calender: boolean;
-}
-
 const Home = () => {
-	const [isModalOpen, setModalOpen] = useState<IsModalOpenProps>({
-		search: true,
-		calender: false,
-	});
+	const { isModalOpen, onModalToggle } = useModal();
 
-	const onModalToggle = (modal: 'search' | 'calender') => {
-		setModalOpen({
-			...isModalOpen,
-			[modal]: !isModalOpen[modal],
-		});
+	const [clickedCity, setClickedCity] = useState<string | null>(null);
+
+	const onClicked = (city: string) => {
+		setClickedCity(city);
 	};
 
 	return (
 		<>
-			<SearchModal isOpen={isModalOpen.search} onModalToggle={() => onModalToggle('search')} />
+			<SearchModal
+				isOpen={isModalOpen.search}
+				onModalToggle={() => onModalToggle('search')}
+				clickedCity={clickedCity}
+				onClicked={onClicked}
+			/>
 			<CalenderModal />
 		</>
 	);

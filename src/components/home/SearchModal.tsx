@@ -1,29 +1,26 @@
 import { ArrowLeftBlackIcon, FlightGrayIcon } from '@/assets/svg';
-import { cityGroups } from '@/components/cityGroups.ts';
 import Button from '@/components/common/Button.tsx';
 import InputForm from '@/components/common/InputForm.tsx';
 import CityGroup from '@/components/home/CityGroup.tsx';
+import { cityGroups } from '@/constants/cityGroups.ts';
 import { FogEffect, flexCssGenerator } from '@/styles/customStyle.ts';
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 interface props {
 	isOpen: boolean;
 	onModalToggle: () => void;
+	clickedCity: string | null;
+	onClicked: (city: string) => void;
 }
 
-const SearchModal = ({ isOpen = false, onModalToggle }: props) => {
-	const [clickedCity, setClickedCity] = useState<string | null>(null);
+const SearchModal = ({ isOpen = false, onModalToggle, clickedCity, onClicked }: props) => {
 	const [showFogEffect, setShowFogEffect] = useState<boolean>(true);
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const isOkinawa = clickedCity === '오키나와';
 
 	const onSearchClick = () => {
 		onModalToggle();
-	};
-
-	const onClicked = (city: string) => {
-		setClickedCity(city);
 	};
 
 	return (
