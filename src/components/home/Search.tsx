@@ -44,6 +44,7 @@ const Search = () => {
 
 	const handleSearchBottomClose = () => {
 		setIsSearchBottomOpen(false);
+		document.body.style.overflow = '';
 	};
 
 	const navigate = useNavigate(); // useNavigate 훅 호출

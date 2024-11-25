@@ -15,15 +15,8 @@ const SearchBottom = ({ numParentsAdults, setParentsNumAdults, onClose }: Search
 	const [numChilds, setNumChilds] = useState(0);
 	const [numBabies, setNumBabies] = useState(0);
 
-	useEffect(() => {
-		// 모달이 열리면 body 스크롤 비활성화
-		document.body.style.overflow = 'hidden';
-
-		// 컴포넌트가 언마운트될 때(모달이 닫힐 때) 스크롤 복구
-		return () => {
-			document.body.style.overflow = '';
-		};
-	}, []);
+	// 모달이 열리면 body 스크롤 비활성화
+	document.body.style.overflow = 'hidden';
 
 	const handleIncrease = (setState: React.Dispatch<React.SetStateAction<number>>) => {
 		setState((prev) => prev + 1);
