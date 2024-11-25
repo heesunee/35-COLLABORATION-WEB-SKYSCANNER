@@ -48,7 +48,7 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 							<InfoGoContent>{firstSelectedDate}</InfoGoContent>
 						</InfoGoLeft>
 						<InfoGoRight>
-							<InfoGoTitle>가는 편</InfoGoTitle>
+							<InfoGoTitle>오는 편</InfoGoTitle>
 							<InfoGoContent>{lastSelectedDate}</InfoGoContent>
 						</InfoGoRight>
 					</InfoFilter>
@@ -69,7 +69,7 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 const CalenderContainer = styled.section<{ isOpen: boolean }>`
 	background-color: ${({ theme }) => theme.colors.white};
 	display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-	height: 100%;
+	//height: ;
 	position: absolute;
 	top: 0;
 	padding: 1.9rem;

@@ -22,12 +22,22 @@ export const dateHandler = () => {
 		return data || null;
 	};
 
-	const [firstSelectedDate, setFirstSelectedDate] = useState<string | null>(' ');
-	const [lastSelectedDate, setLastSelectedDate] = useState<string | null>(' ');
+	const [firstSelectedDate, setFirstSelectedDate] = useState<string | null>(null);
+	const [lastSelectedDate, setLastSelectedDate] = useState<string | null>(null);
+	const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
 
 	// 날짜 클릭 핸들러
+
 	const handleDateClick = (date: Date) => {
-		if (!firstSelectedDate) {
+		const clickedMonth = (date.getMonth() + 1).toString().padStart(2, '0'); // 월 정보 추출
+		console.log('clickedMonth', clickedMonth);
+		console.log('selectedMonth', selectedMonth);
+
+		// 새로운 월이 클릭되면 선택 초기화
+		if (selectedMonth !== clickedMonth) {
+			setFirstSelectedDate(formatDate(date));
+			setLastSelectedDate(null);
+		} else if (!firstSelectedDate) {
 			setFirstSelectedDate(formatDate(date));
 		} else if (!lastSelectedDate) {
 			setLastSelectedDate(formatDate(date));
@@ -35,6 +45,9 @@ export const dateHandler = () => {
 			setFirstSelectedDate(formatDate(date));
 			setLastSelectedDate(null);
 		}
+
+		// 현재 선택된 월 업데이트
+		setSelectedMonth(clickedMonth);
 	};
 
 	return { formatDate, getDateData, handleDateClick, firstSelectedDate, lastSelectedDate, weekDay };

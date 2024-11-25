@@ -1,6 +1,7 @@
 import './Calender.ts';
 import { CustomCalender } from '@/components/home/Calender.ts';
 import { dateHandler } from '@/utils/dateHandler.ts';
+import { useCallback } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styled from 'styled-components';
@@ -10,37 +11,46 @@ interface props {
 }
 
 const Calender = ({ handleDateClick }: props) => {
-	const { getDateData, weekDay } = dateHandler();
+	const { firstSelectedDate, lastSelectedDate, formatDate, getDateData, weekDay } = dateHandler();
 
 	// 날짜 셀을 커스터마이징하는 함수
-	const tileContent =
+	const tileContent = useCallback(
 		(monthKey: string) =>
-		({ date, view }: { date: Date; view: string }) => {
-			if (view === 'month') {
-				const dateKey = date.toISOString().split('T')[0];
-				const data = getDateData(monthKey, dateKey);
-				const dayNumber = date.getDate(); // 날짜의 "일" 숫자만 가져오기
-				const colorMap = {
-					r: '#FF5252', // 빨강
-					g: '#4CAF50', // 초록
-					b: '#007BFF', // 파랑
-					o: '#FF8D00', // 파랑
-				};
+			({ date, view }: { date: Date; view: string }) => {
+				if (view === 'month') {
+					const dateKey = date.toISOString().split('T')[0];
+					const data = getDateData(monthKey, dateKey);
+					const dayNumber = date.getDate();
+					const colorMap = {
+						r: '#FF5252', // 빨강
+						g: '#4CAF50', // 초록
+						b: '#007BFF', // 파랑
+						o: '#FF8D00', // 파랑
+					};
+					const isSelected = formatDate(date) === firstSelectedDate || formatDate(date) === lastSelectedDate;
 
-				if (data) {
-					return (
-						<TileContainer>
-							<Ghost></Ghost>
-							<StyledCircle backgroundColor={colorMap[data.color]}>{dayNumber}</StyledCircle>
-							<StyledPrice>{data.price}만</StyledPrice>
-						</TileContainer>
-					);
-				} else {
-					return <StyledCircle backgroundColor="transparent">{dayNumber}</StyledCircle>;
+					if (data) {
+						return (
+							<TileContainer>
+								<Ghost></Ghost>
+								<StyledCircle backgroundColor={isSelected ? 'blue' : colorMap[data.color]}>{dayNumber}</StyledCircle>
+								<StyledPrice>{data.price}만</StyledPrice>
+							</TileContainer>
+						);
+					} else {
+						return (
+							<TileContainer>
+								<Ghost></Ghost>
+								<StyledCircle backgroundColor={isSelected ? 'blue' : 'transparent'}>{dayNumber}</StyledCircle>
+								<StyledPrice></StyledPrice>
+							</TileContainer>
+						);
+					}
 				}
-			}
-			return null;
-		};
+				return null;
+			},
+		[firstSelectedDate, lastSelectedDate],
+	);
 
 	return (
 		<CustomCalender>
@@ -61,10 +71,10 @@ const Calender = ({ handleDateClick }: props) => {
 			<Month>12월</Month>
 			<Calendar
 				tileContent={tileContent('12월')}
+				selectRange={true}
 				defaultActiveStartDate={new Date(2024, 11, 1)}
 				showNeighboringMonth={false}
 				showNavigation={false}
-				showWeekNumbers={false}
 				onClickDay={handleDateClick}
 			/>
 		</CustomCalender>
@@ -83,6 +93,7 @@ const Weekdays = styled.div`
 	justify-content: space-between;
 	font-weight: bold;
 `;
+
 const WeekName = styled.div`
 	${({ theme }) => theme.fonts.body6_r_12}
 	width: 48px;
