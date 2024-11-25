@@ -1,0 +1,32 @@
+export const Hotels = [
+	{
+		id: 1,
+		image: '/src/assets/img/img_grandhotel.png',
+		name: '오키나와 그랜드 메르 리조트',
+		description: '도심에서 8.59 km',
+		star: 3,
+		rating: 4,
+		review: '(651)',
+		price: '₩157,001',
+	},
+	{
+		id: 2,
+		image: '/src/assets/img/img_montorehotel.png',
+		name: '호텔 몬토레 오키나와 리조트',
+		description: '도심에서 8.59 km',
+		star: 5,
+		rating: 4.5,
+		review: '(1,289)',
+		price: '₩400,966',
+	},
+	{
+		id: 3,
+		image: '/src/assets/img/img_crystal.png',
+		name: '리콘 크리스탈 호텔',
+		description: '도심에서 7.12 km',
+		star: 5,
+		rating: 4.5,
+		review: '(1,289)',
+		price: '₩400,966',
+	},
+];

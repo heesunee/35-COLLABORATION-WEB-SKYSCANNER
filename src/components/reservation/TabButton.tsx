@@ -22,7 +22,7 @@ export default TabButton;
 
 const ButtonStyles = {
 	default: css`
-		${({ theme }) => theme.fonts.body3_sb_12};
+		${({ theme }) => theme.fonts.body2_sb_14};
 		height: 3rem;
 		background-color: ${({ theme }) => theme.colors.skygrey};
 		border: 1px solid ${({ theme }) => theme.colors.grey20};
@@ -34,7 +34,7 @@ const ButtonStyles = {
 	`,
 
 	clicked: css`
-		${({ theme }) => theme.fonts.title3_eb_12};
+		${({ theme }) => theme.fonts.title3_eb_14};
 		background-color: ${({ theme }) => theme.colors.darksky};
 		color: ${({ theme }) => theme.colors.white};
 	`,

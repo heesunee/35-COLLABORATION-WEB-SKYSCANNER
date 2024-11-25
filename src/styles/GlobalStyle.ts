@@ -7,6 +7,39 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  @font-face {
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-ExtraLight.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-ExtraLight.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-Regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-SemiBold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-SemiBold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-ExtraBold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-ExtraBold.ttf') format('truetype');
+  }
+  
   :root {
     --max-width: 375px;
     --max-height: 812px;

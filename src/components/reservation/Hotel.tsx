@@ -1,3 +1,4 @@
+import HotelList from './HotelList';
 import TabButton from './TabButton';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -36,6 +37,8 @@ const Hotel = () => {
 					/>
 				</TabButtonContainer>
 			</TopBar>
+
+			<HotelList />
 		</HotelContainer>
 	);
 };
