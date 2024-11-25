@@ -3,18 +3,6 @@ import { RecommendCardProps } from '@/types/recommendCard';
 import React from 'react';
 import styled from 'styled-components';
 
-// "id": 1,
-//       "backgroundImageUrl": "https://s3-alpha-sig.figma.com/img/812a/906e/598e9f83fb269012a2490410ee50c4e5?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=D3WqYvrvoAIFl3~QK-hp7avljMPE82X8vlw7xz7KytTfYvb4mv-A~Fa29tMIRc0nGTgJvMbCo8k5-CS4TniiWoo2ZESdZ0PLtMSfb8q5bZk8bydfuhwVNrb7Xv5EyvdgDRiNVU4Pp4tcTIyigXXIEck~1iZqZ7M8GvPkn26Lo8uNGvULYtPrYeDOrf2BKb8XpENHn48RROtg8fzkIPDnCEX70KlnCuMWoLek-PghK7uOgJCABY1UZeV35Kd5LHtpuRUnAf9H0lpJPGg0mKTWZYs6HTPerphixEbkk0zc9NZugPLqs339E4a1FeiW4F50vxDZPnA8up~U0T8VyI-iLQ__",
-//       "country": "대한민국",
-//       "spot": "제주",
-//       "price": "₩30,914 출발",
-//       "departureAirlineImageUrl": "https://www.figma.com/file/4PYHo5Y7DKsyTatuqpF0AX/image/e18a3c97533eae9f443afedf2faa29783ba3180d",
-//       "departureDate": "11월 6일  (수)",
-//       "departureTicketDescription": "티웨이 항공의 ICN - CJJ 항공권",
-//       "arrivalAirlineImageUrl": "https://www.figma.com/file/4PYHo5Y7DKsyTatuqpF0AX/image/e18a3c97533eae9f443afedf2faa29783ba3180d",
-//       "arrivalDate": "11월 13일  (수)",
-//       "arrivalTicketDescription": "티웨이 항공의 CJJ - ICN 항공권"
-
 const RecommendCard = ({
 	backgroundImageUrl,
 	country,
