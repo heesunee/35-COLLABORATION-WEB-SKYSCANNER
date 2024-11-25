@@ -1,5 +1,11 @@
+import CalenderModal from '@/components/home/calender-modal.tsx';
+
 const Home = () => {
-	return <>Home</>;
+	return (
+		<>
+			<CalenderModal />
+		</>
+	);
 };
 
 export default Home;
