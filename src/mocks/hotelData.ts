@@ -1,6 +1,4 @@
-import { HotelData } from '@/types/hotelData';
-
-export const hotelData: HotelData = [
+export const hotelData = [
 	{
 		id: 1,
 		image: '/src/assets/img/hotel1.png',
