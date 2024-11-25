@@ -9,7 +9,7 @@ interface props {
 
 const SearchCheckedBox = ({ caption, isClicked, onClick }: props) => {
 	return (
-		<CheckboxWrapper isClicked={isClicked} onClick={onClick}>
+		<CheckboxWrapper onClick={onClick}>
 			{isClicked ? <CheckboxFilledIcon /> : <CheckboxEmptyIcon />}
 			{caption}
 		</CheckboxWrapper>

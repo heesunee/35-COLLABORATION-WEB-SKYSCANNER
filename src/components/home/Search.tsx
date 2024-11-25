@@ -1,10 +1,11 @@
 import Button from '../common/Button';
 import SearchBottom from './SearchBottom';
+import SearchCalendarWrapper from './SearchCalendarWrapper';
 import SearchCheckedBox from './SearchCheckedBox';
 import SearchClickedFieldWrapper from './SearchClickedFieldWrapper';
 import SearchRadioButton from './SearchRadioButton';
 import SearchTextField from './SearchTextField';
-import { CalendarGreyIcon, OriginIcon, PinIcon, ProfileIcon } from '@/assets/svg';
+import { OriginIcon, PinIcon, ProfileIcon } from '@/assets/svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -15,34 +16,34 @@ const Search = () => {
 		setSelectedRadio(value);
 	};
 
-	const [selectedNearbyDeparture, setSelectedNearbyDeparture] = useState(false);
-	const [selectedNearbyArrival, setSelectedNearbyArrival] = useState(false);
-	const [selectedDirect, setSelectedDirect] = useState(false);
+	const [checkedNearbyDeparture, setCheckedNearbyDeparture] = useState(false);
+	const [checkedNearbyArrival, setCheckedNearbyArrival] = useState(false);
+	const [checkedDirect, setCheckedDirect] = useState(false);
 
 	const [departure, setDeparture] = useState('');
 	const [arrival, setArrival] = useState('');
 
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isSearchBottomOpen, setIsSearchBottomOpen] = useState(false);
 	const [numAdults, setNumAdults] = useState(0);
 
 	const handleDepartureToggle = () => {
-		setSelectedNearbyDeparture((prev) => !prev);
+		setCheckedNearbyDeparture((prev) => !prev);
 	};
 
 	const handleArrivalToggle = () => {
-		setSelectedNearbyArrival((prev) => !prev);
+		setCheckedNearbyArrival((prev) => !prev);
 	};
 
 	const handleDirectToggle = () => {
-		setSelectedDirect((prev) => !prev);
+		setCheckedDirect((prev) => !prev);
 	};
 
-	const handleModalOpen = () => {
-		setIsModalOpen(true);
+	const handleSearchBottomOpen = () => {
+		setIsSearchBottomOpen(true);
 	};
 
-	const handleModalClose = () => {
-		setIsModalOpen(false);
+	const handleSearchBottomClose = () => {
+		setIsSearchBottomOpen(false);
 	};
 
 	const navigate = useNavigate(); // useNavigate 훅 호출
@@ -80,7 +81,7 @@ const Search = () => {
 					/>
 					<SearchCheckedBox
 						caption={'주변 공항 추가'}
-						isClicked={selectedNearbyDeparture}
+						isClicked={checkedNearbyDeparture}
 						onClick={handleDepartureToggle}
 					/>
 				</SearchTextContainer>
@@ -90,35 +91,25 @@ const Search = () => {
 						placeholder={'목적지는 어디인가요?'}
 						onChange={(e) => setArrival(e.target.value)}
 					/>
-					<SearchCheckedBox
-						caption={'주변 공항 추가'}
-						isClicked={selectedNearbyArrival}
-						onClick={handleArrivalToggle}
-					/>
+					<SearchCheckedBox caption={'주변 공항 추가'} isClicked={checkedNearbyArrival} onClick={handleArrivalToggle} />
 				</SearchTextContainer>
-				<SearchCalendarWrapper onClick={() => console.log('Calander Clicked!')}>
-					{/* 부모에 props 정의되면 출발하는 날짜, 들어오는 날짜에 교체할 예정 */}
-					<CalendarLeft>
-						<CalendarGreyIcon />
-						출발하는 날짜
-					</CalendarLeft>
-					<CalendarRight>
-						<CalendarGreyIcon />
-						들어오는 날짜
-					</CalendarRight>
-				</SearchCalendarWrapper>
+				<SearchCalendarWrapper />
 				<SearchTextContainer>
 					<SearchClickedFieldWrapper
 						Icon={ProfileIcon}
 						placeholder={numAdults ? `성인 ${numAdults}명` : '인원을 선택해주세요.'}
-						isClicked={selectedDirect}
-						onClick={handleModalOpen}
+						isClicked={checkedDirect}
+						onClick={handleSearchBottomOpen}
 					/>
-					<SearchCheckedBox caption={'직항만'} isClicked={selectedDirect} onClick={handleDirectToggle} />
+					<SearchCheckedBox caption={'직항만'} isClicked={checkedDirect} onClick={handleDirectToggle} />
 				</SearchTextContainer>
 
-				{isModalOpen && (
-					<SearchBottom numParentsAdults={numAdults} setParentsNumAdults={setNumAdults} onClose={handleModalClose} />
+				{isSearchBottomOpen && (
+					<SearchBottom
+						numParentsAdults={numAdults}
+						setParentsNumAdults={setNumAdults}
+						onClose={handleSearchBottomClose}
+					/>
 				)}
 
 				{departure && arrival && numAdults ? (
@@ -155,37 +146,3 @@ const SearchRadioWrapper = styled.div`
 `;
 
 const SearchTextContainer = styled.div``;
-
-const SearchCalendarWrapper = styled.div`
-	display: flex;
-	margin-bottom: 1.1rem;
-	gap: 0.298rem;
-`;
-
-const CalendarLeft = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	background-color: ${({ theme }) => theme.colors.white};
-	border-radius: 1.1rem 0 0 1.1rem;
-	width: 100%;
-
-	padding: 0.8rem 1rem;
-
-	color: ${({ theme }) => theme.colors.grey40};
-	${({ theme }) => theme.fonts.e_body_m_12}
-`;
-
-const CalendarRight = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	background-color: ${({ theme }) => theme.colors.white};
-	border-radius: 0 1.1rem 1.1rem 0;
-	width: 100%;
-
-	padding: 0.8rem 1rem;
-
-	color: ${({ theme }) => theme.colors.grey40};
-	${({ theme }) => theme.fonts.e_body_m_12}
-`;

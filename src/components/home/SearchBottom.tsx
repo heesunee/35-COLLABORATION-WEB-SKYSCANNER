@@ -10,7 +10,7 @@ type SearchBottomProps = {
 	onClose: () => void;
 };
 
-const SearchBottom: React.FC<SearchBottomProps> = ({ numParentsAdults, setParentsNumAdults, onClose }) => {
+const SearchBottom = ({ numParentsAdults, setParentsNumAdults, onClose }: SearchBottomProps) => {
 	const [numAdults, setNumAdults] = useState(numParentsAdults);
 	const [numChilds, setNumChilds] = useState(0);
 	const [numBabies, setNumBabies] = useState(0);
