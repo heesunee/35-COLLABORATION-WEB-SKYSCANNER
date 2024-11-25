@@ -1,8 +1,8 @@
 import { ArrowLeftBlackIcon, FlightGrayIcon } from '@/assets/svg';
+import { cityGroups } from '@/components/cityGroups.ts';
 import Button from '@/components/common/Button.tsx';
 import InputForm from '@/components/common/InputForm.tsx';
 import CityGroup from '@/components/home/CityGroup.tsx';
-import { cityGroups } from '@/pages/home/cityGroups.ts';
 import { FogEffect, flexCssGenerator } from '@/styles/customStyle.ts';
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -24,7 +24,6 @@ const SearchModal = ({ isOpen = false, onModalToggle }: props) => {
 
 	const onClicked = (city: string) => {
 		setClickedCity(city);
-		console.log(city);
 	};
 
 	return (
