@@ -70,6 +70,7 @@ const SearchModal = ({ isOpen = false, onModalToggle }: props) => {
 const SearchModalWrap = styled.div<{ isOpen: boolean }>`
 	background-color: ${({ theme }) => theme.colors.white};
 	display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+	max-width: inherit;
 	position: absolute;
 	top: 0;
 	padding: 1.5rem 1.3rem 2.6rem;
