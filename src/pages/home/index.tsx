@@ -14,7 +14,6 @@ const Home = () => {
 	});
 
 	const onModalToggle = (modal: 'search' | 'calender') => {
-		console.log(isModalOpen);
 		setModalOpen({
 			...isModalOpen,
 			[modal]: !isModalOpen[modal],
