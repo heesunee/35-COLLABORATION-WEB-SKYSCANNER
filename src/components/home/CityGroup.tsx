@@ -4,47 +4,42 @@ import styled from 'styled-components';
 interface groupProps {
 	title: string;
 	cities: string[];
-	onOkinawaClicked?: (b: boolean) => void;
+	clickedCity: string | null;
+	onClicked?: (city: string) => void;
 }
-interface buttonProps {
+interface ButtonProps {
 	name: string;
 	onClick: () => void;
+	isSelected: boolean;
 }
 
-const CityButton = ({ name, onClick }: buttonProps) => {
-	return <StyledButton onClick={onClick}>{name}</StyledButton>;
-};
-
-const CityGroup = ({ title, cities, onOkinawaClicked }: groupProps) => {
-	const onButtonClick = (city: string) => {
-		if (onOkinawaClicked) {
-			if (city === '오키나와') onOkinawaClicked(true);
-			else {
-				onOkinawaClicked(false);
-			}
-		}
-	};
+const CityButton = ({ name, onClick, isSelected }: ButtonProps) => (
+	<StyledButton onClick={onClick} isSelected={isSelected}>
+		{name}
+	</StyledButton>
+);
+const CityGroup = ({ title, cities, onClicked, clickedCity }: groupProps) => {
 	return (
 		<GroupContainer>
 			<GroupTitle>{title}</GroupTitle>
 			<CitiesGrid>
-				{cities.map((city, index) => (
-					<CityButton key={index} name={city} onClick={() => onButtonClick(city)} />
+				{cities.map((city) => (
+					<CityButton key={city} name={city} onClick={() => onClicked?.(city)} isSelected={clickedCity === city} />
 				))}
 			</CitiesGrid>
 		</GroupContainer>
 	);
 };
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ isSelected: boolean }>`
 	align-self: stretch;
 	border-radius: 5px;
-	background-color: ${({ theme }) => theme.colors.skygrey};
+	background-color: ${({ theme, isSelected }) => (isSelected ? theme.colors.skyblue : theme.colors.skygrey)};
 	min-height: 3.2rem;
 	width: 11.1rem;
 	padding: 0.6rem;
 	border: none;
-	color: ${({ theme }) => theme.colors.nightblue};
+	color: ${({ theme, isSelected }) => (isSelected ? theme.colors.white : theme.colors.nightblue)};
 	${({ theme }) => theme.fonts.body2_sb_14};
 	cursor: pointer;
 `;
