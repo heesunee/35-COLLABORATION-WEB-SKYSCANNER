@@ -14,7 +14,6 @@ import FlightWhiteIcon from '@/assets/svg/ic_flight_white.svg?react';
 import FlightIcon from '@/assets/svg/ic_flight_white.svg?react';
 import HeartIcon from '@/assets/svg/ic_heart.svg?react';
 import HeartBlackIcon from '@/assets/svg/ic_heart_black.svg?react';
-import HeartOutlineIcon from '@/assets/svg/ic_heat_outline.svg?react';
 import ReviewStarIcon from '@/assets/svg/ic_hotel_star.svg?react';
 import HotelWhiteIcon from '@/assets/svg/ic_hotel_white.svg?react';
 import LikePageIcon from '@/assets/svg/ic_likepage.svg?react';
@@ -62,7 +61,6 @@ export {
 	ExclamationIcon,
 	FlightIcon,
 	HeartBlackIcon,
-	HeartOutlineIcon,
 	EastarIcon,
 	JejuAirIcon,
 	JinAirIcon,
