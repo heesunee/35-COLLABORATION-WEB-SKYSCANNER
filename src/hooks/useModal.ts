@@ -7,7 +7,7 @@ interface IsModalOpenProps {
 
 export const useModal = () => {
 	const [isModalOpen, setModalOpen] = useState<IsModalOpenProps>({
-		search: false,
+		search: true,
 		calender: false,
 	});
 

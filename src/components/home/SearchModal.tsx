@@ -2,6 +2,7 @@ import { ArrowLeftBlackIcon, FlightGrayIcon } from '@/assets/svg';
 import Button from '@/components/common/Button.tsx';
 import InputForm from '@/components/common/InputForm.tsx';
 import CityGroup from '@/components/home/CityGroup.tsx';
+import ToggleSwitch from '@/components/wish/ToggleSwitch.tsx';
 import { cityGroups } from '@/constants/cityGroups.ts';
 import { FogEffect, flexCssGenerator } from '@/styles/customStyle.ts';
 import { useRef, useState } from 'react';
@@ -30,9 +31,7 @@ const SearchModal = ({ isOpen = false, onModalToggle, clickedCity, onClicked }: 
 					<ArrowLeftBlackIcon onClick={onModalToggle} />
 					<ToggleContainer>
 						<ToggleLabel>주변 공항 포함</ToggleLabel>
-						<ToggleWrapper>
-							<ToggleButton />
-						</ToggleWrapper>
+						<ToggleSwitch />
 					</ToggleContainer>
 				</Header>
 
@@ -69,6 +68,8 @@ const SearchModalWrap = styled.div<{ isOpen: boolean }>`
 	display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
 	max-width: inherit;
 	position: absolute;
+	flex-direction: column;
+	height: 100vh;
 	top: 0;
 	padding: 1.5rem 1.3rem 2.6rem;
 	overflow: hidden;
@@ -77,7 +78,7 @@ const SearchModalWrap = styled.div<{ isOpen: boolean }>`
 const ScrollWrap = styled.div`
 	overflow-y: auto;
 	height: 80rem;
-	margin-bottom: 5rem;
+	padding-bottom: 10rem;
 `;
 
 const Header = styled.header`
@@ -87,6 +88,7 @@ const Header = styled.header`
 
 const ToggleContainer = styled.div`
 	${flexCssGenerator('flex', 'center')}
+	position: relative;
 	gap: 0.7rem;
 `;
 
