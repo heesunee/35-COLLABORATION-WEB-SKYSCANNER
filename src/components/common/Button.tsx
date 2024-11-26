@@ -4,14 +4,14 @@ import styled, { css } from 'styled-components';
 
 interface props {
 	onClick: () => void;
-	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'apply';
+	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'apply'| 'searchHome' | 'disableHome';
 	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small';
 	children: React.ReactNode;
 	disabled?: boolean;
 }
 
 interface StyledProps {
-	variant?: 'default' | 'clicked' | 'search' | 'disable' | 'apply';
+	variant?: 'default' | 'clicked' | 'search' | 'disable' | 'apply'| 'searchHome' | 'disableHome';
 	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small';
 }
 
@@ -98,6 +98,16 @@ const ButtonSizes = {
 		height: 3.9rem;
 		width: 33.7rem;
 		position: fixed;
+		${({ theme }) => theme.fonts.body2_sb_14};
+	`,
+	searchHome: css`
+		height: 3.9rem;
+		width: 33.7rem;
+		${({ theme }) => theme.fonts.body2_sb_14};
+	`,
+	disableHome: css`
+		height: 3.9rem;
+		width: 33.7rem;
 		${({ theme }) => theme.fonts.body2_sb_14};
 	`,
 	small: css`

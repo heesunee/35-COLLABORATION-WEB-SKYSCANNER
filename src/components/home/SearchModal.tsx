@@ -2,27 +2,26 @@ import { ArrowLeftBlackIcon, FlightGrayIcon } from '@/assets/svg';
 import Button from '@/components/common/Button.tsx';
 import InputForm from '@/components/common/InputForm.tsx';
 import CityGroup from '@/components/home/CityGroup.tsx';
-import { cityGroups } from '@/pages/home/cityGroups.ts';
+import ToggleSwitch from '@/components/wish/ToggleSwitch.tsx';
+import { cityGroups } from '@/constants/cityGroups.ts';
 import { FogEffect, flexCssGenerator } from '@/styles/customStyle.ts';
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 interface props {
 	isOpen: boolean;
 	onModalToggle: () => void;
+	clickedCity: string | null;
+	onClicked: (city: string) => void;
 }
 
-const SearchModal = ({ isOpen = false, onModalToggle }: props) => {
-	const [isButtonClicked, setIsButtonClicked] = useState(false);
-	const [showFogEffect, setShowFogEffect] = useState(true);
+const SearchModal = ({ isOpen = false, onModalToggle, clickedCity, onClicked }: props) => {
+	const [showFogEffect, setShowFogEffect] = useState<boolean>(true);
 	const scrollRef = useRef<HTMLDivElement>(null);
+	const isOkinawa = clickedCity === '오키나와';
 
 	const onSearchClick = () => {
 		onModalToggle();
-	};
-
-	const onOkinawaClicked = (state: boolean) => {
-		setIsButtonClicked(state);
 	};
 
 	return (
@@ -32,27 +31,30 @@ const SearchModal = ({ isOpen = false, onModalToggle }: props) => {
 					<ArrowLeftBlackIcon onClick={onModalToggle} />
 					<ToggleContainer>
 						<ToggleLabel>주변 공항 포함</ToggleLabel>
-						<ToggleWrapper>
-							<ToggleButton />
-						</ToggleWrapper>
+						<ToggleSwitch />
 					</ToggleContainer>
 				</Header>
 
 				<CityGroupWrap>
 					<InputForm Icon={FlightGrayIcon} placeholder="도시명 또는 공항명" />
-					<CityGroup title="인기 도시" cities={cityGroups.popular} />
-					<CityGroup title="아시아" cities={cityGroups.asia} onOkinawaClicked={onOkinawaClicked} />
-					<CityGroup title="유럽" cities={cityGroups.europe} />
-					<CityGroup title="북미" cities={cityGroups.northAmerica} />
-					<CityGroup title="남아메리카" cities={cityGroups.southAmerica} />
+					<CityGroup title="인기 도시" cities={cityGroups.popular} clickedCity={clickedCity} onClicked={onClicked} />
+					<CityGroup title="아시아" cities={cityGroups.asia} clickedCity={clickedCity} onClicked={onClicked} />
+					<CityGroup title="유럽" cities={cityGroups.europe} clickedCity={clickedCity} onClicked={onClicked} />
+					<CityGroup title="북미" cities={cityGroups.northAmerica} clickedCity={clickedCity} onClicked={onClicked} />
+					<CityGroup
+						title="남아메리카"
+						cities={cityGroups.southAmerica}
+						clickedCity={clickedCity}
+						onClicked={onClicked}
+					/>
 				</CityGroupWrap>
 			</ScrollWrap>
 
 			<Button
-				variant={isButtonClicked ? 'search' : 'disable'}
-				size={isButtonClicked ? 'search' : 'disable'}
+				variant={isOkinawa ? 'search' : 'disable'}
+				size={isOkinawa ? 'search' : 'disable'}
 				onClick={onSearchClick}
-				disabled={!isButtonClicked}
+				disabled={!isOkinawa}
 			>
 				검색하기
 			</Button>
@@ -64,7 +66,10 @@ const SearchModal = ({ isOpen = false, onModalToggle }: props) => {
 const SearchModalWrap = styled.div<{ isOpen: boolean }>`
 	background-color: ${({ theme }) => theme.colors.white};
 	display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+	max-width: inherit;
 	position: absolute;
+	flex-direction: column;
+	height: 100vh;
 	top: 0;
 	padding: 1.5rem 1.3rem 2.6rem;
 	overflow: hidden;
@@ -72,8 +77,8 @@ const SearchModalWrap = styled.div<{ isOpen: boolean }>`
 
 const ScrollWrap = styled.div`
 	overflow-y: auto;
-	height: 800px;
-	margin-bottom: 5rem;
+	height: 80rem;
+	padding-bottom: 10rem;
 `;
 
 const Header = styled.header`
@@ -83,6 +88,7 @@ const Header = styled.header`
 
 const ToggleContainer = styled.div`
 	${flexCssGenerator('flex', 'center')}
+	position: relative;
 	gap: 0.7rem;
 `;
 

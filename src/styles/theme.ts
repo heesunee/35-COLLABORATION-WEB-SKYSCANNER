@@ -24,7 +24,7 @@ const colors = {
 	grey10: '#EFF1F2',
 	skygrey: '#EEF3F9',
 	white: '#FFFFFF',
-
+	skygrey: '#EEF3F9',
 	nightgrey: '#131D28',
 	darkscreen: 'rgba(22,22,22,0.77)',
 };
@@ -209,7 +209,7 @@ const fonts = {
 		font-family: Inter;
 		font-weight: 800;
 		line-height: 2rem;
-		letter-spacing: -0.36rem;
+		letter-spacing: -0.036rem;
 	`,
 	e_body_b_16: css`
 		font-size: 1.6rem;
