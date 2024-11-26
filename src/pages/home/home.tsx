@@ -16,13 +16,14 @@ const Home = () => {
 	return (
 		<>
 			<Search />
+
 			<SearchModal
 				isOpen={isModalOpen.search}
 				onModalToggle={() => onModalToggle('search')}
 				clickedCity={clickedCity}
 				onClicked={onClicked}
 			/>
-			<CalenderModal />
+			<CalenderModal isOpen={isModalOpen.calender} onModalToggle={() => onModalToggle('calender')} />
 		</>
 	);
 };
