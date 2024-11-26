@@ -1,9 +1,6 @@
 import Layout from '@/Layout';
-
-import Reservation from '@/pages/reservation/reservation';
-
 import Home from '@/pages/home/home';
-
+import Reservation from '@/pages/reservation/Reservation';
 import Wish from '@/pages/wish/Wish';
 import { PATH } from '@/router/path.ts';
 import { createBrowserRouter } from 'react-router-dom';
