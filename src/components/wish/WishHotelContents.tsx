@@ -1,5 +1,5 @@
 import WishHotelContentCard from './WishHotelContentCard';
-import { hotelData } from '@/mocks/hotelData';
+import { hotelData } from '@/mocks/mockHotelData';
 import styled from 'styled-components';
 
 const WishHotelContents = () => {
