@@ -1,3 +1,5 @@
+import ArrowLeftBlackIcon from '@/assets/svg//ic_arrow_left_black_new.svg?react';
+
 import PolygonIcon from '@/assets/svg/ic_ arrow_drop_down.svg?react';
 import ArrowRightIcon from '@/assets/svg/ic_arrow_right_black.svg?react';
 import ArrowrightIcon from '@/assets/svg/ic_arrow_right_white.svg?react';
@@ -10,6 +12,7 @@ import CheckboxFilledIcon from '@/assets/svg/ic_check_square_filled.svg?react';
 import CloseIcon from '@/assets/svg/ic_close.svg?react';
 import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_navy.svg?react';
 import FlagKoreaIcon from '@/assets/svg/ic_flag_korea.svg?react';
+import FlightGrayIcon from '@/assets/svg/ic_flight_grey.svg?react';
 import FlightWhiteIcon from '@/assets/svg/ic_flight_white.svg?react';
 import FlightIcon from '@/assets/svg/ic_flight_white.svg?react';
 import HeartIcon from '@/assets/svg/ic_heart.svg?react';
@@ -45,6 +48,7 @@ export {
 	CloseIcon,
 	FlagKoreaIcon,
 	FlightWhiteIcon,
+	FlightGrayIcon,
 	HotelWhiteIcon,
 	LikePageIcon,
 	MainLogoIcon,
@@ -56,6 +60,7 @@ export {
 	PlusFilledIcon,
 	ProfileIcon,
 	SkyscannerLogoIcon,
+	ArrowLeftBlackIcon,
 	PolygonIcon,
 	ArrowrightIcon,
 	ExclamationIcon,

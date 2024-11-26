@@ -4,14 +4,15 @@ import styled, { css } from 'styled-components';
 
 interface props {
 	onClick?: () => void;
-	variant?: 'default' | 'confirm' | 'search' | 'disable';
-	size?: 'default' | 'pricemodal';
+	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'searchHome' | 'disableHome';
+	size?: 'default' | 'pricemodal' | 'search' | 'disable';
 	children: React.ReactNode;
+	disabled?: boolean;
 }
 
 interface StyledProps {
-	variant?: 'default' | 'clicked' | 'search' | 'disable';
-	size?: 'default' | 'pricemodal';
+	variant?: 'default' | 'clicked' | 'search' | 'disable' | 'searchHome' | 'disableHome';
+	size?: 'default' | 'pricemodal' | 'search' | 'disable';
 }
 
 /**
@@ -23,9 +24,9 @@ interface StyledProps {
  * @constructor
  */
 
-const Button = ({ children, variant = 'default', size = 'default', onClick }: props) => {
+const Button = ({ children, variant = 'default', size = 'default', onClick, disabled }: props) => {
 	return (
-		<ButtonContainer onClick={onClick} variant={variant} size={size}>
+		<ButtonContainer onClick={onClick} variant={variant} size={size} disabled={disabled}>
 			{children}
 		</ButtonContainer>
 	);
@@ -36,6 +37,7 @@ const ButtonStyles = {
 		width: 100%;
 		${flexCssGenerator('flex', 'center', 'center', 'column')}
 		border-radius: 1.1rem;
+		border: none;
 		background: ${({ theme }) => theme.colors.skyblue};
 		color: ${({ theme }) => theme.colors.white};
 		cursor: pointer;
@@ -46,12 +48,21 @@ const ButtonStyles = {
 		flex-shrink: 0;
 	`,
 	search: css`
-		// 검색 버튼
+		bottom: 1.6rem;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: ${({ theme }) => theme.colors.skyblue};
+		color: ${({ theme }) => theme.colors.white};
+		z-index: 2;
 	`,
 	disable: css`
 		// 비활성화 버튼
+		bottom: 1.6rem;
+		left: 50%;
+		transform: translate(-50%, -50%);
 		background: ${({ theme }) => theme.colors.grey30};
 		color: ${({ theme }) => theme.colors.black};
+		z-index: 2;
 	`,
 };
 
@@ -66,9 +77,31 @@ const ButtonSizes = {
 		width: 100%;
 		${({ theme }) => theme.fonts.body1_sb_16};
 	`,
+	search: css`
+		height: 3.9rem;
+		width: 33.7rem;
+		position: fixed;
+		${({ theme }) => theme.fonts.body2_sb_14};
+	`,
+	disable: css`
+		height: 3.9rem;
+		width: 33.7rem;
+		position: fixed;
+		${({ theme }) => theme.fonts.body2_sb_14};
+	`,
+	searchHome: css`
+		height: 3.9rem;
+		width: 33.7rem;
+		${({ theme }) => theme.fonts.body2_sb_14};
+	`,
+	disableHome: css`
+		height: 3.9rem;
+		width: 33.7rem;
+		${({ theme }) => theme.fonts.body2_sb_14};
+	`,
 };
 
-const ButtonContainer = styled.div<StyledProps>`
+const ButtonContainer = styled.button<StyledProps>`
 	${ButtonStyles.default}
 	${(props) => props.variant && ButtonStyles[props.variant]}
   ${(props) => props.size && ButtonSizes[props.size]}
