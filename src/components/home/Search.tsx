@@ -118,7 +118,9 @@ const Search = () => {
 						검색하기
 					</Button>
 				) : (
-					<Button variant="disableHome">검색하기</Button>
+					<Button variant="disableHome" disabled={true}>
+						검색하기
+					</Button>
 				)}
 			</SearchContainer>
 		</>

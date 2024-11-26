@@ -1,6 +1,5 @@
 import { flexCssGenerator } from '@/styles/customStyle';
 import { RecommendCardProps } from '@/types/recommendCard';
-import React from 'react';
 import styled from 'styled-components';
 
 const RecommendCard = ({
@@ -44,7 +43,9 @@ const RecommendCard = ({
 					</ContentInfo>
 				</RecommendContent>
 				<RecommendPrice>
-					<p>{price} ></p>
+					<p>
+						{price} {'>'}
+					</p>
 				</RecommendPrice>
 			</RecommendContentsWrapper>
 		</RecommendCardWrapper>
