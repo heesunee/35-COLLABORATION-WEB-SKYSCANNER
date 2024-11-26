@@ -42,7 +42,7 @@ const DateFilter = ({ startDate, finishDate }: DateFilterProps) => {
 export default DateFilter;
 
 const DateFilterContainer = styled.section`
-	width: 17.5rem;
+	width: 17.7rem;
 	height: 3rem;
 	padding: 0.5rem 1rem;
 	color: ${({ theme }) => theme.colors.white};
@@ -61,7 +61,6 @@ const DateButton = styled.button`
 	background-color: inherit;
 	border: none;
 	display: flex;
-	gap: 0.1rem;
 
 	& {
 		display: flex;
@@ -72,4 +71,7 @@ const StyledSpan = styled.span<{ isNumber?: boolean }>`
 	${({ theme, isNumber }) => (isNumber ? theme.fonts.e_body_m_14 : theme.fonts.body5_r_14)};
 `;
 
-const TextDiv = styled.div``;
+const TextDiv = styled.div`
+	display: flex;
+	align-items: center;
+`;

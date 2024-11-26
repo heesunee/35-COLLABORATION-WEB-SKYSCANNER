@@ -33,6 +33,7 @@ const ButtonContainer = styled.div`
 
 const PeopleSpan = styled.span`
 	${({ theme }) => theme.fonts.e_body_m_14};
+	margin-bottom: 0.2rem;
 `;
 
 const ContentSpan = styled.span`
