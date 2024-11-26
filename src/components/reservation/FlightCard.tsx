@@ -3,7 +3,7 @@ import { EastarIcon, JejuAirIcon, JinAirIcon, KalIcon } from '@/assets/svg';
 import Icons from '@/components/reservation/Icons';
 import Info from '@/components/reservation/Info';
 import { Flight } from '@/types/FlightTypes';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface FlightCardProps {
@@ -11,9 +11,9 @@ interface FlightCardProps {
 }
 
 // 항공사 아이콘 매핑
-const airlineIcons: Record<string, JSX.Element | undefined> = {
-	'이스타 항공': <EastarIcon />,
-	'대한항공 (KAL)': <KalIcon />,
+const airlineIcons: Record<string, React.ReactNode | undefined> = {
+	이스타항공: <EastarIcon />,
+	대한항공: <KalIcon />,
 	진에어: <JinAirIcon />,
 	제주항공: <JejuAirIcon />,
 };
