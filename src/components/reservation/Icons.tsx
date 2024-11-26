@@ -11,7 +11,7 @@ const Icons = ({ isTooltipVisible, isLike, handleExclamationClick, handleHeartCl
 	return (
 		<IconContainer>
 			{isTooltipVisible && (
-				<ToolTipContainer onClick={handleExclamationClick} style={{ cursor: 'pointer' }}>
+				<ToolTipContainer onClick={handleExclamationClick}>
 					<ToolTip>
 						<FlightIcon />
 						<StyledSpan>같은 노선의 항공편보다 이산화탄소 환산량이 </StyledSpan>
@@ -24,13 +24,9 @@ const Icons = ({ isTooltipVisible, isLike, handleExclamationClick, handleHeartCl
 				</ToolTipContainer>
 			)}
 
-			<ExclamationIcon onClick={handleExclamationClick} style={{ cursor: 'pointer' }} />
+			<ExclamationIcon onClick={handleExclamationClick} />
 
-			{isLike ? (
-				<HeartBlackIcon onClick={handleHeartClick} style={{ cursor: 'pointer' }} />
-			) : (
-				<HeartIcon onClick={handleHeartClick} style={{ cursor: 'pointer' }} />
-			)}
+			{isLike ? <HeartBlackIcon onClick={handleHeartClick} /> : <HeartIcon onClick={handleHeartClick} />}
 		</IconContainer>
 	);
 };
@@ -47,6 +43,7 @@ const ToolTipContainer = styled.div`
 	top: -7%;
 	left: -1.3%;
 	z-index: 1;
+	cursor: pointer;
 `;
 
 const ToolTip = styled.div`

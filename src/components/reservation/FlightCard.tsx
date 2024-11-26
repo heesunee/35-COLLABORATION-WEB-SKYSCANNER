@@ -1,7 +1,7 @@
-import Icons from './Icons';
-import Info from './Info';
 import PriceSelect from './PriceSelect';
-import { ArrowrightIcon, EastarIcon, JejuAirIcon, JinAirIcon, KalIcon } from '@/assets/svg';
+import { EastarIcon, JejuAirIcon, JinAirIcon, KalIcon } from '@/assets/svg';
+import Icons from '@/components/reservation/Icons';
+import Info from '@/components/reservation/Info';
 import { Flight } from '@/types/FlightTypes';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -35,7 +35,6 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 	};
 	const handleExclamationClick = () => {
 		setIsTooltipVisible((prev) => !prev);
-		console.log(isTooltipVisible);
 	};
 
 	return (
