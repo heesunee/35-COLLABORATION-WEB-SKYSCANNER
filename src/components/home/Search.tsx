@@ -114,11 +114,11 @@ const Search = () => {
 				)}
 
 				{departure && arrival && numAdults ? (
-					<Button onClick={handleSearchClick} variant="search">
+					<Button onClick={handleSearchClick} variant="searchHome">
 						검색하기
 					</Button>
 				) : (
-					<Button variant="disable">검색하기</Button>
+					<Button variant="disableHome">검색하기</Button>
 				)}
 			</SearchContainer>
 		</>
