@@ -1,15 +1,20 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 interface ToggleSwitchProps {
-	id: string;
-	isChecked: boolean;
-	onChange: () => void;
+	id?: string;
 }
 
-const ToggleSwitch = ({ id, isChecked, onChange }: ToggleSwitchProps) => {
+const ToggleSwitch = ({ id }: ToggleSwitchProps) => {
+	const [isChecked, setIsChecked] = useState(true);
+
+	const handleToggle = () => {
+		setIsChecked((prev) => !prev);
+	};
+
 	return (
 		<ToggleWrapper>
-			<input type="checkbox" id={`toggle-${id}`} checked={isChecked} onChange={onChange} />
+			<input type="checkbox" id={`toggle-${id}`} checked={isChecked} onChange={handleToggle} />
 			<label htmlFor={`toggle-${id}`} />
 		</ToggleWrapper>
 	);
