@@ -39,7 +39,31 @@ const GlobalStyle = createGlobalStyle`
     src: url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-ExtraBold.woff2') format('woff2'),
          url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-ExtraBold.ttf') format('truetype');
   }
-  
+
+  @font-face {
+      font-family: 'Inter';
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3Fwr2l6f8IJ1lkYJ4IPfQ1FZ.woff2') format('woff2');
+  }
+  @font-face {
+      font-family: 'Inter';
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3Fwr2l6f8IJ1lkbd4IPfQ1FZ.woff2') format('woff2');
+  }
+  @font-face {
+      font-family: 'Inter';
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3Fwr2l6f8IJ1lkZd4IPfQ1FZ.woff2') format('woff2');
+  }
+
+
+
   :root {
     --max-width: 375px;
     --max-height: 812px;

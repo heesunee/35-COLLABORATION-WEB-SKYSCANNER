@@ -22,6 +22,7 @@ const colors = {
 	grey30: '#C1C7CF',
 	grey20: '#E0E3E5',
 	grey10: '#EFF1F2',
+	skygrey: '#EEF3F9',
 	white: '#FFFFFF',
 	skygrey: '#EEF3F9',
 	nightgrey: '#131D28',

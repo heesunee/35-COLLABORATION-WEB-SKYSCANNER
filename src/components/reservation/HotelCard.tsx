@@ -1,4 +1,4 @@
-import { HeartIcon, OwlIcon, ReviewFillFIcon, ReviewIcon, StarIcon } from '@/assets/svg';
+import { HeartIcon, OwlIcon, ReviewFillFIcon, ReviewIcon, ReviewStarIcon } from '@/assets/svg';
 import { Hotel } from '@/types/hotel';
 import styled from 'styled-components';
 
@@ -17,7 +17,7 @@ const HotelCard = ({ hotel }: HotelCardProps) => {
 						<Title>{name}</Title>
 						<IconsWrapper>
 							{Array.from({ length: star }, (_, index) => (
-								<StarIcon key={index} />
+								<ReviewStarIcon key={index} />
 							))}
 						</IconsWrapper>
 					</LeftWrapper>
