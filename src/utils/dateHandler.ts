@@ -13,7 +13,7 @@ export const dateHandler = () => {
 		const dayName = weekDay_full[date.getDay()]; // 요일
 
 		// 원하는 포맷으로 반환
-		return `${year}. ${month}. ${day} ${dayName}`;
+		return `${year}-${month}-${day}`;
 	};
 
 	// 날짜 데이터를 가져오는 함수

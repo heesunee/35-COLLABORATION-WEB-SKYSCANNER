@@ -59,7 +59,7 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 					<PriceImage contents={'₩₩₩'} color={'red'} />
 					<InfoIcon onClick={onPriceModalToggle} />
 				</CalenderInfo>
-				<Calender handleDateClick={handleDateClick} />
+				<Calender handleDateClick={handleDateClick} onApplyClick={onModalToggle} />
 			</ContentsWrap>
 			<PriceModal isVisible={isPriceModalOpen} onModalClose={onPriceModalToggle} />
 		</CalenderContainer>

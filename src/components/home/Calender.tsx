@@ -1,5 +1,7 @@
 import './Calender.ts';
+import Button from '@/components/common/Button.tsx';
 import { CustomCalender } from '@/components/home/Calender.ts';
+import { flexCssGenerator } from '@/styles/customStyle.ts';
 import { dateHandler } from '@/utils/dateHandler.ts';
 import { useCallback } from 'react';
 import Calendar from 'react-calendar';
@@ -8,9 +10,10 @@ import styled from 'styled-components';
 
 interface props {
 	handleDateClick: (date: Date) => void;
+	onApplyClick: () => void;
 }
 
-const Calender = ({ handleDateClick }: props) => {
+const Calender = ({ handleDateClick, onApplyClick }: props) => {
 	const { firstSelectedDate, lastSelectedDate, formatDate, getDateData, weekDay } = dateHandler();
 
 	// 날짜 셀을 커스터마이징하는 함수
@@ -18,26 +21,21 @@ const Calender = ({ handleDateClick }: props) => {
 		(monthKey: string) =>
 			({ date, view }: { date: Date; view: string }) => {
 				if (view === 'month') {
-					const year = date.getFullYear();
-					const month = (date.getMonth() + 1).toString().padStart(2, '0');
-					const day = date.getDate().toString().padStart(2, '0');
-					const dateKey = `${year}-${month}-${day}`;
-
+					const dateKey = formatDate(date);
 					const data = getDateData(monthKey, dateKey);
 					const dayNumber = date.getDate();
 					const colorMap = {
 						r: '#FF5252', // 빨강
 						g: '#4CAF50', // 초록
 						b: '#007BFF', // 파랑
-						o: '#FF8D00', //
+						o: '#FF8D00', // 주황
 					};
-					const isSelected = formatDate(date) === firstSelectedDate || formatDate(date) === lastSelectedDate;
 
 					if (data) {
 						return (
 							<TileContainer>
 								<Ghost></Ghost>
-								<StyledCircle backgroundColor={isSelected ? 'blue' : colorMap[data.color]}>{dayNumber}</StyledCircle>
+								<StyledCircle backgroundColor={colorMap[data.color]}>{dayNumber}</StyledCircle>
 								<StyledPrice>{data.price}만</StyledPrice>
 							</TileContainer>
 						);
@@ -45,7 +43,7 @@ const Calender = ({ handleDateClick }: props) => {
 						return (
 							<TileContainer>
 								<Ghost></Ghost>
-								<StyledCircle backgroundColor={isSelected ? 'blue' : 'transparent'}>{dayNumber}</StyledCircle>
+								<StyledCircle backgroundColor={'transparent'}>{dayNumber}</StyledCircle>
 								<StyledPrice></StyledPrice>
 							</TileContainer>
 						);
@@ -81,6 +79,19 @@ const Calender = ({ handleDateClick }: props) => {
 				showNavigation={false}
 				onClickDay={handleDateClick}
 			/>
+			<MoreInfo>
+				<ColorInfo></ColorInfo>
+				<Info>12/25 성탄절</Info>
+			</MoreInfo>
+			<PriceWrap>
+				<PriceContents>
+					<Price>277,700원</Price>
+					<More>근 2주 중 최저가</More>
+				</PriceContents>
+				<Button variant={'apply'} size={'small'} onClick={onApplyClick}>
+					적용
+				</Button>
+			</PriceWrap>
 		</CustomCalender>
 	);
 };
@@ -141,6 +152,46 @@ const StyledPrice = styled.div`
 	color: ${({ theme }) => theme.colors.grey30};
 	line-height: 1.2rem;
 	margin-top: 0.3rem;
+`;
+
+const PriceWrap = styled.div`
+	border-top: 1px solid ${({ theme }) => theme.colors.grey20};
+	display: flex;
+	padding: 1.9rem 1.9rem 1.9rem 2.9rem;
+	justify-content: space-between;
+	margin-top: 20px;
+`;
+
+const PriceContents = styled.div`
+	${flexCssGenerator('flex', 'center', 'flex-start', 'column')}
+	flex-shrink: 0;
+`;
+
+const Price = styled.div`
+	${({ theme }) => theme.fonts.title2_eb_16}
+	color: ${({ theme }) => theme.colors.skyblue};
+`;
+
+const More = styled.div`
+	${({ theme }) => theme.fonts.btn3_sb_10}
+	color: ${({ theme }) => theme.colors.grey30};
+`;
+
+const MoreInfo = styled.div`
+	${flexCssGenerator('flex', 'flex-end', 'center', 'row')}
+	gap: 0.7rem;
+	margin: 2rem 2.9rem;
+`;
+const ColorInfo = styled.span`
+	width: 0.4rem;
+	height: 0.4rem;
+	border-radius: 50%;
+	background: ${({ theme }) => theme.colors.red};
+`;
+
+const Info = styled.span`
+	${({ theme }) => theme.fonts.btn4_sb_8}
+	color: ${({ theme }) => theme.colors.grey30};
 `;
 
 export default Calender;

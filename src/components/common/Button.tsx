@@ -4,15 +4,15 @@ import styled, { css } from 'styled-components';
 
 interface props {
 	onClick: () => void;
-	variant?: 'default' | 'confirm' | 'search' | 'disable';
-	size?: 'default' | 'pricemodal' | 'search' | 'disable';
+	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'apply';
+	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small';
 	children: React.ReactNode;
 	disabled?: boolean;
 }
 
 interface StyledProps {
-	variant?: 'default' | 'clicked' | 'search' | 'disable';
-	size?: 'default' | 'pricemodal' | 'search' | 'disable';
+	variant?: 'default' | 'clicked' | 'search' | 'disable' | 'apply';
+	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small';
 }
 
 /**
@@ -64,6 +64,17 @@ const ButtonStyles = {
 		color: ${({ theme }) => theme.colors.black};
 		z-index: 2;
 	`,
+	apply: css`
+		display: flex;
+		padding: 9px 12px;
+		justify-content: center;
+		align-items: flex-end;
+		gap: 10px;
+		flex-shrink: 0;
+
+		border-radius: 7px;
+		background: ${({ theme }) => theme.colors.skyblue};
+	`,
 };
 
 const ButtonSizes = {
@@ -88,6 +99,12 @@ const ButtonSizes = {
 		width: 33.7rem;
 		position: fixed;
 		${({ theme }) => theme.fonts.body2_sb_14};
+	`,
+	small: css`
+		width: 4.9rem;
+		height: 3.9rem;
+		padding: 9px 12px;
+		${({ theme }) => theme.fonts.title3_eb_14};
 	`,
 };
 
