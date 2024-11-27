@@ -4,17 +4,16 @@ import styled, { css } from 'styled-components';
 
 interface props {
 	onClick: () => void;
-	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'apply'| 'searchHome' | 'disableHome';
-	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small';
+	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'apply' | undefined;
+	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small' | 'searchHome' | 'disableHome' | undefined;
 	children: React.ReactNode;
 	disabled?: boolean;
 }
 
 interface StyledProps {
-	variant?: 'default' | 'clicked' | 'search' | 'disable' | 'apply'| 'searchHome' | 'disableHome';
-	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small';
+	variant?: keyof typeof ButtonStyles;
+	size?: keyof typeof ButtonSizes;
 }
-
 /**
  * @description 버튼 컴포넌트
  * @param content 버튼 안에 내용
@@ -75,7 +74,7 @@ const ButtonStyles = {
 		border-radius: 7px;
 		background: ${({ theme }) => theme.colors.skyblue};
 	`,
-};
+} as const;
 
 const ButtonSizes = {
 	default: css`
