@@ -13,6 +13,7 @@ import RadioEmptyIcon from '@/assets/svg/ic_check_round_navy.svg?react';
 import CheckboxEmptyIcon from '@/assets/svg/ic_check_square.svg?react';
 import CheckboxFilledIcon from '@/assets/svg/ic_check_square_filled.svg?react';
 import CloseIcon from '@/assets/svg/ic_close.svg?react';
+import DownBlackIcon from '@/assets/svg/ic_down_black_thick.svg?react';
 import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_navy.svg?react';
 import FlagKoreaIcon from '@/assets/svg/ic_flag_korea.svg?react';
 import FlightBlackIcon from '@/assets/svg/ic_flight_black.svg?react';
@@ -45,6 +46,7 @@ import JinAirIcon from '@/assets/svg/img_jinair.svg?react';
 import KalIcon from '@/assets/svg/img_koreaair.svg?react';
 
 export {
+	DownBlackIcon,
 	CalendarGreyIcon,
 	CarWhiteIcon,
 	RadioEmptyIcon,
