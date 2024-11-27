@@ -41,11 +41,11 @@ const PriceModal = ({ isVisible = false, onModalClose }: props) => {
 const PriceModalContainer = styled.div.withConfig({
 	shouldForwardProp: (prop) => prop !== 'isVisible',
 })<{ isVisible: boolean }>`
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	background-color: ${({ theme }) => theme.colors.darkscreen};
 	${flexCssGenerator('flex', 'center', 'center', 'column')}
 	display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
