@@ -24,7 +24,7 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 		setFilter(filter);
 	};
 
-	console.log(firstSelectedDate, lastSelectedDate);
+	// console.log(firstSelectedDate, lastSelectedDate);
 
 	return (
 		<CalenderContainer isOpen={isOpen}>

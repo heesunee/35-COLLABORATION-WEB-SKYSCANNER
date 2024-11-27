@@ -2,7 +2,7 @@ import './Calender.ts';
 import { CustomCalender } from '@/components/home/Calender.ts';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import { dateHandler } from '@/utils/dateHandler.ts';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styled from 'styled-components';
@@ -15,27 +15,38 @@ const Calender = ({ handleSetDate }: props) => {
 	const { formatDate, getDateData, weekDay } = dateHandler();
 
 	const [selectedRange, setSelectedRange] = useState<[Date | null, Date | null]>([null, null]);
-	const [startDate, setStartDate] = useState<Date | null>(null);
-	const [endDate, setEndDate] = useState<Date | null>(null);
 
+	// 날짜 선택 핸들러
 	const handleDateClick = (date: Date) => {
-		handleSetDate(date);
-		if (!startDate || (startDate && endDate)) {
-			setStartDate(date);
-			setEndDate(null);
-		} else if (startDate && !endDate) {
-			setEndDate(date > startDate ? date : startDate);
+		const [start, end] = selectedRange;
+
+		if (!start || (start && end)) {
+			// 새로운 범위 시작
+			setSelectedRange([date, null]);
+		} else if (start && !end) {
+			// 범위 끝 선택
+			setSelectedRange([start, date > start ? date : start]);
 		}
 	};
 
-	useEffect(() => {
+	const onHandleChange = (value: [Date, Date]) => {
+		if (!value || value.length !== 2) {
+			console.error('Invalid value: ', value);
+			return;
+		}
+
+		const [firstClick, secondClick] = value;
+
+		// 날짜를 비교하여 항상 작은 날짜가 시작일, 큰 날짜가 종료일이 되도록 설정
+		const startDate = firstClick < secondClick ? firstClick : secondClick;
+		const endDate = firstClick < secondClick ? secondClick : firstClick;
+
+		// 상태 업데이트
 		setSelectedRange([startDate, endDate]);
-	}, [startDate, endDate]);
+	};
 
 	useEffect(() => {
-		console.log('Selected Range:', selectedRange);
-		console.log('startDate :', startDate);
-		console.log('endDate :', endDate);
+		console.log('selectedRange', selectedRange);
 	}, [selectedRange]);
 
 	// 날짜 셀을 커스터마이징하는 함수
@@ -53,10 +64,6 @@ const Calender = ({ handleSetDate }: props) => {
 				b: '#007BFF', // 파랑
 				o: '#FF8D00', // 주황
 			};
-
-			console.log('rr Selected Range:', selectedRange);
-			console.log('rr startDate :', startDate);
-			console.log(' rr endDate :', endDate);
 
 			if (data) {
 				return (
@@ -89,21 +96,25 @@ const Calender = ({ handleSetDate }: props) => {
 			<Month>11월</Month>
 			<Calendar
 				tileContent={tileContent}
+				allowPartialRange={true}
 				selectRange={true}
 				defaultActiveStartDate={new Date(2024, 10, 1)}
 				showNeighboringMonth={false}
-				showNavigation={false}
+				showNavigation={true}
 				onClickDay={handleDateClick}
+				onChange={onHandleChange}
 				value={selectedRange}
 			/>
 			<Month>12월</Month>
 			<Calendar
 				tileContent={tileContent}
+				allowPartialRange={true}
 				selectRange={true}
 				defaultActiveStartDate={new Date(2024, 11, 1)}
 				showNeighboringMonth={false}
 				showNavigation={false}
 				onClickDay={handleDateClick}
+				// onChange={onHandleChange}
 				value={selectedRange}
 			/>
 

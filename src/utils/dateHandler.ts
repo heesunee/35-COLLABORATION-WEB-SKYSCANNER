@@ -3,15 +3,12 @@ import { useState } from 'react';
 
 export const dateHandler = () => {
 	const weekDay = ['일', '월', '화', '수', '목', '금', '토'];
-	const weekDay_full = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-	const [price, setPrice] = useState<number>(0);
 
 	const formatDate = (date: Date) => {
 		// 년, 월, 일, 요일 가져오기
 		const year = date.getFullYear();
 		const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 0부터 시작하므로 +1
 		const day = date.getDate().toString().padStart(2, '0');
-		const dayName = weekDay_full[date.getDay()]; // 요일
 
 		// 원하는 포맷으로 반환
 		return `${year}-${month}-${day}`;
@@ -46,6 +43,7 @@ export const dateHandler = () => {
 		}
 
 		// 현재 선택된 월 업데이트
+		setSelectedMonth(clickedMonth);
 	};
 
 	return { formatDate, getDateData, handleSetDate, firstSelectedDate, lastSelectedDate, weekDay };
