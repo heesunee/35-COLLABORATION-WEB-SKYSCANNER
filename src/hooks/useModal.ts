@@ -8,7 +8,7 @@ interface IsModalOpenProps {
 export const useModal = () => {
 	const [isModalOpen, setModalOpen] = useState<IsModalOpenProps>({
 		search: false,
-		calender: false,
+		calender: true,
 	});
 
 	const onModalToggle = (modal: 'search' | 'calender') => {

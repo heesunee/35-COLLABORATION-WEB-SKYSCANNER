@@ -4,6 +4,7 @@ import { useState } from 'react';
 export const dateHandler = () => {
 	const weekDay = ['일', '월', '화', '수', '목', '금', '토'];
 	const weekDay_full = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+	const [price, setPrice] = useState<number>(0);
 
 	const formatDate = (date: Date) => {
 		// 년, 월, 일, 요일 가져오기
@@ -28,10 +29,8 @@ export const dateHandler = () => {
 
 	// 날짜 클릭 핸들러
 
-	const handleDateClick = (date: Date) => {
+	const handleSetDate = (date: Date) => {
 		const clickedMonth = (date.getMonth() + 1).toString().padStart(2, '0'); // 월 정보 추출
-		console.log('clickedMonth', clickedMonth);
-		console.log('selectedMonth', selectedMonth);
 
 		// 새로운 월이 클릭되면 선택 초기화
 		if (selectedMonth !== clickedMonth) {
@@ -47,8 +46,7 @@ export const dateHandler = () => {
 		}
 
 		// 현재 선택된 월 업데이트
-		setSelectedMonth(clickedMonth);
 	};
 
-	return { formatDate, getDateData, handleDateClick, firstSelectedDate, lastSelectedDate, weekDay };
+	return { formatDate, getDateData, handleSetDate, firstSelectedDate, lastSelectedDate, weekDay };
 };

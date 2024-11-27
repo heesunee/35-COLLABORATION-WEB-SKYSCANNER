@@ -1,4 +1,5 @@
 import { ArrowLeftBlackIcon, InfoIcon, OneWayIcon, TwoWayIcon } from '@/assets/svg';
+import Button from '@/components/common/Button.tsx';
 import Calender from '@/components/home/Calender.tsx';
 import PriceImage from '@/components/home/PriceImage.tsx';
 import PriceModal from '@/components/home/PriceModal.tsx';
@@ -13,7 +14,7 @@ interface props {
 }
 
 const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
-	const { handleDateClick, firstSelectedDate, lastSelectedDate } = dateHandler();
+	const { firstSelectedDate, lastSelectedDate, handleSetDate } = dateHandler();
 	const [filter, setFilter] = useState<'round' | 'oneway'>('round');
 	const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
 	const onPriceModalToggle = () => {
@@ -22,6 +23,8 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 	const onFilterClick = (filter: 'round' | 'oneway') => {
 		setFilter(filter);
 	};
+
+	console.log(firstSelectedDate, lastSelectedDate);
 
 	return (
 		<CalenderContainer isOpen={isOpen}>
@@ -59,8 +62,17 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 					<PriceImage contents={'₩₩₩'} color={'red'} />
 					<InfoIcon onClick={onPriceModalToggle} />
 				</CalenderInfo>
-				<Calender handleDateClick={handleDateClick} onApplyClick={onModalToggle} />
+				<Calender handleSetDate={handleSetDate} />
 			</ContentsWrap>
+			<PriceWrap>
+				<PriceContents>
+					<Price>277,700원</Price>
+					<More>근 2주 중 최저가</More>
+				</PriceContents>
+				<Button variant={'apply'} size={'small'} onClick={onModalToggle}>
+					적용
+				</Button>
+			</PriceWrap>
 			<PriceModal isVisible={isPriceModalOpen} onModalClose={onPriceModalToggle} />
 		</CalenderContainer>
 	);
@@ -72,11 +84,11 @@ const CalenderContainer = styled.section<{ isOpen: boolean }>`
 	//height: ;
 	position: absolute;
 	top: 0;
-	padding: 1.9rem;
 `;
 
 const ContentsWrap = styled.div`
 	${flexCssGenerator('column')}
+	padding: 1.9rem;
 `;
 
 const Header = styled.header`
@@ -173,6 +185,46 @@ const CalenderInfo = styled.section`
 	& > div {
 		width: fit-content;
 	}
+`;
+
+const PriceWrap = styled.div`
+	border-top: 1px solid ${({ theme }) => theme.colors.grey20};
+	display: flex;
+	padding: 1.9rem 1.9rem 1.9rem 2.9rem;
+	justify-content: space-between;
+	margin-top: 20px;
+`;
+
+const PriceContents = styled.div`
+	${flexCssGenerator('flex', 'center', 'flex-start', 'column')}
+	flex-shrink: 0;
+`;
+
+const Price = styled.div`
+	${({ theme }) => theme.fonts.title2_eb_16}
+	color: ${({ theme }) => theme.colors.skyblue};
+`;
+
+const More = styled.div`
+	${({ theme }) => theme.fonts.btn3_sb_10}
+	color: ${({ theme }) => theme.colors.grey30};
+`;
+
+const MoreInfo = styled.div`
+	${flexCssGenerator('flex', 'flex-end', 'center', 'row')}
+	gap: 0.7rem;
+	margin: 2rem 2.9rem;
+`;
+const ColorInfo = styled.span`
+	width: 0.4rem;
+	height: 0.4rem;
+	border-radius: 50%;
+	background: ${({ theme }) => theme.colors.red};
+`;
+
+const Info = styled.span`
+	${({ theme }) => theme.fonts.btn4_sb_8}
+	color: ${({ theme }) => theme.colors.grey30};
 `;
 
 export default CalenderModal;
