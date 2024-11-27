@@ -1,11 +1,13 @@
 import WishContentCard from '@/components/wish/WishContentCard';
-import { mockWishList } from '@/mocks/mockWishList';
+import { useWishList } from '@/hooks/useWishList';
 import styled from 'styled-components';
 
 const WishAirplaneContents = () => {
+	const { wishList } = useWishList();
+
 	return (
 		<WishAirplaneContentsWrapper>
-			{mockWishList.map((item) => (
+			{wishList.map((item) => (
 				<WishContentCard key={item.id} {...item} />
 			))}
 		</WishAirplaneContentsWrapper>

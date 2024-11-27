@@ -1,5 +1,6 @@
 import AdIcon from '@/assets/svg/ic_ad.svg?react';
 import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_gray.svg?react';
+import React from 'react';
 import styled from 'styled-components';
 
 interface AdCardProps {

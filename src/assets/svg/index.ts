@@ -1,5 +1,4 @@
 import ArrowLeftBlackIcon from '@/assets/svg//ic_arrow_left_black_new.svg?react';
-
 import PolygonIcon from '@/assets/svg/ic_ arrow_drop_down.svg?react';
 import ArrowRightIcon from '@/assets/svg/ic_arrow_right_black.svg?react';
 import ArrowrightIcon from '@/assets/svg/ic_arrow_right_white.svg?react';

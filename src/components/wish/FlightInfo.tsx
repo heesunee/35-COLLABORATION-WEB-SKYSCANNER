@@ -1,4 +1,6 @@
+import { EastarIcon, JinAirIcon, KalIcon } from '@/assets/svg';
 import JejuAirIcon from '@/assets/svg/ic_jejuair.svg?react';
+import React from 'react';
 import styled from 'styled-components';
 
 interface FlightInfoProps {
@@ -10,9 +12,16 @@ interface FlightInfoProps {
 }
 
 const FlightInfo = ({ timeline, route, airline, option, duration }: FlightInfoProps) => {
+	const airlineIcons: Record<string, React.ReactNode | undefined> = {
+		이스타항공: <EastarIcon />,
+		대한항공: <KalIcon />,
+		진에어: <JinAirIcon />,
+		제주항공: <JejuAirIcon />,
+	};
+
 	return (
 		<FlightInfoSection>
-			<JejuAirIcon />
+			{airlineIcons[airline] || null}
 			<FlightInfoSectionMid>
 				<DepFlightTimeline>{timeline}</DepFlightTimeline>
 				<RouteAirlineBox>
