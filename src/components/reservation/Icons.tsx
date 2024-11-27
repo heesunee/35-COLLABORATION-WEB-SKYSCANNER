@@ -41,7 +41,7 @@ const IconContainer = styled.div`
 const ToolTipContainer = styled.div`
 	position: absolute;
 	top: -7%;
-	left: -1.3%;
+	left: 2%;
 	z-index: 1;
 	cursor: pointer;
 `;
