@@ -1,4 +1,5 @@
 import Layout from '@/Layout';
+import CalenderModal from '@/pages/calender/CalenderModal.tsx';
 import Home from '@/pages/home/home';
 import Reservation from '@/pages/reservation/Reservation';
 import Wish from '@/pages/wish/Wish';
@@ -14,5 +15,9 @@ export const router = createBrowserRouter([
 			{ path: PATH.RESERVATION, element: <Reservation /> },
 			{ path: PATH.WISH, element: <Wish /> },
 		],
+	},
+	{
+		path: PATH.CALENDER,
+		element: <CalenderModal />,
 	},
 ]);

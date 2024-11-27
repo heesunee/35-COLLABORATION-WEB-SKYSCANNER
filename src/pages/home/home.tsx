@@ -1,4 +1,3 @@
-import CalenderModal from '@/components/home/CalenderModal.tsx';
 import Search from '@/components/home/Search';
 import SearchModal from '@/components/home/SearchModal.tsx';
 import { useModal } from '@/hooks/useModal.ts';
@@ -13,17 +12,17 @@ const Home = () => {
 		setClickedCity(city);
 	};
 
+	console.log(clickedCity);
+
 	return (
 		<>
 			<Search />
-
 			<SearchModal
 				isOpen={isModalOpen.search}
 				onModalToggle={() => onModalToggle('search')}
 				clickedCity={clickedCity}
 				onClicked={onClicked}
 			/>
-			<CalenderModal isOpen={isModalOpen.calender} onModalToggle={() => onModalToggle('calender')} />
 		</>
 	);
 };

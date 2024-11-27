@@ -3,7 +3,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 interface props {
-	onClick: () => void;
+	onClick?: () => void;
 	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'apply' | undefined;
 	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small' | 'searchHome' | 'disableHome' | undefined;
 	children: React.ReactNode;

@@ -5,7 +5,7 @@ import CityGroup from '@/components/home/CityGroup.tsx';
 import ToggleSwitch from '@/components/wish/ToggleSwitch.tsx';
 import { cityGroups } from '@/constants/cityGroups.ts';
 import { FogEffect, flexCssGenerator } from '@/styles/customStyle.ts';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 interface props {
@@ -16,7 +16,6 @@ interface props {
 }
 
 const SearchModal = ({ isOpen = false, onModalToggle, clickedCity, onClicked }: props) => {
-	const [showFogEffect, setShowFogEffect] = useState<boolean>(true);
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const isOkinawa = clickedCity === '오키나와';
 
@@ -58,7 +57,7 @@ const SearchModal = ({ isOpen = false, onModalToggle, clickedCity, onClicked }: 
 			>
 				검색하기
 			</Button>
-			<FogEffect showFogEffect={showFogEffect} />
+			<FogEffect showFogEffect={true} />
 		</SearchModalWrap>
 	);
 };
@@ -97,20 +96,6 @@ const ToggleLabel = styled.span`
 	${({ theme }) => theme.fonts.body2_sb_14}
 `;
 
-const ToggleWrapper = styled.div`
-	width: 3.9rem;
-
-	border-radius: 10px;
-	background: ${({ theme }) => theme.colors.grey20};
-	padding: 0.2rem;
-`;
-
-const ToggleButton = styled.div`
-	border-radius: 50%;
-	background: ${({ theme }) => theme.colors.white};
-	width: 1.6rem;
-	height: 1.6rem;
-`;
 const CityGroupWrap = styled.div`
 	${flexCssGenerator('flex', 'flex-start', '', 'column')}
 	padding-bottom: 2.7rem;

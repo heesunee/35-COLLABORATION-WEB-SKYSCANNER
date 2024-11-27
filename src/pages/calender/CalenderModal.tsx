@@ -3,17 +3,14 @@ import Button from '@/components/common/Button.tsx';
 import Calender from '@/components/home/Calender.tsx';
 import PriceImage from '@/components/home/PriceImage.tsx';
 import PriceModal from '@/components/home/PriceModal.tsx';
+import { PATH } from '@/router/path.ts';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import { dateHandler } from '@/utils/dateHandler.ts';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-interface props {
-	isOpen: boolean;
-	onModalToggle: () => void;
-}
-
-const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
+const CalenderModal = () => {
 	const { firstSelectedDate, lastSelectedDate, handleSetDate } = dateHandler();
 	const [filter, setFilter] = useState<'round' | 'oneway'>('round');
 	const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
@@ -24,13 +21,25 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 		setFilter(filter);
 	};
 
-	// console.log(firstSelectedDate, lastSelectedDate);
+	const navigate = useNavigate();
+	const handleNavigate = () => {
+		if (!firstSelectedDate || !lastSelectedDate) {
+			return;
+		}
+
+		const params = new URLSearchParams({
+			startDate: firstSelectedDate,
+			finishDate: lastSelectedDate,
+		});
+
+		navigate(`${PATH.HOME}?${params.toString()}`);
+	};
 
 	return (
-		<CalenderContainer isOpen={isOpen}>
+		<CalenderContainer>
 			<ContentsWrap>
 				<Header>
-					<ArrowLeftBlackIcon onClick={onModalToggle} />
+					<ArrowLeftBlackIcon />
 					<ModalTitle>날짜 선택</ModalTitle>
 				</Header>
 				<Information>
@@ -69,7 +78,7 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 					<Price>277,700원</Price>
 					<More>근 2주 중 최저가</More>
 				</PriceContents>
-				<Button variant={'apply'} size={'small'} onClick={onModalToggle}>
+				<Button variant={'apply'} size={'small'} onClick={handleNavigate}>
 					적용
 				</Button>
 			</PriceWrap>
@@ -78,10 +87,8 @@ const CalenderModal = ({ isOpen = false, onModalToggle }: props) => {
 	);
 };
 
-const CalenderContainer = styled.section<{ isOpen: boolean }>`
+const CalenderContainer = styled.section`
 	background-color: ${({ theme }) => theme.colors.white};
-	display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-	//height: ;
 	position: absolute;
 	top: 0;
 `;
@@ -207,23 +214,6 @@ const Price = styled.div`
 
 const More = styled.div`
 	${({ theme }) => theme.fonts.btn3_sb_10}
-	color: ${({ theme }) => theme.colors.grey30};
-`;
-
-const MoreInfo = styled.div`
-	${flexCssGenerator('flex', 'flex-end', 'center', 'row')}
-	gap: 0.7rem;
-	margin: 2rem 2.9rem;
-`;
-const ColorInfo = styled.span`
-	width: 0.4rem;
-	height: 0.4rem;
-	border-radius: 50%;
-	background: ${({ theme }) => theme.colors.red};
-`;
-
-const Info = styled.span`
-	${({ theme }) => theme.fonts.btn4_sb_8}
 	color: ${({ theme }) => theme.colors.grey30};
 `;
 
