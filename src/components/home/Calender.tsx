@@ -2,13 +2,13 @@ import './Calender.ts';
 import { CustomCalender } from '@/components/home/Calender.ts';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import { dateHandler } from '@/utils/dateHandler.ts';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styled from 'styled-components';
 
 interface props {
-	handleSetDate: () => void;
+	handleSetDate: (date: Date) => void;
 }
 
 const Calender = ({ handleSetDate }: props) => {
@@ -16,38 +16,16 @@ const Calender = ({ handleSetDate }: props) => {
 
 	const [selectedRange, setSelectedRange] = useState<[Date | null, Date | null]>([null, null]);
 
-	// 날짜 선택 핸들러
 	const handleDateClick = (date: Date) => {
 		const [start, end] = selectedRange;
+		handleSetDate(date);
 
 		if (!start || (start && end)) {
-			// 새로운 범위 시작
 			setSelectedRange([date, null]);
 		} else if (start && !end) {
-			// 범위 끝 선택
 			setSelectedRange([start, date > start ? date : start]);
 		}
 	};
-
-	const onHandleChange = (value: [Date, Date]) => {
-		if (!value || value.length !== 2) {
-			console.error('Invalid value: ', value);
-			return;
-		}
-
-		const [firstClick, secondClick] = value;
-
-		// 날짜를 비교하여 항상 작은 날짜가 시작일, 큰 날짜가 종료일이 되도록 설정
-		const startDate = firstClick < secondClick ? firstClick : secondClick;
-		const endDate = firstClick < secondClick ? secondClick : firstClick;
-
-		// 상태 업데이트
-		setSelectedRange([startDate, endDate]);
-	};
-
-	useEffect(() => {
-		console.log('selectedRange', selectedRange);
-	}, [selectedRange]);
 
 	// 날짜 셀을 커스터마이징하는 함수
 	const tileContent = ({ date, view }: { date: Date; view: string }) => {
@@ -102,7 +80,6 @@ const Calender = ({ handleSetDate }: props) => {
 				showNeighboringMonth={false}
 				showNavigation={true}
 				onClickDay={handleDateClick}
-				onChange={onHandleChange}
 				value={selectedRange}
 			/>
 			<Month>12월</Month>
@@ -114,7 +91,6 @@ const Calender = ({ handleSetDate }: props) => {
 				showNeighboringMonth={false}
 				showNavigation={false}
 				onClickDay={handleDateClick}
-				// onChange={onHandleChange}
 				value={selectedRange}
 			/>
 
