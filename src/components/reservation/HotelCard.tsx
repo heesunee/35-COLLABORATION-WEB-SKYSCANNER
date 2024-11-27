@@ -43,7 +43,7 @@ const HotelCard = ({ hotel }: HotelCardProps) => {
 					</Left>
 					<Right>
 						<Price>{price}</Price>
-						<p>1박 요금</p>
+						<StyledSpan>1박 요금</StyledSpan>
 					</Right>
 				</BottomWrapper>
 			</Wrapper>
@@ -61,10 +61,6 @@ const HotelCardContainer = styled.div`
 	border-radius: 1rem;
 	margin-bottom: 0.9rem;
 	display: flex;
-
-	& p {
-		${({ theme }) => theme.fonts.body3_sb_12};
-	}
 `;
 
 const Wrapper = styled.div`
@@ -133,4 +129,8 @@ const Review = styled.p`
 const IconsWrapper = styled.div`
 	display: flex;
 	gap: 0.1rem;
+`;
+
+const StyledSpan = styled.span`
+	${({ theme }) => theme.fonts.body3_sb_12};
 `;

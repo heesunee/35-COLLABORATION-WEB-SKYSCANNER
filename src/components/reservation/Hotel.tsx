@@ -46,6 +46,7 @@ const Hotel = () => {
 export default Hotel;
 
 const HotelContainer = styled.section`
+	margin-top: 3.5rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

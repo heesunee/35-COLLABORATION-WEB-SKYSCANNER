@@ -1,8 +1,10 @@
 import PolygonIcon from '@/assets/svg/ic_ arrow_drop_down.svg?react';
 import ArrowRightIcon from '@/assets/svg/ic_arrow_right_black.svg?react';
 import ArrowrightIcon from '@/assets/svg/ic_arrow_right_white.svg?react';
+import BagIcon from '@/assets/svg/ic_bag.svg?react';
 import CalendarGreyIcon from '@/assets/svg/ic_calendar_grey.svg?react';
 import CarWhiteIcon from '@/assets/svg/ic_car_white.svg?react';
+import CarDoorIcon from '@/assets/svg/ic_cardoor.svg?react';
 import RadioFilledIcon from '@/assets/svg/ic_check_round_fill.svg?react';
 import RadioEmptyIcon from '@/assets/svg/ic_check_round_navy.svg?react';
 import CheckboxEmptyIcon from '@/assets/svg/ic_check_square.svg?react';
@@ -26,10 +28,12 @@ import OwlIcon from '@/assets/svg/ic_owl.svg?react';
 import PinIcon from '@/assets/svg/ic_pin.svg?react';
 import PlusFilledIcon from '@/assets/svg/ic_plus_circle.svg?react';
 import ProfileIcon from '@/assets/svg/ic_profile.svg?react';
+import ProfileBlackIcon from '@/assets/svg/ic_profile_black.svg?react';
 import ReviewIcon from '@/assets/svg/ic_review.svg?react';
 import ReviewFillFIcon from '@/assets/svg/ic_review_fill.svg?react';
 import SkyscannerLogoIcon from '@/assets/svg/ic_skyscanner_logo.svg?react';
 import StarIcon from '@/assets/svg/ic_star.svg?react';
+import CarIcon from '@/assets/svg/img_car.svg?react';
 import EastarIcon from '@/assets/svg/img_eastar.svg?react';
 import JejuAirIcon from '@/assets/svg/img_jejuair.svg?react';
 import JinAirIcon from '@/assets/svg/img_jinair.svg?react';
@@ -72,4 +76,8 @@ export {
 	HeartIcon,
 	OwlIcon,
 	ReviewStarIcon,
+	ProfileBlackIcon,
+	BagIcon,
+	CarDoorIcon,
+	CarIcon,
 };
