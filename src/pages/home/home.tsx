@@ -12,8 +12,6 @@ const Home = () => {
 		setClickedCity(city);
 	};
 
-	console.log(clickedCity);
-
 	return (
 		<>
 			<Search />
