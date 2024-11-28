@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const CustomCalender = styled.main`
+	padding: 0 2rem;
+
 	.react-calendar {
 		width: 33.7rem;
 		margin: 2rem auto;
