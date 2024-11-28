@@ -1,4 +1,5 @@
 import CalenderModal from '@/components/home/CalenderModal.tsx';
+import HomeContents from '@/components/home/HomeContents';
 import Search from '@/components/home/Search';
 import SearchModal from '@/components/home/SearchModal.tsx';
 import { useModal } from '@/hooks/useModal.ts';
@@ -16,6 +17,7 @@ const Home = () => {
 	return (
 		<>
 			<Search />
+			<HomeContents />
 			<SearchModal
 				isOpen={isModalOpen.search}
 				onModalToggle={() => onModalToggle('search')}
