@@ -120,7 +120,7 @@ const ButtonSizes = {
 const ButtonContainer = styled.button<StyledProps>`
 	${ButtonStyles.default}
 	${(props) => props.variant && ButtonStyles[props.variant]}
-  ${(props) => props.size && ButtonSizes[props.size]}
+	${(props) => props.size && ButtonSizes[props.size]}
 `;
 
 export default Button;

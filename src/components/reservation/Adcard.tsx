@@ -1,5 +1,6 @@
 import AdIcon from '@/assets/svg/ic_ad.svg?react';
 import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_gray.svg?react';
+import React from 'react';
 import styled from 'styled-components';
 
 interface AdCardProps {
@@ -50,7 +51,6 @@ const AdCardContainer = styled.div`
 	padding: 1.6rem 0.9rem;
 	flex-direction: column;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	margin-bottom: 2rem;
 `;
 
 const TopSection = styled.div`

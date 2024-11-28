@@ -26,11 +26,13 @@ const PriceSelect = ({ depPrice, arrPrice, formatPrice }: PriceSelectProps) => {
 export default PriceSelect;
 
 const BottomContainer = styled.div`
+	border-top: 1px solid ${({ theme }) => theme.colors.grey30};
 	display: flex;
 	align-items: center;
 	gap: 1.2rem;
 	justify-content: right;
 	padding: 1.15rem 0;
+	padding: 1.4rem;
 `;
 
 const PriceContainer = styled.div``;
@@ -39,6 +41,7 @@ const Price = styled.p`
 	${({ theme }) => theme.fonts.e_title_eb_20}
 	letter-spacing: 0.07rem;
 `;
+
 const SelectButton = styled.button`
 	${({ theme }) => theme.fonts.title2_eb_16}
 	border: none;

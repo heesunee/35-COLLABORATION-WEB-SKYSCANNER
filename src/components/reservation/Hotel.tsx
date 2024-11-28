@@ -46,6 +46,7 @@ const Hotel = () => {
 export default Hotel;
 
 const HotelContainer = styled.section`
+	margin-top: 3.5rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -64,5 +65,5 @@ const Title = styled.h1`
 
 const TabButtonContainer = styled.div`
 	display: flex;
-	gap: 0.7rem;
+	gap: 0.6rem;
 `;
