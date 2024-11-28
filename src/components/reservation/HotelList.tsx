@@ -1,5 +1,5 @@
 import HotelCard from './HotelCard';
-import { Hotels } from '@/mocks/hotelData';
+import { Hotels } from '@/mocks/mockHotelData';
 
 const HotelList = () => {
 	return (
