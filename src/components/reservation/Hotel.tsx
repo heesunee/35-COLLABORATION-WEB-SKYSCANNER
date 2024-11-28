@@ -65,5 +65,5 @@ const Title = styled.h1`
 
 const TabButtonContainer = styled.div`
 	display: flex;
-	gap: 0.7rem;
+	gap: 0.6rem;
 `;
