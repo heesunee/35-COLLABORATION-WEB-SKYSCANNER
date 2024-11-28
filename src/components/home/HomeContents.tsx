@@ -1,14 +1,18 @@
+import ContentsTop from './ContentsTop';
+import FAQBox from './FAQBox';
+import PlanContents from './PlanContents';
 import RecommendCard from './RecommendCard';
+import RecommendComments from './RecommendComments';
 import {
 	ArrowRightGreyIcon,
 	CalendarBlackIcon,
 	CardBoard,
-	DownBlackIcon,
 	FlightBlackIcon,
 	HotelBlackIcon,
 	NameTagIcon,
 	TicketIcon,
 } from '@/assets/svg';
+import { faqs } from '@/mocks/mockFAQ';
 import { mockRecommendList } from '@/mocks/mockRecommendList';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import styled from 'styled-components';
@@ -22,32 +26,28 @@ const HomeContents = () => {
 				<p>항공권</p>
 			</BreadCrumbs>
 			<ContentsTopWrapper>
-				<ContentsTop>
-					<FlightBlackIcon />
-					<p>
-						출발지와 도착지에 상관없이 최저가 항공권을 검색하세요.
-						<br />
-						추가 수수료 없이 간편하게 예약할 수 있습니다.
-					</p>
-				</ContentsTop>
-				<ContentsTop>
-					<CalendarBlackIcon />
-					<p>
-						1,000개 이상의 항공권을 비교해보세요.
-						<br />
-						가장 저렴한 항공권, 비행 시간이 짧은 항공권,
-						<br />
-						탄소 배출량이 적은 항공권까지 원하는 기준으로 선택할 수 있어요.
-					</p>
-				</ContentsTop>
-				<ContentsTop>
-					<NameTagIcon />
-					<p>
-						항공권이 가장 저렴한 달과 날짜를 찾아보고,
-						<br />
-						원하는 가격이 나왔을 때를 놓치지 않도록 가격 변동 알림을 켜보세요.
-					</p>
-				</ContentsTop>
+				<ContentsTop
+					Icon={<FlightBlackIcon />}
+					content={[
+						'출발지와 도착지에 상관없이 최저가 항공권을 검색하세요.',
+						'추가 수수료 없이 간편하게 예약할 수 있습니다.',
+					]}
+				/>
+				<ContentsTop
+					Icon={<CalendarBlackIcon />}
+					content={[
+						'1,000개 이상의 항공권을 비교해보세요.',
+						'가장 저렴한 항공권, 비행 시간이 짧은 항공권,',
+						'탄소 배출량이 적은 항공권까지 원하는 기준으로 선택할 수 있어요.',
+					]}
+				/>
+				<ContentsTop
+					Icon={<NameTagIcon />}
+					content={[
+						'항공권이 가장 저렴한 달과 날짜를 찾아보고,',
+						'원하는 가격이 나왔을 때를 놓치지 않도록 가격 변동 알림을 켜보세요.',
+					]}
+				/>
 			</ContentsTopWrapper>
 			<RecommendTitle>
 				<h2>대한민국 출발 최저가 항공권</h2>
@@ -63,43 +63,22 @@ const HomeContents = () => {
 					))}
 				</RecommendCardsWrapper>
 				<p className="special-price">특가 상품 접기</p>
-				<RecommendComments>
-					<h3>스카이스캐너는 이런 특가 항공권을 어떻게 찾아냈을까요?</h3>
-					<p>
-						앞으로 3개월 내 출발하는 대한민국발 이코노미 항공편을
-						<br /> 한눈에 확인하세요. 평균 가격 대비 할인율이 가장 높은 항공권을
-						<br /> 추천해드립니다. 모든 정보는 최근 4일 내에 업데이트된 내용이며,
-						<br /> 가격은 실시간으로 변동될 수 있으니 서둘러 확인하세요!
-					</p>
-				</RecommendComments>
+				<RecommendComments
+					title="스카이스캐너는 이런 특가 항공권을 어떻게 찾아냈을까요?"
+					content={[
+						'앞으로 3개월 내 출발하는 대한민국발 이코노미 항공편을',
+						'한눈에 확인하세요. 평균 가격 대비 할인율이 가장 높은 항공권을',
+						'추천해드립니다. 모든 정보는 최근 4일 내에 업데이트된 내용이며,',
+						'가격은 실시간으로 변동될 수 있으니 서둘러 확인하세요!',
+					]}
+				/>
 			</ContentsRecommendWrapper>
 			<ContentsFAQWrapper>
 				<FAQTitle>항공권 특가 찾기: 자주 묻는 질문</FAQTitle>
 				<FAQBoxWrapper>
-					<FAQBox>
-						<h3>특가 항공권은 어떻게 찾을 수 있나요?</h3>
-						<DownBlackIcon />
-					</FAQBox>
-					<FAQBox>
-						<h3>땡처리 특가 항공권은 어떻게 찾을 수 있나요?</h3>
-						<DownBlackIcon />
-					</FAQBox>
-					<FAQBox>
-						<h3>
-							특가 및 저가 항공권에 대한 최신 정보를 받아보려면
-							<br />
-							어떻게 해야 하나요?
-						</h3>
-						<DownBlackIcon />
-					</FAQBox>
-					<FAQBox>
-						<h3>항공권을 예약한 후에는 어떻게 되나요?</h3>
-						<DownBlackIcon />
-					</FAQBox>
-					<FAQBox>
-						<h3>지금 어디로 가는 항공권을 예약하는 게 좋은가요?</h3>
-						<DownBlackIcon />
-					</FAQBox>
+					{faqs.map((faq) => (
+						<FAQBox key={faq.id} question={faq.question} />
+					))}
 				</FAQBoxWrapper>
 				<ButtonWrapper>
 					<AskButton>질문하러 가기</AskButton>
@@ -117,28 +96,16 @@ const HomeContents = () => {
 						스카이스캐너가 도와드립니다.
 					</h3>
 				</PlanTitle>
-				<PlanContents>
-					<div>
-						<TicketIcon />
-						<h2>변경 가능한 항공권 특가 찾기</h2>
-					</div>
-					<p>
-						항공편이 변경되거나 취소되어도 불이익을 받지 않는
-						<br />
-						변경 가능한 항공권 특가를 둘러보세요.
-					</p>
-				</PlanContents>
-				<PlanContents>
-					<div>
-						<HotelBlackIcon />
-						<h2>호텔 및 렌터카 추가</h2>
-					</div>
-					<p>
-						호텔과 렌터카를 예약하면서 여정을 계획하고,
-						<br />
-						모든 예약을 한 곳에서 관리하세요.
-					</p>
-				</PlanContents>
+				<PlanContents
+					Icon={<TicketIcon />}
+					Title="변경 가능한 항공권 특가 찾기"
+					content={['항공편이 변경되거나 취소되어도 불이익을 받지 않는', '변경 가능한 항공권 특가를 둘러보세요.']}
+				/>
+				<PlanContents
+					Icon={<HotelBlackIcon />}
+					Title="호텔 및 렌터카 추가"
+					content={['호텔과 렌터카를 예약하면서 여정을 계획하고,', '모든 예약을 한 곳에서 관리하세요.']}
+				/>
 			</PlanWrapper>
 		</HomeContentsWrapper>
 	);
@@ -168,13 +135,7 @@ const ContentsTopWrapper = styled.div`
 	padding: 0 0 5.1rem 0.7rem;
 	gap: 1.2rem;
 `;
-const ContentsTop = styled.div`
-	${flexCssGenerator('flex', '', '', 'row')}
-	gap:0.7rem;
-	p {
-		${({ theme }) => theme.fonts.e_title_eb_12_new}
-	}
-`;
+
 const ContentsRecommendWrapper = styled.div`
 	${flexCssGenerator('flex', '', 'center', 'column')}
 	gap:1.7rem;
@@ -203,23 +164,6 @@ const RecommendCardsWrapper = styled.div`
 	${flexCssGenerator('flex', '', 'center', 'column')}
 	gap: 1.5rem;
 `;
-const RecommendComments = styled.div`
-	border: 1px solid ${({ theme }) => theme.colors.grey20};
-	border-radius: 8px;
-	padding: 0.7rem 1.2rem 0.5rem 1.3rem;
-	${flexCssGenerator('flex', '', '', 'column')}
-	gap: 0.2rem;
-
-	h3 {
-		${({ theme }) => theme.fonts.body2_sb_14}
-		color: ${({ theme }) => theme.colors.black}
-	}
-
-	p {
-		${({ theme }) => theme.fonts.body5_r_14}
-		color: ${({ theme }) => theme.colors.black}
-	}
-`;
 
 const ContentsFAQWrapper = styled.div`
 	${flexCssGenerator('flex', '', '', 'column')}
@@ -233,16 +177,6 @@ const FAQTitle = styled.h1`
 
 const FAQBoxWrapper = styled.div``;
 
-const FAQBox = styled.div`
-	${flexCssGenerator('flex', 'space-between', 'center', 'row')}
-	padding: 1rem 0;
-	border-bottom: 1px solid ${({ theme }) => theme.colors.grey30};
-
-	h3 {
-		${({ theme }) => theme.fonts.body2_sb_14}
-		color: ${({ theme }) => theme.colors.black}
-	}
-`;
 const ButtonWrapper = styled.div`
 	width: 100%;
 	${flexCssGenerator('flex', 'end', 'center', 'row')}
@@ -278,20 +212,5 @@ const PlanTitle = styled.div`
 	h3 {
 		${({ theme }) => theme.fonts.body2_sb_14_new2}
 		color: ${({ theme }) => theme.colors.black}
-	}
-`;
-const PlanContents = styled.div`
-	div {
-		${flexCssGenerator('flex', '', 'center', 'row')}
-		gap: 1.4rem;
-	}
-	h2 {
-		${({ theme }) => theme.fonts.body1_sb_16}
-		color: ${({ theme }) => theme.colors.black}
-	}
-	p {
-		padding-left: 3.6rem;
-		${({ theme }) => theme.fonts.body2_sb_14_new2}
-		color: ${({ theme }) => theme.colors.grey40}
 	}
 `;
