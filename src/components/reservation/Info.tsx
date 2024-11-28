@@ -1,22 +1,16 @@
 import styled from 'styled-components';
 
 interface InfoProps {
-	depTime: string;
-	arrTime: string;
-	from: string;
-	to: string;
+	time: string;
+	airPort: string;
 	averageTime: string;
 }
 
-const Info = ({ depTime, arrTime, from, to, averageTime }: InfoProps) => (
+const Info = ({ time, airPort, averageTime }: InfoProps) => (
 	<StyledInfoContainer>
 		<RightWrapper>
-			<FlightTime>
-				{depTime} - {arrTime}
-			</FlightTime>
-			<Location>
-				{from} - {to}
-			</Location>
+			<FlightTime>{time}</FlightTime>
+			<Location>{airPort}</Location>
 		</RightWrapper>
 		<LeftWrapper>
 			<Type>직항</Type>
@@ -53,7 +47,7 @@ const Type = styled.span`
 const AverageTime = styled.span`
 	${({ theme }) => theme.fonts.body6_r_12}
 	color: ${({ theme }) => theme.colors.grey40};
-	letter-spacing: 0.05rem;
+	letter-spacing: 0.02rem;
 `;
 
 const LeftWrapper = styled.div`

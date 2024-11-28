@@ -2,12 +2,12 @@ import PriceSelect from './PriceSelect';
 import { EastarIcon, JejuAirIcon, JinAirIcon, KalIcon } from '@/assets/svg';
 import Icons from '@/components/reservation/Icons';
 import Info from '@/components/reservation/Info';
-import { Flight } from '@/types/FlightTypes';
+import { Flights } from '@/types/FlightTypes';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface FlightCardProps {
-	flight: Flight;
+	flight: Flights;
 }
 
 // 항공사 아이콘 매핑
@@ -19,14 +19,22 @@ const airlineIcons: Record<string, React.ReactNode | undefined> = {
 };
 
 const FlightCard = ({ flight }: FlightCardProps) => {
-	const { from, to, dep_time1, arr_time1, dep_time2, arr_time2, average_time, dep_price, arr_price, airline, is_like } =
-		flight;
+	const {
+		airline,
 
-	const [isLike, setIsLike] = useState(is_like);
+		arrAirport,
+		arrFlightTime,
+		arrFlightTimeline,
+
+		depAirport,
+		depFlightTime,
+		depFlightTimeline,
+
+		totalPrice,
+	} = flight;
+
+	const [isLike, setIsLike] = useState(false);
 	const [isTooltipVisible, setIsTooltipVisible] = useState(false);
-
-	// 금액 포맷 함수
-	const formatPrice = (price: number) => new Intl.NumberFormat('ko-KR', { style: 'decimal' }).format(price);
 
 	const handleHeartClick = () => {
 		setIsLike((prev) => !prev);
@@ -52,11 +60,11 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 				/>
 			</TopBar>
 			<InfoContainer>
-				<Info depTime={arr_time1} arrTime={arr_time2} from={from} to={to} averageTime={average_time} />
-				<Info depTime={dep_time1} arrTime={dep_time2} from={to} to={from} averageTime={average_time} />
+				<Info time={arrFlightTimeline} airPort={arrAirport} averageTime={arrFlightTime} />
+				<Info time={depFlightTimeline} airPort={depAirport} averageTime={depFlightTime} />
 			</InfoContainer>
 
-			<PriceSelect depPrice={dep_price} arrPrice={arr_price} formatPrice={formatPrice} />
+			<PriceSelect totalPrice={totalPrice} />
 		</FlightCardContainer>
 	);
 };
