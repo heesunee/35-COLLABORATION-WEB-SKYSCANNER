@@ -33,7 +33,7 @@ const Calender = ({ handleSetDate }: props) => {
 			const dateKey = formatDate(date);
 
 			// 11월과 12월 데이터를 모두 가져옴
-			const data = getDateData('11월', dateKey) || getDateData('12월', dateKey);
+			const data = getDateData('2024-11', dateKey) || getDateData('2024-12', dateKey);
 
 			const dayNumber = date.getDate();
 			const colorMap = {

@@ -1,4 +1,5 @@
-import { DateTileData, calendarData } from '@/mock/mockCalenderData.ts';
+import { useCalender } from '@/hooks/useCalender.ts';
+import { CalenderListTypes, PriceData } from '@/types/CalenderListTypes.ts';
 import { useState } from 'react';
 
 export const dateHandler = () => {
@@ -15,9 +16,16 @@ export const dateHandler = () => {
 	};
 
 	// 날짜 데이터를 가져오는 함수
-	const getDateData = (monthKey: string, date: string): DateTileData | null => {
-		const data = calendarData[monthKey]?.find((item) => item.date === date);
-		return data || null;
+	const { calenderList } = useCalender();
+	const getDateData = (monthKey: string, date: string): PriceData | null => {
+		const monthData: CalenderListTypes[] = calenderList;
+		const index = monthKey === '2024-11' ? 0 : 1;
+
+		if (monthData[index]?.prices) {
+			const data = monthData[index]?.prices.find((item) => JSON.stringify(item.date) === JSON.stringify(date));
+			return data || null;
+		}
+		return null;
 	};
 
 	const [firstSelectedDate, setFirstSelectedDate] = useState<string | null>(null);
