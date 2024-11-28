@@ -56,8 +56,6 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 				<Info depTime={dep_time1} arrTime={dep_time2} from={to} to={from} averageTime={average_time} />
 			</InfoContainer>
 
-			<Rectangle />
-
 			<PriceSelect depPrice={dep_price} arrPrice={arr_price} formatPrice={formatPrice} />
 		</FlightCardContainer>
 	);
@@ -70,8 +68,7 @@ const FlightCardContainer = styled.div`
 	position: relative;
 	display: flex;
 	width: 36.2rem;
-	height: 25.3rem;
-	padding: 1.4rem 2.4rem;
+
 	flex-direction: column;
 	border-radius: 1.2rem;
 `;
@@ -80,6 +77,7 @@ const TopBar = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	padding: 1.2rem 1.4rem 0.5rem 1.4rem;
 `;
 
 const AirLine = styled.span`
@@ -94,16 +92,5 @@ const InfoContainer = styled.div`
 	display: flex;
 	gap: 1.4rem;
 	flex-direction: column;
-`;
-
-const Rectangle = styled.div`
-	height: 0.1rem;
-
-	// 부모요소 넓이+ 줄어든 패딩값
-	width: calc(100% + 5.4rem);
-
-	// 패딩 값만큼  왼쪽으로 이동
-	transform: translateX(-3rem);
-	background-color: ${({ theme }) => theme.colors.grey30};
-	margin-top: 2rem;
+	padding: 1.2rem 1.4rem 0.5rem 1.4rem;
 `;
