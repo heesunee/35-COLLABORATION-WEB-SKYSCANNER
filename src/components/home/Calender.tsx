@@ -18,12 +18,15 @@ const Calender = ({ handleSetDate }: props) => {
 
 	const handleDateClick = (date: Date) => {
 		const [start, end] = selectedRange;
+
 		handleSetDate(date);
 
 		if (!start || (start && end)) {
 			setSelectedRange([date, null]);
 		} else if (start && !end) {
-			setSelectedRange([start, date > start ? date : start]);
+			// 범위의 끝 날짜 설정
+			const sortedRange = [start, date].sort((a, b) => a.getTime() - b.getTime()) as [Date, Date];
+			setSelectedRange(sortedRange);
 		}
 	};
 

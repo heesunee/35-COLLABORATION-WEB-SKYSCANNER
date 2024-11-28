@@ -33,7 +33,6 @@ export const dateHandler = () => {
 	const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
 
 	// 날짜 클릭 핸들러
-
 	const handleSetDate = (date: Date) => {
 		const clickedMonth = (date.getMonth() + 1).toString().padStart(2, '0'); // 월 정보 추출
 
