@@ -21,7 +21,9 @@ const HotelCard = ({ hotel }: HotelCardProps) => {
 							))}
 						</IconsWrapper>
 					</LeftWrapper>
-					<HeartIcon />
+					<Scaled>
+						<HeartIcon />
+					</Scaled>
 				</TopWrapper>
 
 				<BottomWrapper>
@@ -133,4 +135,9 @@ const IconsWrapper = styled.div`
 
 const StyledSpan = styled.span`
 	${({ theme }) => theme.fonts.body3_sb_12};
+`;
+
+const Scaled = styled.div`
+	transform: scale(2);
+	padding: 0.3rem;
 `;

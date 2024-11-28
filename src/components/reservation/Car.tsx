@@ -52,7 +52,10 @@ const Car = () => {
 						</Icon>
 					</LeftSection>
 					<RightSection>
-						<HeartIcon />
+						<Scaled>
+							<HeartIcon />
+						</Scaled>
+
 						<CarIcon />
 					</RightSection>
 				</Top>
@@ -129,4 +132,9 @@ const Price = styled.p`
 	width: 100%;
 	justify-content: end;
 	${({ theme }) => theme.fonts.e_title_eb_16};
+`;
+
+const Scaled = styled.div`
+	transform: scale(2);
+	padding: 0.3rem;
 `;
