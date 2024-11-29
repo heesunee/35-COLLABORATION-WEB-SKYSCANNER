@@ -1,4 +1,4 @@
-import WishContentCard from '@/components/wish/WishContentCard';
+import WishAirplaneContentCard from './WishAirplaneContentCard';
 import { useWishList } from '@/hooks/useWishList';
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ const WishAirplaneContents = () => {
 	return (
 		<WishAirplaneContentsWrapper>
 			{wishList.map((item) => (
-				<WishContentCard key={item.id} {...item} />
+				<WishAirplaneContentCard key={item.id} {...item} />
 			))}
 		</WishAirplaneContentsWrapper>
 	);

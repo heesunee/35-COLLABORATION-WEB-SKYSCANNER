@@ -1,5 +1,5 @@
 import { getWishList } from '@/api/wish/getWishList';
-import { WishContentCardProps } from '@/types/wishContentCard';
+import { WishContentCardProps } from '@/types/wishAirplaneContentCard';
 import { useEffect, useState } from 'react';
 
 export const useWishList = () => {

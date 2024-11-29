@@ -60,7 +60,8 @@ const RecommendCardWrapper = styled.div`
 	${({ theme }) => theme.shadows.card_shadow};
 `;
 const RecommendImg = styled.img`
-	width: 100%;
+	width: 35rem;
+	height: 14.2rem;
 `;
 const RecommendContentsWrapper = styled.div`
 	${flexCssGenerator('flex', 'center', '', 'column')}
@@ -83,6 +84,7 @@ const RecommendContent = styled.div`
 `;
 const ContentImg = styled.img`
 	width: 2.4rem;
+	height: 2.4rem;
 `;
 const ContentInfo = styled.div`
 	${flexCssGenerator('flex', 'space-between', 'center', 'row')}

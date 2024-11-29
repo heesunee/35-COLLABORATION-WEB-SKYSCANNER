@@ -4,11 +4,11 @@ import LikeOutlineBlueIcon from '@/assets/svg/ic_like_outline_blue.svg?react';
 import FlightDetails from '@/components/wish/FlightDetails';
 import FlightInfo from '@/components/wish/FlightInfo';
 import ToggleSwitch from '@/components/wish/ToggleSwitch';
-import { WishContentCardProps } from '@/types/wishContentCard';
+import { WishAirplaneContentCardProps } from '@/types/wishAirplaneContentCard';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const WishContentCard = ({
+const WishAirplaneContentCard = ({
 	id,
 	backgroundImageUrl,
 	departure,
@@ -23,7 +23,7 @@ const WishContentCard = ({
 	travelDays,
 	person,
 	price,
-}: WishContentCardProps) => {
+}: WishAirplaneContentCardProps) => {
 	const [isLiked, setIsLiked] = useState(true);
 
 	const toggleLike = async () => {
@@ -70,7 +70,7 @@ const WishContentCard = ({
 	);
 };
 
-export default WishContentCard;
+export default WishAirplaneContentCard;
 
 const WishContentWrapper = styled.div`
 	position: relative;
@@ -81,8 +81,8 @@ const WishContentWrapper = styled.div`
 `;
 
 const WishContentsImg = styled.img`
-	width: 100%;
-	height: auto;
+	width: 33.3rem;
+	height: 16.4rem;
 	object-fit: cover;
 `;
 
