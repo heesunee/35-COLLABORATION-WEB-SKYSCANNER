@@ -2,14 +2,16 @@ import { formatDate } from '@/utils/dateUtils';
 import styled from 'styled-components';
 
 interface DateFilterProps {
-	startDate: string;
-	finishDate: string;
+	startDate: string | null;
+	finishDate: string | null;
 }
 
 const DateFilter = ({ startDate, finishDate }: DateFilterProps) => {
-	const { month: startMonth, day: startDay, weekday: startWeekday } = formatDate(startDate);
-	const { month: finishMonth, day: finishDay, weekday: finishWeekday } = formatDate(finishDate);
+	const startFormatted = startDate ? formatDate(startDate) : { month: '', day: '', weekday: '' };
+	const finishFormatted = finishDate ? formatDate(finishDate) : { month: '', day: '', weekday: '' };
 
+	const { month: startMonth, day: startDay, weekday: startWeekday } = startFormatted;
+	const { month: finishMonth, day: finishDay, weekday: finishWeekday } = finishFormatted;
 	return (
 		<DateFilterContainer>
 			<DateButton>
