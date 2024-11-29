@@ -24,3 +24,8 @@ export const useFlights = () => {
 
 	return { error, averagePrice, flights };
 };
+
+export const fetchMoreFlights = async () => {
+	const response: FlightApiResponse = await getFlights();
+	return response.flights;
+};
