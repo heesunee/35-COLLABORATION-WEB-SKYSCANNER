@@ -54,8 +54,12 @@ const Search = ({ onModalToggle, onChangeAbleCity }: props) => {
 
 	const navigate = useNavigate(); // useNavigate 훅 호출
 
+	const searchParams = new URLSearchParams(window.location.search);
+	const startDate = searchParams.get('startDate');
+	const finishDate = searchParams.get('finishDate');
+
 	const handleSearchClick = () => {
-		navigate('/reservation');
+		navigate(`/reservation?startDate=${startDate}&finishDate=${finishDate}`);
 	};
 
 	useEffect(() => {
