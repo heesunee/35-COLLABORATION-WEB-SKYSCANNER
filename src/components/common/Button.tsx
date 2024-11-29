@@ -74,6 +74,11 @@ const ButtonStyles = {
 		border-radius: 7px;
 		background: ${({ theme }) => theme.colors.skyblue};
 	`,
+	disableHome: css`
+		// 비활성화 버튼
+		background: ${({ theme }) => theme.colors.grey30};
+		color: ${({ theme }) => theme.colors.black};
+	`,
 } as const;
 
 const ButtonSizes = {

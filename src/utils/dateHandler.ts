@@ -68,22 +68,18 @@ export const dateHandler = () => {
 	};
 
 	/**
-	 * 날짜 범위에 맞게 가장 싼 가격을 찾는 함수
+	 * 가는날, 오는날의 가격을 합산하는 함수
 	 * @param value
 	 */
 	const handleCheepPrice = (value: [Date, Date]) => {
 		const startDate = formatDate(value[0]);
 		const endDate = formatDate(value[1]);
 
-		const allPrices: PriceData[] = calenderList
-			.flatMap((data) => data.prices || [])
-			.filter((price) => {
-				const priceDate = JSON.stringify(price.date);
-				return priceDate >= JSON.stringify(startDate) && priceDate <= JSON.stringify(endDate);
-			});
+		const allData = calenderList.flatMap((month) => month.prices);
+		const startPrice = allData.find((price) => JSON.stringify(price.date) === JSON.stringify(startDate))?.price || 0;
+		const endPrice = allData.find((price) => JSON.stringify(price.date) === JSON.stringify(endDate))?.price || 0;
 
-		const CheepPrice: number = Math.min(...allPrices.map((price) => price.price));
-		setCheepPrice(convertPrice(CheepPrice));
+		setCheepPrice(convertPrice(startPrice + endPrice));
 	};
 
 	/**
@@ -91,8 +87,6 @@ export const dateHandler = () => {
 	 */
 	const navigate = useNavigate();
 	const handleNavigate = () => {
-		console.log('firstSelectedDate:', firstSelectedDate);
-		console.log('lastSelectedDate:', lastSelectedDate);
 		if (!firstSelectedDate || !lastSelectedDate) {
 			return;
 		}

@@ -43,7 +43,9 @@ const RecommendCard = ({
 					</ContentInfo>
 				</RecommendContent>
 				<RecommendPrice>
-					<p>{price}</p>
+					<p>
+						{price} {'>'}
+					</p>
 				</RecommendPrice>
 			</RecommendContentsWrapper>
 		</RecommendCardWrapper>

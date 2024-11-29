@@ -1,4 +1,4 @@
-import { ExclamationIcon, FlightIcon, HeartBlackIcon, HeartIcon, PolygonIcon } from '@/assets/svg';
+import { ExclamationIcon, FlightWhiteIcon, HeartBlackIcon, HeartIcon, PolygonIcon } from '@/assets/svg';
 import styled from 'styled-components';
 
 interface IconsProps {
@@ -14,7 +14,7 @@ const Icons = ({ isTooltipVisible, isLike, handleExclamationClick, handleHeartCl
 			{isTooltipVisible && (
 				<ToolTipContainer onClick={handleExclamationClick}>
 					<ToolTip>
-						<FlightIcon />
+						<FlightWhiteIcon />
 						같은 노선의 항공편보다 이산화탄소 환산량이 36% 더 적은 친환경 항공편이에요!
 					</ToolTip>
 					<PolyGonContainer>
