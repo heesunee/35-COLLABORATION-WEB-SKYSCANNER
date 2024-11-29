@@ -12,12 +12,14 @@ import {
 	NameTagIcon,
 	TicketIcon,
 } from '@/assets/svg';
+import { useRecommendList } from '@/hooks/useRecommendList';
 import { faqs } from '@/mocks/mockFAQ';
-import { mockRecommendList } from '@/mocks/mockRecommendList';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import styled from 'styled-components';
 
 const HomeContents = () => {
+	const { recommendList } = useRecommendList();
+
 	return (
 		<HomeContentsWrapper>
 			<BreadCrumbs>
@@ -58,7 +60,7 @@ const HomeContents = () => {
 			</RecommendTitle>
 			<ContentsRecommendWrapper>
 				<RecommendCardsWrapper>
-					{mockRecommendList.map((recommend) => (
+					{recommendList.map((recommend) => (
 						<RecommendCard key={recommend.id} {...recommend} />
 					))}
 				</RecommendCardsWrapper>
