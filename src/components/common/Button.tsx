@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 
 interface props {
 	onClick?: () => void;
-	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'apply' | undefined;
+	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'apply' | 'disableHome' | undefined;
 	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small' | 'searchHome' | 'disableHome' | undefined;
 	children: React.ReactNode;
 	disabled?: boolean;

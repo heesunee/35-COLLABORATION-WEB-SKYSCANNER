@@ -9,15 +9,16 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 
 interface props {
+	ableCityName: string;
 	isOpen: boolean;
 	onModalToggle: () => void;
 	clickedCity: string | null;
 	onClicked: (city: string) => void;
 }
 
-const SearchModal = ({ isOpen = false, onModalToggle, clickedCity, onClicked }: props) => {
+const SearchModal = ({ ableCityName = '오키나와', isOpen = false, onModalToggle, clickedCity, onClicked }: props) => {
 	const scrollRef = useRef<HTMLDivElement>(null);
-	const isOkinawa = clickedCity === '오키나와';
+	const isOkinawa = clickedCity === ableCityName;
 
 	const onSearchClick = () => {
 		onModalToggle();

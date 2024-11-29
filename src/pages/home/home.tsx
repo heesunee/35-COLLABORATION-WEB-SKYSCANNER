@@ -8,16 +8,22 @@ const Home = () => {
 	const { isModalOpen, onModalToggle } = useModal();
 
 	const [clickedCity, setClickedCity] = useState<string | null>(null);
+	const [ableCityName, setAbleCityName] = useState<'오키나와' | '서울'>('오키나와');
 
 	const onClicked = (city: string) => {
 		setClickedCity(city);
 	};
 
+	const onChangeAbleCity = (city: string | null) => {
+		setAbleCityName(city);
+	};
+
 	return (
 		<>
-			<Search />
+			<Search onModalToggle={onModalToggle} onChangeAbleCity={onChangeAbleCity} />
 			<HomeContents />
 			<SearchModal
+				ableCityName={ableCityName}
 				isOpen={isModalOpen.search}
 				onModalToggle={() => onModalToggle('search')}
 				clickedCity={clickedCity}
