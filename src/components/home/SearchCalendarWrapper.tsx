@@ -1,17 +1,24 @@
 import { CalendarGreyIcon } from '@/assets/svg';
+import { PATH } from '@/router/path.ts';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SearchCalendarWrapper = () => {
+	const navigate = useNavigate();
+	const searchParams = new URLSearchParams(window.location.search);
+	const startDate = searchParams.get('startDate');
+	const finishDate = searchParams.get('finishDate');
+
 	return (
-		<SearchCalendar onClick={() => console.log('Calander Clicked!')}>
+		<SearchCalendar onClick={() => navigate(PATH.CALENDER)}>
 			{/* 부모에 props 정의되면 출발하는 날짜, 들어오는 날짜에 교체할 예정 */}
 			<CalendarLeft>
 				<CalendarGreyIcon />
-				출발하는 날짜
+				{startDate ? startDate : '출발하는 날짜'}
 			</CalendarLeft>
 			<CalendarRight>
 				<CalendarGreyIcon />
-				들어오는 날짜
+				{finishDate ? finishDate : '들어오는 날짜'}
 			</CalendarRight>
 		</SearchCalendar>
 	);
