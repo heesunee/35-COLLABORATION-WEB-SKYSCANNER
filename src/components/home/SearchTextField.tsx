@@ -2,16 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface props {
+	value: string;
 	Icon: React.ComponentType;
 	placeholder: string;
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onChange: () => void;
+	onClick: (modal: 'search' | 'calender') => void;
+	onChangeAbleCity: (city: string | null) => void;
 }
 
-const SearchTextField = ({ Icon, placeholder, onChange }: props) => {
+const SearchTextField = ({ value, Icon, placeholder, onChange, onClick, onChangeAbleCity }: props) => {
 	return (
-		<SearchTextFieldWrapper>
+		<SearchTextFieldWrapper
+			onClick={() => {
+				onClick('search');
+				onChangeAbleCity(null);
+				onChange();
+			}}
+		>
 			<Icon />
-			<TextField placeholder={placeholder} onChange={onChange} />
+			<TextField placeholder={placeholder} value={value} />
 		</SearchTextFieldWrapper>
 	);
 };

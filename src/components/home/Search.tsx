@@ -6,11 +6,16 @@ import SearchClickedFieldWrapper from './SearchClickedFieldWrapper';
 import SearchRadioButton from './SearchRadioButton';
 import SearchTextField from './SearchTextField';
 import { OriginIcon, PinIcon, ProfileIcon } from '@/assets/svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Search = () => {
+interface props {
+	onModalToggle: (modal: 'search' | 'calender') => void;
+	onChangeAbleCity: (city: string | null) => void;
+}
+
+const Search = ({ onModalToggle, onChangeAbleCity }: props) => {
 	const [selectedRadio, setSelectedRadio] = useState<string>('왕복');
 	const handleRadioClick = (value: string) => {
 		setSelectedRadio(value);
@@ -53,6 +58,11 @@ const Search = () => {
 		navigate('/reservation');
 	};
 
+	useEffect(() => {
+		setDeparture(localStorage.getItem('departure') || '');
+		setArrival(localStorage.getItem('arrival') || '');
+	}, []);
+
 	return (
 		<>
 			<SearchTitle>전 세계 항공권 특가 상품</SearchTitle>
@@ -78,7 +88,13 @@ const Search = () => {
 					<SearchTextField
 						Icon={OriginIcon}
 						placeholder={'출발지는 어디인가요?'}
-						onChange={(e) => setDeparture(e.target.value)}
+						onChange={() => {
+							setDeparture('서울');
+							localStorage.setItem('departure', '서울');
+						}}
+						value={departure}
+						onClick={onModalToggle}
+						onChangeAbleCity={() => onChangeAbleCity('서울')}
 					/>
 					<SearchCheckedBox
 						caption={'주변 공항 추가'}
@@ -90,7 +106,13 @@ const Search = () => {
 					<SearchTextField
 						Icon={PinIcon}
 						placeholder={'목적지는 어디인가요?'}
-						onChange={(e) => setArrival(e.target.value)}
+						value={arrival}
+						onChange={() => {
+							setArrival('오키나와');
+							localStorage.setItem('arrival', '오키나와');
+						}}
+						onClick={onModalToggle}
+						onChangeAbleCity={() => onChangeAbleCity('오키나와')}
 					/>
 					<SearchCheckedBox caption={'주변 공항 추가'} isClicked={checkedNearbyArrival} onClick={handleArrivalToggle} />
 				</SearchTextContainer>
