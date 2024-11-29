@@ -1,4 +1,5 @@
 import PriceSelect from './PriceSelect';
+import { patchWishList } from '@/api/reservation/patchWisiList';
 import { EastarIcon, JejuAirIcon, JinAirIcon, KalIcon } from '@/assets/svg';
 import Icons from '@/components/reservation/Icons';
 import Info from '@/components/reservation/Info';
@@ -20,6 +21,7 @@ const airlineIcons: Record<string, React.ReactNode | undefined> = {
 
 const FlightCard = ({ flight }: FlightCardProps) => {
 	const {
+		id,
 		airline,
 
 		arrAirport,
@@ -36,11 +38,16 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 	const [isLike, setIsLike] = useState(false);
 	const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
-	const handleHeartClick = () => {
-		setIsLike((prev) => !prev);
-		// 위시리스트 API 연결작업
-		// ...
+	// 하트 클릭 시 위시리스트 추가/제거
+	const handleHeartClick = async (id: number) => {
+		try {
+			await patchWishList(id);
+			setIsLike((prev) => !prev);
+		} catch (error) {
+			console.error('위시리스트 업데이트 실패:', error);
+		}
 	};
+
 	const handleExclamationClick = () => {
 		setIsTooltipVisible((prev) => !prev);
 	};
@@ -56,7 +63,8 @@ const FlightCard = ({ flight }: FlightCardProps) => {
 					isTooltipVisible={isTooltipVisible}
 					isLike={isLike}
 					handleExclamationClick={handleExclamationClick}
-					handleHeartClick={handleHeartClick}
+					handleHeartClick={() => handleHeartClick(id)}
+					id={id}
 				/>
 			</TopBar>
 			<InfoContainer>

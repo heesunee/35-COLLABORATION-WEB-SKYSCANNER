@@ -5,10 +5,11 @@ interface IconsProps {
 	isTooltipVisible: boolean;
 	isLike: boolean;
 	handleExclamationClick: () => void;
-	handleHeartClick: () => void;
+	handleHeartClick: (id: number) => void;
+	id: number;
 }
 
-const Icons = ({ isTooltipVisible, isLike, handleExclamationClick, handleHeartClick }: IconsProps) => {
+const Icons = ({ isTooltipVisible, isLike, handleExclamationClick, id, handleHeartClick }: IconsProps) => {
 	return (
 		<IconContainer>
 			{isTooltipVisible && (
@@ -27,11 +28,11 @@ const Icons = ({ isTooltipVisible, isLike, handleExclamationClick, handleHeartCl
 
 			{isLike ? (
 				<Scaled>
-					<HeartBlackIcon onClick={handleHeartClick} />
+					<HeartBlackIcon onClick={() => handleHeartClick(id)} />
 				</Scaled>
 			) : (
 				<Scaled>
-					<HeartIcon onClick={handleHeartClick} />
+					<HeartIcon onClick={() => handleHeartClick(id)} />
 				</Scaled>
 			)}
 		</IconContainer>
