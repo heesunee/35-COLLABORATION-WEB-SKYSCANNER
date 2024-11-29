@@ -75,6 +75,12 @@ const ButtonStyles = {
 		background: ${({ theme }) => theme.colors.skyblue};
 	`,
 } as const;
+	disableHome: css`
+		// 비활성화 버튼
+		background: ${({ theme }) => theme.colors.grey30};
+		color: ${({ theme }) => theme.colors.black};
+	`,
+};
 
 const ButtonSizes = {
 	default: css`
