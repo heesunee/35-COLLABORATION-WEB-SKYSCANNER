@@ -40,11 +40,19 @@ const CalenderModal = () => {
 					<InfoFilter>
 						<InfoGoLeft>
 							<InfoGoTitle>가는 편</InfoGoTitle>
-							<InfoGoContent>{firstSelectedDate}</InfoGoContent>
+							{firstSelectedDate ? (
+								<InfoGoContent>{firstSelectedDate}</InfoGoContent>
+							) : (
+								<InfoGoPlaceholder>가는 날을 선택해주세요</InfoGoPlaceholder>
+							)}
 						</InfoGoLeft>
 						<InfoGoRight>
 							<InfoGoTitle>오는 편</InfoGoTitle>
-							<InfoGoContent>{lastSelectedDate}</InfoGoContent>
+							{lastSelectedDate ? (
+								<InfoGoContent>{lastSelectedDate}</InfoGoContent>
+							) : (
+								<InfoGoPlaceholder>오는 날을 선택해주세요</InfoGoPlaceholder>
+							)}
 						</InfoGoRight>
 					</InfoFilter>
 				</Information>
@@ -157,6 +165,11 @@ const InfoGoTitle = styled.h3`
 const InfoGoContent = styled.div`
 	${({ theme }) => theme.fonts.e_body_m_12}
 	color: ${({ theme }) => theme.colors.black};
+	height: 1.7rem;
+`;
+const InfoGoPlaceholder = styled.div`
+	${({ theme }) => theme.fonts.e_body_m_12}
+	color: ${({ theme }) => theme.colors.grey30};
 	height: 1.7rem;
 `;
 
