@@ -1,6 +1,6 @@
 import AdvisorIcon from '@/assets/svg/ic_advisor.svg?react';
 import LikeBlueIcon from '@/assets/svg/ic_like_blue.svg?react';
-import ScoreIcon from '@/assets/svg/ic_score.svg?react';
+import ScoreIcon from '@/assets/svg/ic_score1.svg?react';
 import StarIcon from '@/assets/svg/ic_star.svg?react';
 import { WishHotelContentCardProps } from '@/types/WishHotelContentCardProps';
 import styled from 'styled-components';
