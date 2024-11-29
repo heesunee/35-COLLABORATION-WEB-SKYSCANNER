@@ -1,4 +1,4 @@
-export interface WishContentCardProps {
+export interface WishAirplaneContentCardProps {
 	backgroundImageUrl?: string;
 	departure: string;
 	arrival: string;

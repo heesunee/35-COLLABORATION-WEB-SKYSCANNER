@@ -1,12 +1,17 @@
+import WithSuspense from '../common/WithSuspense';
 import WishAirplaneContents from './WishAirplaneContents';
-import WishHotelContents from './WishHotelContents';
+import { lazy } from 'react';
 import styled from 'styled-components';
+
+const WishHotelContents = lazy(() => import('./WishHotelContents'));
 
 const WishContents = () => {
 	return (
 		<WishContentsWrapper>
 			<WishAirplaneContents />
-			<WishHotelContents />
+			<WithSuspense fallback={<div>Loading Hotels...</div>}>
+				<WishHotelContents />
+			</WithSuspense>
 		</WishContentsWrapper>
 	);
 };

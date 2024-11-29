@@ -60,8 +60,8 @@ const WishHotelContentWrapper = styled.div`
 `;
 
 const WishHotelImg = styled.img`
-	width: 100%;
-	height: auto;
+	width: 33.3rem;
+	height: 16.4rem;
 	object-fit: cover;
 `;
 

@@ -1,9 +1,9 @@
 import { getWishList } from '@/api/wish/getWishList';
-import { WishContentCardProps } from '@/types/wishContentCard';
+import { WishAirplaneContentCardProps } from '@/types/wishAirplaneContentCard';
 import { useEffect, useState } from 'react';
 
 export const useWishList = () => {
-	const [wishList, setWishList] = useState<WishContentCardProps[]>([]);
+	const [wishList, setWishList] = useState<WishAirplaneContentCardProps[]>([]);
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
