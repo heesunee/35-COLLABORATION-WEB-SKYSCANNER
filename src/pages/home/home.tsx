@@ -1,5 +1,3 @@
-
-import CalenderModal from '@/components/home/CalenderModal.tsx';
 import HomeContents from '@/components/home/HomeContents';
 import Search from '@/components/home/Search';
 import SearchModal from '@/components/home/SearchModal.tsx';

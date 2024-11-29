@@ -1,4 +1,5 @@
 import './Calender.ts';
+import Button from '@/components/common/Button.tsx';
 import { CustomCalender } from '@/components/home/Calender.ts';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import { dateHandler } from '@/utils/dateHandler.ts';
@@ -9,21 +10,23 @@ import styled from 'styled-components';
 
 interface props {
 	handleSetDate: (date: Date) => void;
+	handleNavigate: () => void;
 }
 
-const Calender = ({ handleSetDate }: props) => {
-	const { formatDate, getDateData, weekDay } = dateHandler();
+const Calender = ({ handleSetDate, handleNavigate }: props) => {
+	const { cheepPrice, formatDate, getDateData, handleCheepPrice, weekDay } = dateHandler();
 
 	const [selectedRange, setSelectedRange] = useState<[Date | null, Date | null]>([null, null]);
 
 	const handleDateClick = (date: Date) => {
 		const [start, end] = selectedRange;
-		handleSetDate(date);
 
+		handleSetDate(date);
 		if (!start || (start && end)) {
 			setSelectedRange([date, null]);
 		} else if (start && !end) {
-			setSelectedRange([start, date > start ? date : start]);
+			const sortedRange = [start, date].sort((a, b) => a.getTime() - b.getTime()) as [Date, Date];
+			setSelectedRange(sortedRange);
 		}
 	};
 
@@ -33,7 +36,7 @@ const Calender = ({ handleSetDate }: props) => {
 			const dateKey = formatDate(date);
 
 			// 11월과 12월 데이터를 모두 가져옴
-			const data = getDateData('11월', dateKey) || getDateData('12월', dateKey);
+			const data = getDateData('2024-11', dateKey) || getDateData('2024-12', dateKey);
 
 			const dayNumber = date.getDate();
 			const colorMap = {
@@ -65,42 +68,78 @@ const Calender = ({ handleSetDate }: props) => {
 	};
 
 	return (
-		<CustomCalender>
-			<Weekdays>
-				{weekDay.map((day) => (
-					<WeekName key={day}>{day}</WeekName>
-				))}
-			</Weekdays>
-			<Month>11월</Month>
-			<Calendar
-				tileContent={tileContent}
-				allowPartialRange={true}
-				selectRange={true}
-				defaultActiveStartDate={new Date(2024, 10, 1)}
-				showNeighboringMonth={false}
-				showNavigation={true}
-				onClickDay={handleDateClick}
-				value={selectedRange}
-			/>
-			<Month>12월</Month>
-			<Calendar
-				tileContent={tileContent}
-				allowPartialRange={true}
-				selectRange={true}
-				defaultActiveStartDate={new Date(2024, 11, 1)}
-				showNeighboringMonth={false}
-				showNavigation={false}
-				onClickDay={handleDateClick}
-				value={selectedRange}
-			/>
+		<>
+			<CustomCalender>
+				<Weekdays>
+					{weekDay.map((day) => (
+						<WeekName key={day}>{day}</WeekName>
+					))}
+				</Weekdays>
+				<Month>11월</Month>
+				<Calendar
+					tileContent={tileContent}
+					allowPartialRange={true}
+					selectRange={true}
+					defaultActiveStartDate={new Date(2024, 10, 1)}
+					showNeighboringMonth={false}
+					showNavigation={true}
+					onClickDay={handleDateClick}
+					onChange={handleCheepPrice}
+					value={selectedRange}
+				/>
+				<Month>12월</Month>
+				<Calendar
+					tileContent={tileContent}
+					allowPartialRange={true}
+					selectRange={true}
+					defaultActiveStartDate={new Date(2024, 11, 1)}
+					showNeighboringMonth={false}
+					showNavigation={false}
+					onClickDay={handleDateClick}
+					onChange={handleCheepPrice}
+					value={selectedRange}
+				/>
 
-			<MoreInfo>
-				<ColorInfo></ColorInfo>
-				<Info>12/25 성탄절</Info>
-			</MoreInfo>
-		</CustomCalender>
+				<MoreInfo>
+					<ColorInfo></ColorInfo>
+					<Info>12/25 성탄절</Info>
+				</MoreInfo>
+			</CustomCalender>
+			<PriceWrap>
+				<PriceContents>
+					<Price>{cheepPrice}</Price>
+					<More>근 2주 중 최저가</More>
+				</PriceContents>
+				<Button variant={'apply'} size={'small'} onClick={handleNavigate}>
+					적용
+				</Button>
+			</PriceWrap>
+		</>
 	);
 };
+
+const PriceWrap = styled.div`
+	border-top: 1px solid ${({ theme }) => theme.colors.grey20};
+	display: flex;
+	padding: 1.9rem 1.9rem 1.9rem 2.9rem;
+	justify-content: space-between;
+	margin-top: 20px;
+`;
+
+const PriceContents = styled.div`
+	${flexCssGenerator('flex', 'center', 'flex-start', 'column')}
+	flex-shrink: 0;
+`;
+
+const Price = styled.div`
+	${({ theme }) => theme.fonts.title2_eb_16}
+	color: ${({ theme }) => theme.colors.skyblue};
+`;
+
+const More = styled.div`
+	${({ theme }) => theme.fonts.btn3_sb_10}
+	color: ${({ theme }) => theme.colors.grey30};
+`;
 
 const Month = styled.h1`
 	${({ theme }) => theme.fonts.title2_eb_16}

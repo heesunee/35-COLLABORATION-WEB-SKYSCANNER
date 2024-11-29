@@ -1,17 +1,14 @@
 import { ArrowLeftBlackIcon, InfoIcon, OneWayIcon, TwoWayIcon } from '@/assets/svg';
-import Button from '@/components/common/Button.tsx';
 import Calender from '@/components/home/Calender.tsx';
 import PriceImage from '@/components/home/PriceImage.tsx';
 import PriceModal from '@/components/home/PriceModal.tsx';
-import { PATH } from '@/router/path.ts';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import { dateHandler } from '@/utils/dateHandler.ts';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CalenderModal = () => {
-	const { firstSelectedDate, lastSelectedDate, handleSetDate } = dateHandler();
+	const { firstSelectedDate, lastSelectedDate, handleSetDate, handleNavigate } = dateHandler();
 	const [filter, setFilter] = useState<'round' | 'oneway'>('round');
 	const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
 	const onPriceModalToggle = () => {
@@ -19,20 +16,6 @@ const CalenderModal = () => {
 	};
 	const onFilterClick = (filter: 'round' | 'oneway') => {
 		setFilter(filter);
-	};
-
-	const navigate = useNavigate();
-	const handleNavigate = () => {
-		if (!firstSelectedDate || !lastSelectedDate) {
-			return;
-		}
-
-		const params = new URLSearchParams({
-			startDate: firstSelectedDate,
-			finishDate: lastSelectedDate,
-		});
-
-		navigate(`${PATH.HOME}?${params.toString()}`);
 	};
 
 	return (
@@ -57,11 +40,15 @@ const CalenderModal = () => {
 					<InfoFilter>
 						<InfoGoLeft>
 							<InfoGoTitle>가는 편</InfoGoTitle>
-							<InfoGoContent>{firstSelectedDate}</InfoGoContent>
+							<InfoGoContent date={firstSelectedDate}>
+								{firstSelectedDate ? firstSelectedDate : '가는 날을 선택해주세요'}
+							</InfoGoContent>
 						</InfoGoLeft>
 						<InfoGoRight>
 							<InfoGoTitle>오는 편</InfoGoTitle>
-							<InfoGoContent>{lastSelectedDate}</InfoGoContent>
+							<InfoGoContent date={lastSelectedDate}>
+								{lastSelectedDate ? lastSelectedDate : '오는 날을 선택해주세요'}
+							</InfoGoContent>
 						</InfoGoRight>
 					</InfoFilter>
 				</Information>
@@ -71,17 +58,8 @@ const CalenderModal = () => {
 					<PriceImage contents={'₩₩₩'} color={'red'} />
 					<InfoIcon onClick={onPriceModalToggle} />
 				</CalenderInfo>
-				<Calender handleSetDate={handleSetDate} />
 			</ContentsWrap>
-			<PriceWrap>
-				<PriceContents>
-					<Price>277,700원</Price>
-					<More>근 2주 중 최저가</More>
-				</PriceContents>
-				<Button variant={'apply'} size={'small'} onClick={handleNavigate}>
-					적용
-				</Button>
-			</PriceWrap>
+			<Calender handleSetDate={handleSetDate} handleNavigate={handleNavigate} />
 			<PriceModal isVisible={isPriceModalOpen} onModalClose={onPriceModalToggle} />
 		</CalenderContainer>
 	);
@@ -180,9 +158,9 @@ const InfoGoTitle = styled.h3`
 	color: ${({ theme }) => theme.colors.grey40};
 `;
 
-const InfoGoContent = styled.div`
+const InfoGoContent = styled.div<{ date: string | null }>`
 	${({ theme }) => theme.fonts.e_body_m_12}
-	color: ${({ theme }) => theme.colors.black};
+	color: ${({ theme, date }) => (date ? theme.colors.black : theme.colors.grey30)};
 	height: 1.7rem;
 `;
 
@@ -192,29 +170,6 @@ const CalenderInfo = styled.section`
 	& > div {
 		width: fit-content;
 	}
-`;
-
-const PriceWrap = styled.div`
-	border-top: 1px solid ${({ theme }) => theme.colors.grey20};
-	display: flex;
-	padding: 1.9rem 1.9rem 1.9rem 2.9rem;
-	justify-content: space-between;
-	margin-top: 20px;
-`;
-
-const PriceContents = styled.div`
-	${flexCssGenerator('flex', 'center', 'flex-start', 'column')}
-	flex-shrink: 0;
-`;
-
-const Price = styled.div`
-	${({ theme }) => theme.fonts.title2_eb_16}
-	color: ${({ theme }) => theme.colors.skyblue};
-`;
-
-const More = styled.div`
-	${({ theme }) => theme.fonts.btn3_sb_10}
-	color: ${({ theme }) => theme.colors.grey30};
 `;
 
 export default CalenderModal;

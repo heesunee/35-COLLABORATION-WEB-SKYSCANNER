@@ -102,7 +102,6 @@ export {
 	HotelBlackIcon,
 	NameTagIcon,
 	TicketIcon,
-	ProfileBlackIcon,
 	CarDoorIcon,
 	CarIcon,
 };
