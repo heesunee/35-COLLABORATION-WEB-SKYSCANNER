@@ -14,7 +14,6 @@ import {
 } from '@/assets/svg';
 import { useRecommendList } from '@/hooks/useRecommendList';
 import { faqs } from '@/mocks/mockFAQ';
-import { mockRecommendList } from '@/mocks/mockRecommendList';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
 import styled from 'styled-components';
 
