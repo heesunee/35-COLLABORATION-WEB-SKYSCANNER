@@ -1,14 +1,11 @@
-import { patchLike } from '@/api/wish/patchLike';
 import LikeBlueIcon from '@/assets/svg/ic_like_blue.svg?react';
-import LikeOutlineBlueIcon from '@/assets/svg/ic_like_outline_blue.svg?react';
 import FlightDetails from '@/components/wish/FlightDetails';
 import FlightInfo from '@/components/wish/FlightInfo';
 import ToggleSwitch from '@/components/wish/ToggleSwitch';
 import { WishAirplaneContentCardProps } from '@/types/wishAirplaneContentCard';
-import { useState } from 'react';
 import styled from 'styled-components';
 
-const WishAirplaneContentCard = ({
+const WishContentCard = ({
 	id,
 	backgroundImageUrl,
 	departure,
@@ -24,20 +21,10 @@ const WishAirplaneContentCard = ({
 	person,
 	price,
 }: WishAirplaneContentCardProps) => {
-	const [isLiked, setIsLiked] = useState(true);
-
-	const toggleLike = async () => {
-		try {
-			await patchLike(id);
-			setIsLiked((prev) => !prev);
-		} catch (error) {
-			console.error('Failed to update like status:', error);
-		}
-	};
 	return (
 		<WishContentWrapper>
-			<WishContentsImg src={backgroundImageUrl || 'https://ifh.cc/g/MZCwNq.jpg'} alt={`${departure} - ${arrival}`} />
-			{isLiked ? <LikeBlueIconStyled onClick={toggleLike} /> : <LikeOutlineBlueIconStyled onClick={toggleLike} />}
+			<WishContentsImg src={backgroundImageUrl} />
+			<LikeBlueIconStyled />
 			<WishContentsContainer>
 				<WishContentsMid>
 					<WishContentsTitle>
@@ -70,11 +57,13 @@ const WishAirplaneContentCard = ({
 	);
 };
 
-export default WishAirplaneContentCard;
+export default WishContentCard;
 
 const WishContentWrapper = styled.div`
 	position: relative;
 	display: flex;
+	width: 33.3rem;
+	height: 44.7rem;
 	flex-direction: column;
 	${({ theme }) => theme.shadows.card_shadow};
 	border-radius: 0px 0px 11px 11px;
@@ -83,21 +72,12 @@ const WishContentWrapper = styled.div`
 const WishContentsImg = styled.img`
 	width: 33.3rem;
 	height: 16.4rem;
-	object-fit: cover;
 `;
 
 const LikeBlueIconStyled = styled(LikeBlueIcon)`
 	position: absolute;
 	top: 1.8rem;
 	right: 1.3rem;
-	cursor: pointer;
-`;
-
-const LikeOutlineBlueIconStyled = styled(LikeOutlineBlueIcon)`
-	position: absolute;
-	top: 1.8rem;
-	right: 1.3rem;
-	cursor: pointer;
 `;
 
 const WishContentsContainer = styled.div`

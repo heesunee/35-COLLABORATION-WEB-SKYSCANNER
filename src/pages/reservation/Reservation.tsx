@@ -1,5 +1,6 @@
 import HanacardIcon from '@/assets/svg/img_hanacard.svg?react';
 import KKdayIcon from '@/assets/svg/img_kkday.svg?react';
+import WithSuspense from '@/components/common/WithSuspense';
 import AdCard from '@/components/reservation/Adcard';
 import Car from '@/components/reservation/Car';
 import DateFilter from '@/components/reservation/DateFilter';
@@ -30,11 +31,14 @@ const Reservation = () => {
 			<ReservationMain>
 				<Wrapper>
 					<TabFlight />
-					<AdCard
-						Img={HanacardIcon}
-						titles={['해외여행은 트래블', 'GO', '체크카드!']}
-						subTitles={['트래블로그와 ', 'Visa', '의 만남으로 이뤄진 트래블카드']}
-					/>
+					<WithSuspense>
+						<AdCard
+							Img={HanacardIcon}
+							titles={['해외여행은 트래블', 'GO', '체크카드!']}
+							subTitles={['트래블로그와 ', 'Visa', '의 만남으로 이뤄진 트래블카드']}
+						/>
+					</WithSuspense>
+
 					<FlightList flights={flights} />
 					<MoreButton />
 					<AdCard
