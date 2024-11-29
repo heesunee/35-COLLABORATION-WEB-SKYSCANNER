@@ -1,8 +1,10 @@
 import LikeBlueIcon from '@/assets/svg/ic_like_blue.svg?react';
+import LikeOutlineBlueIcon from '@/assets/svg/ic_like_outline_blue.svg?react';
 import FlightDetails from '@/components/wish/FlightDetails';
 import FlightInfo from '@/components/wish/FlightInfo';
 import ToggleSwitch from '@/components/wish/ToggleSwitch';
 import { WishContentCardProps } from '@/types/wishContentCard';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const WishContentCard = ({
@@ -21,10 +23,15 @@ const WishContentCard = ({
 	person,
 	price,
 }: WishContentCardProps) => {
+	const [isLiked, setIsLiked] = useState(true);
+
+	const toggleLike = () => {
+		setIsLiked((prev) => !prev);
+	};
 	return (
 		<WishContentWrapper>
 			<WishContentsImg src={backgroundImageUrl || 'https://ifh.cc/g/MZCwNq.jpg'} alt={`${departure} - ${arrival}`} />
-			<LikeBlueIconStyled />
+			{isLiked ? <LikeBlueIconStyled onClick={toggleLike} /> : <LikeOutlineBlueIconStyled onClick={toggleLike} />}
 			<WishContentsContainer>
 				<WishContentsMid>
 					<WishContentsTitle>
@@ -77,6 +84,14 @@ const LikeBlueIconStyled = styled(LikeBlueIcon)`
 	position: absolute;
 	top: 1.8rem;
 	right: 1.3rem;
+	cursor: pointer;
+`;
+
+const LikeOutlineBlueIconStyled = styled(LikeOutlineBlueIcon)`
+	position: absolute;
+	top: 1.8rem;
+	right: 1.3rem;
+	cursor: pointer;
 `;
 
 const WishContentsContainer = styled.div`

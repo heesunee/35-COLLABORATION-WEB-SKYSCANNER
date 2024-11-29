@@ -1,5 +1,4 @@
 import ArrowLeftBlackIcon from '@/assets/svg//ic_arrow_left_black_new.svg?react';
-
 import CardBoard from '@/assets/svg/cardboard.svg?react';
 import PolygonIcon from '@/assets/svg/ic_ arrow_drop_down.svg?react';
 import ArrowRightGreyIcon from '@/assets/svg/ic_ arrow_drop_right_grey.svg?react';
@@ -21,10 +20,9 @@ import FlagKoreaIcon from '@/assets/svg/ic_flag_korea.svg?react';
 import FlightBlackIcon from '@/assets/svg/ic_flight_black.svg?react';
 import FlightGrayIcon from '@/assets/svg/ic_flight_grey.svg?react';
 import FlightWhiteIcon from '@/assets/svg/ic_flight_white.svg?react';
-import HeartIcon from '@/assets/svg/ic_heart.svg?react';
-import FlightIcon from '@/assets/svg/ic_flight_white.svg?react';
 import HeartBlackIcon from '@/assets/svg/ic_heart_black.svg?react';
 import HeartIcon from '@/assets/svg/ic_heart_outline.svg?react';
+import HotelBlackIcon from '@/assets/svg/ic_hotel_black.svg?react';
 import ReviewStarIcon from '@/assets/svg/ic_hotel_star.svg?react';
 import HotelWhiteIcon from '@/assets/svg/ic_hotel_white.svg?react';
 import LikePageIcon from '@/assets/svg/ic_likepage.svg?react';
@@ -98,7 +96,6 @@ export {
 	NameTagIcon,
 	TicketIcon,
 	ProfileBlackIcon,
-	BagIcon,
 	CarDoorIcon,
 	CarIcon,
 };
