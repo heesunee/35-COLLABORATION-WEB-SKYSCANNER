@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface props {
 	color: 'green' | 'orange' | 'red';
-	contents: string;
+	contents: '₩' | '₩₩' | '₩₩₩';
 }
 
 const PriceImage = ({ color = 'green', contents }: props) => {

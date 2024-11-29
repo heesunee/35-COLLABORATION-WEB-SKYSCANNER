@@ -4,17 +4,16 @@ import styled, { css } from 'styled-components';
 
 interface props {
 	onClick?: () => void;
-	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'searchHome' | 'disableHome';
-	size?: 'default' | 'pricemodal' | 'search' | 'disable';
+	variant?: 'default' | 'confirm' | 'search' | 'disable' | 'apply' | undefined;
+	size?: 'default' | 'pricemodal' | 'search' | 'disable' | 'small' | 'searchHome' | 'disableHome' | undefined;
 	children: React.ReactNode;
 	disabled?: boolean;
 }
 
 interface StyledProps {
-	variant?: 'default' | 'clicked' | 'search' | 'disable' | 'searchHome' | 'disableHome';
-	size?: 'default' | 'pricemodal' | 'search' | 'disable';
+	variant?: keyof typeof ButtonStyles;
+	size?: keyof typeof ButtonSizes;
 }
-
 /**
  * @description 버튼 컴포넌트
  * @param content 버튼 안에 내용
@@ -64,6 +63,18 @@ const ButtonStyles = {
 		color: ${({ theme }) => theme.colors.black};
 		z-index: 2;
 	`,
+	apply: css`
+		display: flex;
+		padding: 9px 12px;
+		justify-content: center;
+		align-items: flex-end;
+		gap: 10px;
+		flex-shrink: 0;
+
+		border-radius: 7px;
+		background: ${({ theme }) => theme.colors.skyblue};
+	`,
+} as const;
 	disableHome: css`
 		// 비활성화 버튼
 		background: ${({ theme }) => theme.colors.grey30};
@@ -103,6 +114,12 @@ const ButtonSizes = {
 		height: 3.9rem;
 		width: 33.7rem;
 		${({ theme }) => theme.fonts.body2_sb_14};
+	`,
+	small: css`
+		width: 4.9rem;
+		height: 3.9rem;
+		padding: 9px 12px;
+		${({ theme }) => theme.fonts.title3_eb_14};
 	`,
 };
 

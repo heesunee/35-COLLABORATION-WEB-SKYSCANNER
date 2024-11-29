@@ -3,7 +3,9 @@ import CardBoard from '@/assets/svg/cardboard.svg?react';
 import PolygonIcon from '@/assets/svg/ic_ arrow_drop_down.svg?react';
 import ArrowRightGreyIcon from '@/assets/svg/ic_ arrow_drop_right_grey.svg?react';
 import ArrowRightIcon from '@/assets/svg/ic_arrow_right_black.svg?react';
+import OneWayIcon from '@/assets/svg/ic_arrow_right_black_new.svg?react';
 import ArrowrightIcon from '@/assets/svg/ic_arrow_right_white.svg?react';
+import TwoWayIcon from '@/assets/svg/ic_autornew_white.svg?react';
 import BagIcon from '@/assets/svg/ic_bag.svg?react';
 import CalendarBlackIcon from '@/assets/svg/ic_calendar_black.svg?react';
 import CalendarGreyIcon from '@/assets/svg/ic_calendar_grey.svg?react';
@@ -14,6 +16,7 @@ import RadioEmptyIcon from '@/assets/svg/ic_check_round_navy.svg?react';
 import CheckboxEmptyIcon from '@/assets/svg/ic_check_square.svg?react';
 import CheckboxFilledIcon from '@/assets/svg/ic_check_square_filled.svg?react';
 import CloseIcon from '@/assets/svg/ic_close.svg?react';
+import InfoIcon from '@/assets/svg/ic_exclamation_circle_gray.svg?react';
 import DownBlackIcon from '@/assets/svg/ic_down_black_thick.svg?react';
 import ExclamationIcon from '@/assets/svg/ic_exclamation_circle_navy.svg?react';
 import FlagKoreaIcon from '@/assets/svg/ic_flag_korea.svg?react';
@@ -87,6 +90,10 @@ export {
 	HeartIcon,
 	OwlIcon,
 	ReviewStarIcon,
+	OneWayIcon,
+	InfoIcon,
+	TwoWayIcon,
+	ProfileBlackIcon,
 	ArrowRightGreyIcon,
 	CardBoard,
 	BagIcon,
