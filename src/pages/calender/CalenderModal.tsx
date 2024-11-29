@@ -40,19 +40,15 @@ const CalenderModal = () => {
 					<InfoFilter>
 						<InfoGoLeft>
 							<InfoGoTitle>가는 편</InfoGoTitle>
-							{firstSelectedDate ? (
-								<InfoGoContent>{firstSelectedDate}</InfoGoContent>
-							) : (
-								<InfoGoPlaceholder>가는 날을 선택해주세요</InfoGoPlaceholder>
-							)}
+							<InfoGoContent date={firstSelectedDate}>
+								{firstSelectedDate ? firstSelectedDate : '가는 날을 선택해주세요'}
+							</InfoGoContent>
 						</InfoGoLeft>
 						<InfoGoRight>
 							<InfoGoTitle>오는 편</InfoGoTitle>
-							{lastSelectedDate ? (
-								<InfoGoContent>{lastSelectedDate}</InfoGoContent>
-							) : (
-								<InfoGoPlaceholder>오는 날을 선택해주세요</InfoGoPlaceholder>
-							)}
+							<InfoGoContent date={lastSelectedDate}>
+								{lastSelectedDate ? lastSelectedDate : '오는 날을 선택해주세요'}
+							</InfoGoContent>
 						</InfoGoRight>
 					</InfoFilter>
 				</Information>
@@ -162,14 +158,9 @@ const InfoGoTitle = styled.h3`
 	color: ${({ theme }) => theme.colors.grey40};
 `;
 
-const InfoGoContent = styled.div`
+const InfoGoContent = styled.div<{ date: string | null }>`
 	${({ theme }) => theme.fonts.e_body_m_12}
-	color: ${({ theme }) => theme.colors.black};
-	height: 1.7rem;
-`;
-const InfoGoPlaceholder = styled.div`
-	${({ theme }) => theme.fonts.e_body_m_12}
-	color: ${({ theme }) => theme.colors.grey30};
+	color: ${({ theme, date }) => (date ? theme.colors.black : theme.colors.grey30)};
 	height: 1.7rem;
 `;
 
