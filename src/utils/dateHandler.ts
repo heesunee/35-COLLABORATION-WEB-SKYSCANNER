@@ -2,6 +2,7 @@ import { useCalender } from '@/hooks/useCalender.ts';
 import { PATH } from '@/router/path.ts';
 import { CalenderListTypes, PriceData } from '@/types/CalenderListTypes.ts';
 import { useState } from 'react';
+import { Value } from 'react-calendar/src/shared/types.js';
 import { useNavigate } from 'react-router-dom';
 
 export const dateHandler = () => {
@@ -71,13 +72,15 @@ export const dateHandler = () => {
 	 * 가는날, 오는날의 가격을 합산하는 함수
 	 * @param value
 	 */
-	const handleCheepPrice = (value: [Date, Date]) => {
-		const startDate = formatDate(value[0]);
-		const endDate = formatDate(value[1]);
+	const handleCheepPrice = (value: Value) => {
+		if (!value || !Array.isArray(value)) return;
+		const [startDate, endDate] = value as [Date, Date];
 
 		const allData = calenderList.flatMap((month) => month.prices);
-		const startPrice = allData.find((price) => JSON.stringify(price.date) === JSON.stringify(startDate))?.price || 0;
-		const endPrice = allData.find((price) => JSON.stringify(price.date) === JSON.stringify(endDate))?.price || 0;
+		const startPrice =
+			allData.find((price) => JSON.stringify(price.date) === JSON.stringify(formatDate(startDate)))?.price || 0;
+		const endPrice =
+			allData.find((price) => JSON.stringify(price.date) === JSON.stringify(formatDate(endDate)))?.price || 0;
 
 		setCheepPrice(convertPrice(startPrice + endPrice));
 	};
