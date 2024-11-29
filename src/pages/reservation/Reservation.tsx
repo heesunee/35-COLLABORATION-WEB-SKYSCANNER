@@ -12,13 +12,9 @@ import TabFlight from '@/components/reservation/TabFlight';
 import styled from 'styled-components';
 
 const Reservation = () => {
-
 	const searchParams = new URLSearchParams(window.location.search);
 	const startDate = searchParams.get('startDate');
 	const finishDate = searchParams.get('finishDate');
-
-	const { flights } = useFlights();
-
 
 	return (
 		<ReservationContainer>

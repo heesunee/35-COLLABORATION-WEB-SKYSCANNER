@@ -15,7 +15,8 @@ const Home = () => {
 	};
 
 	const onChangeAbleCity = (city: string | null) => {
-		setAbleCityName(city);
+		if (city === null) return;
+		setAbleCityName(city as '오키나와' | '서울');
 	};
 
 	return (

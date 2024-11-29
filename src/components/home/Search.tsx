@@ -140,9 +140,7 @@ const Search = ({ onModalToggle, onChangeAbleCity }: props) => {
 				)}
 
 				{departure && arrival && numAdults ? (
-					<Button onClick={handleSearchClick} variant="searchHome">
-						검색하기
-					</Button>
+					<Button onClick={handleSearchClick}>검색하기</Button>
 				) : (
 					<Button variant="disableHome" disabled={true}>
 						검색하기

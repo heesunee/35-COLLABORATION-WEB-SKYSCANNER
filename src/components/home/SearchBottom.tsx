@@ -1,7 +1,7 @@
 import Button from '../common/Button';
 import { CloseIcon, MinusFilledIcon, MinusUnfilledIcon, PlusFilledIcon } from '@/assets/svg';
 import { flexCssGenerator } from '@/styles/customStyle.ts';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 type SearchBottomProps = {
