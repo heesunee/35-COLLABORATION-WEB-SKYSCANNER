@@ -1,19 +1,18 @@
 import { ArrowrightIcon } from '@/assets/svg';
+import { formatPrice } from '@/utils/flightUtils';
 import styled from 'styled-components';
 
 interface PriceSelectProps {
-	depPrice: number;
-	arrPrice: number;
-	formatPrice: (price: number) => string;
+	totalPrice: number;
 }
-const PriceSelect = ({ depPrice, arrPrice, formatPrice }: PriceSelectProps) => {
+const PriceSelect = ({ totalPrice }: PriceSelectProps) => {
 	// 금액 포맷 함수
 
 	return (
 		<BottomContainer>
 			<PriceContainer>
 				{/** 최저가 일때 해시태그, 후작업 예정 */}
-				<Price>₩{formatPrice(arrPrice + depPrice)}</Price>
+				<Price>₩{formatPrice(totalPrice)}</Price>
 			</PriceContainer>
 			<SelectButton>
 				선택하기

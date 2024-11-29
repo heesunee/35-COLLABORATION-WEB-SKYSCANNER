@@ -1,8 +1,8 @@
 import FlightCard from '@/components/reservation/FlightCard';
-import { Flight } from '@/types/FlightTypes';
+import { Flights } from '@/types/FlightTypes';
 
 interface FlightListProps {
-	flights: Flight[];
+	flights: Flights[];
 }
 
 const FlightList = ({ flights }: FlightListProps) => {

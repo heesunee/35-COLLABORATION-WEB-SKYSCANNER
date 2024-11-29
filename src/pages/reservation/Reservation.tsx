@@ -9,12 +9,14 @@ import Hotel from '@/components/reservation/Hotel';
 import LocationInput from '@/components/reservation/LocationInput';
 import MoreButton from '@/components/reservation/MoreButton';
 import TabFlight from '@/components/reservation/TabFlight';
-import { flightData } from '@/mocks/mockFlightData';
+import { useFlights } from '@/hooks/useFlights';
 import styled from 'styled-components';
 
 const Reservation = () => {
 	const startdDate = '2024-11-6';
 	const finishDate = '2024-11-13';
+	const { flights } = useFlights();
+
 	return (
 		<ReservationContainer>
 			<TopBar>
@@ -33,7 +35,7 @@ const Reservation = () => {
 						titles={['해외여행은 트래블', 'GO', '체크카드!']}
 						subTitles={['트래블로그와 ', 'Visa', '의 만남으로 이뤄진 트래블카드']}
 					/>
-					<FlightList flights={flightData} />
+					<FlightList flights={flights} />
 					<MoreButton />
 					<AdCard
 						Img={KKdayIcon}
