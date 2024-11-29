@@ -13,8 +13,10 @@ import { useFlights } from '@/hooks/useFlights';
 import styled from 'styled-components';
 
 const Reservation = () => {
-	const startdDate = '2024-11-6';
-	const finishDate = '2024-11-13';
+	const searchParams = new URLSearchParams(window.location.search);
+	const startDate = searchParams.get('startDate');
+	const finishDate = searchParams.get('finishDate');
+
 	const { flights } = useFlights();
 
 	return (
@@ -22,7 +24,7 @@ const Reservation = () => {
 			<TopBar>
 				<LocationInput />
 				<FilterContainer>
-					<DateFilter startDate={startdDate} finishDate={finishDate} />
+					<DateFilter startDate={startDate} finishDate={finishDate} />
 					<Filter people={1} content="성인" />
 					<Filter content="일반석" />
 				</FilterContainer>
