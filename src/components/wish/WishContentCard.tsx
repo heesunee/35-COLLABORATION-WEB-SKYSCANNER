@@ -1,3 +1,4 @@
+import { patchLike } from '@/api/wish/patchLike';
 import LikeBlueIcon from '@/assets/svg/ic_like_blue.svg?react';
 import LikeOutlineBlueIcon from '@/assets/svg/ic_like_outline_blue.svg?react';
 import FlightDetails from '@/components/wish/FlightDetails';
@@ -25,8 +26,13 @@ const WishContentCard = ({
 }: WishContentCardProps) => {
 	const [isLiked, setIsLiked] = useState(true);
 
-	const toggleLike = () => {
-		setIsLiked((prev) => !prev);
+	const toggleLike = async () => {
+		try {
+			await patchLike(id);
+			setIsLiked((prev) => !prev);
+		} catch (error) {
+			console.error('Failed to update like status:', error);
+		}
 	};
 	return (
 		<WishContentWrapper>
